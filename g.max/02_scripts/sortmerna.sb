@@ -1,0 +1,94 @@
+#!/bin/bash --login
+#SBATCH --job-name=sortmerna
+#SBATCH --array=1-160
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=32G
+#SBATCH --time=12:00:00
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/g.max/logs/sortmerna/%x_%a.SLURMout
+
+# 1. Paths & Variables
+SCRATCH_BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/g.max"
+LIST="$SCRATCH_BASE/01_inputs/g.max_sra_IDs.txt"
+
+# Path to your container image (UPDATE THIS PATH TO YOUR SIF FILE)
+CONTAINER_IMG="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/images/sortmerna.sif"
+
+# Extract single SRA accession for this array job
+SRA_ID=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$LIST" | tr -d '\r' | xargs)
+
+IN_DIR="$SCRATCH_BASE/03_outputs/01_fastp"
+OUT_DIR="$SCRATCH_BASE/03_outputs/02_sortmerna"
+CLEAN_DIR="${OUT_DIR}/clean_reads"
+RRNA_DIR="${OUT_DIR}/rRNA_reads"
+
+mkdir -p "$CLEAN_DIR" "$RRNA_DIR"
+
+# External Database Paths
+DEFAULT="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/databases/smr_v4.3_default_db.fasta"
+CUSTOM="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/databases/g.max_barrnap/custom_db.fasta" # Your barrnap-generated custom DB
+
+# 2. Environment Setup
+
+THREADS=${SLURM_CPUS_PER_TASK:-1}
+
+echo "Processing Array Task: $SLURM_ARRAY_TASK_ID | Sample ID: $SRA_ID via Container"
+
+# 3. Process Paired-End Reads
+if [ -f "${IN_DIR}/${SRA_ID}_1_trim.fastq.gz" ] && [ -f "${IN_DIR}/${SRA_ID}_2_trim.fastq.gz" ]; then
+    echo "Running SortMeRNA on PAIRED-END reads for $SRA_ID..."
+    
+    WORKDIR="${OUT_DIR}/workdir_pe_${SRA_ID}"
+    mkdir -p "$WORKDIR"
+
+    singularity exec \
+      --bind "/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run:/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run" \
+      "$CONTAINER_IMG" sortmerna \
+        --ref ${DEFAULT} \
+        --ref ${CUSTOM} \
+        --reads "${IN_DIR}/${SRA_ID}_1_trim.fastq.gz" \
+        --reads "${IN_DIR}/${SRA_ID}_2_trim.fastq.gz" \
+        --workdir "$WORKDIR" \
+        --aligned "${RRNA_DIR}/${SRA_ID}_pe_rRNA" \
+        --other "${CLEAN_DIR}/${SRA_ID}_pe_non_rRNA" \
+        --paired_in \
+        --out2 \
+        --fastx \
+        --threads "$THREADS"
+
+    # Rename outputs to standard STAR-friendly fastq.gz names
+    mv "${CLEAN_DIR}/${SRA_ID}_pe_non_rRNA_fwd.fq.gz" "${CLEAN_DIR}/${SRA_ID}_1_sortmerna.fastq.gz"
+    mv "${CLEAN_DIR}/${SRA_ID}_pe_non_rRNA_rev.fq.gz" "${CLEAN_DIR}/${SRA_ID}_2_sortmerna.fastq.gz"
+
+    # Clean up heavy temporary index/workdir files
+    rm -rf "$WORKDIR"
+
+# 4. Process Single-End Reads
+elif [ -f "${IN_DIR}/${SRA_ID}_trim.fastq.gz" ]; then
+    echo "Running SortMeRNA on SINGLE-END reads for $SRA_ID..."
+
+    WORKDIR="${OUT_DIR}/workdir_se_${SRA_ID}"
+    mkdir -p "$WORKDIR"
+
+    singularity exec \
+      --bind "/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run:/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run" \
+      "$CONTAINER_IMG" sortmerna \
+        --ref ${DEFAULT} \
+        --ref ${CUSTOM} \
+        --reads "${IN_DIR}/${SRA_ID}_trim.fastq.gz" \
+        --workdir "$WORKDIR" \
+        --aligned "${RRNA_DIR}/${SRA_ID}_se_rRNA" \
+        --other "${CLEAN_DIR}/${SRA_ID}_se_non_rRNA" \
+        --fastx \
+        --threads "$THREADS"
+
+    # Rename single output to standard fastq.gz
+    mv "${CLEAN_DIR}/${SRA_ID}_se_non_rRNA.fq.gz" "${CLEAN_DIR}/${SRA_ID}_singles_sortmerna.fastq.gz"
+
+    # Clean up heavy temporary index/workdir files
+    rm -rf "$WORKDIR"
+else
+    echo "ERROR: Trimmed fastq files not found in $IN_DIR for $SRA_ID"
+    exit 1
+fi
+
+echo "SortMeRNA filtering completed for $SRA_ID."

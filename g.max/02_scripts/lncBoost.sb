@@ -1,0 +1,39 @@
+#!/bin/bash --login
+#SBATCH --job-name=lncBoost
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=64G
+#SBATCH --time=02:00:00
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/g.max/logs/%x_%j.out
+
+date
+
+# --- Paths ---
+BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run"
+IMAGE="${BASE}/images/plant_lnc_boost.sif" # dedicated image for this step
+SCRIPT_DIR="${BASE}/scripts/Plant-LncRNA-pipeline-v2/PlantLncBoost/Script" # contains both Feature_extraction.py and PlantLncBoost_prediction.py
+MODEL="${BASE}/scripts/Plant-LncRNA-pipeline-v2/Model/PlantLncBoost_model.cb" # pre-trained model for plant lncRNA prediction
+
+INPUT_FASTA="${BASE}/g.max/03_outputs/04_stringtie/g.max_candidates.fasta" # input fasta file containing candidate lncRNA sequences
+OUT_DIR="${BASE}/g.max/03_outputs/07_lncBoost"
+FEATURE_CSV="${OUT_DIR}/g.max_features.csv"
+FINAL_RESULTS="${OUT_DIR}/g.max_predictions.txt"
+
+mkdir -p ${OUT_DIR}
+
+# --- STEP 1: Feature Extraction ---
+echo "Starting Feature Extraction..."
+singularity exec -B /mnt/scratch/lemasjoh $IMAGE \
+    python3 ${SCRIPT_DIR}/Feature_extraction.py -i $INPUT_FASTA -o $FEATURE_CSV
+
+# --- STEP 2: Prediction ---
+echo "...feature extraction complete.\nStarting Prediction..."
+singularity exec -B /mnt/scratch/lemasjoh $IMAGE \
+    python3 ${SCRIPT_DIR}/PlantLncBoost_prediction.py \
+    -i $FEATURE_CSV \
+    -m $MODEL \
+    -o $FINAL_RESULTS \
+    -t 0.5
+
+echo "Pipeline complete. Results are in $FINAL_RESULTS"
+
+date
