@@ -5,48 +5,48 @@ scripts/
 
 # ------ g.max ------- #
 # --- Heavy inputs --- #
-01_inputs/g.max_indexed/
-01_inputs/*fa
-01_inputs/*fa.fai
-01_inputs/*gtf
-01_inputs/*gff3
+g.max/01_inputs/g.max_indexed/
+g.max/01_inputs/*fa
+g.max/01_inputs/*fa.fai
+g.max/01_inputs/*gtf
+g.max/01_inputs/*gff3
 
 # --- Heavy outputs --- #
-03_outputs/01_fastp/
-03_outputs/02_sortmerna/
-03_outputs/03_STAR/*progress.out
-03_outputs/03_STAR/*bam
-03_outputs/03_STAR/*Log.out
-03_outputs/03_STAR/*tab
-03_outputs/04_stringtie/SRR_assemblies/
-03_outputs/04_stringtie/g.max_denovo_trans.gtf
-03_outputs/08_lncFinder/filtered_candidates.fasta
-03_outputs/10_int_class/Lnc*
-03_outputs/10_int_class/*bed
-03_outputs/10_int_class/g.max_tmp.tsv
-03_outputs/11_trace/candidate*
-03_outputs/11_trace/sra_file_list.txt
+g.max/03_outputs/01_fastp/
+g.max/03_outputs/02_sortmerna/
+g.max/03_outputs/03_STAR/*progress.out
+g.max/03_outputs/03_STAR/*bam
+g.max/03_outputs/03_STAR/*Log.out
+g.max/03_outputs/03_STAR/*tab
+g.max/03_outputs/04_stringtie/SRR_assemblies/
+g.max/03_outputs/04_stringtie/g.max_denovo_trans.gtf
+g.max/03_outputs/08_lncFinder/filtered_candidates.fasta
+g.max/03_outputs/10_int_class/Lnc*
+g.max/03_outputs/10_int_class/*bed
+g.max/03_outputs/10_int_class/g.max_tmp.tsv
+g.max/03_outputs/11_trace/candidate*
+g.max/03_outputs/11_trace/sra_file_list.txt
 
 # ------ z.mays ------ #
 # --- Heavy inputs --- #
-01_inputs/z.mays_indexed/
-01_inputs/*fa
-01_inputs/*fa.fai
-01_inputs/*gtf
-01_inputs/*gff3
+z.mays/01_inputs/z.mays_indexed/
+z.mays/01_inputs/*fa
+z.mays/01_inputs/*fa.fai
+z.mays/01_inputs/*gtf
+z.mays/01_inputs/*gff3
 
 # --- Heavy outputs --- #
-03_outputs/01_fastp/
-03_outputs/02_sortmerna/
-03_outputs/03_STAR/*progress.out
-03_outputs/03_STAR/*bam
-03_outputs/03_STAR/*Log.out
-03_outputs/03_STAR/*tab
-03_outputs/04_stringtie/SRR_assemblies/
-03_outputs/04_stringtie/z.mays_denovo_trans.gtf
-03_outputs/08_lncFinder/filtered_candidates.fasta
-03_outputs/10_int_class/Lnc*
-03_outputs/10_int_class/*bed
-03_outputs/10_int_class/z.mays_tmp.tsv
-03_outputs/11_trace/sra_file_list.txt
-03_outputs/11_trace/candidate*
+z.mays/03_outputs/01_fastp/
+z.mays/03_outputs/02_sortmerna/
+z.mays/03_outputs/03_STAR/*progress.out
+z.mays/03_outputs/03_STAR/*bam
+z.mays/03_outputs/03_STAR/*Log.out
+z.mays/03_outputs/03_STAR/*tab
+z.mays/03_outputs/04_stringtie/SRR_assemblies/
+z.mays/03_outputs/04_stringtie/z.mays_denovo_trans.gtf
+z.mays/03_outputs/08_lncFinder/filtered_candidates.fasta
+z.mays/03_outputs/10_int_class/Lnc*
+z.mays/03_outputs/10_int_class/*bed
+z.mays/03_outputs/10_int_class/z.mays_tmp.tsv
+z.mays/03_outputs/11_trace/sra_file_list.txt
+z.mays/03_outputs/11_trace/candidate*
