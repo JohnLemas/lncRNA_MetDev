@@ -1,5 +1,5 @@
 # IWGC lncRNA Prediction
-## Expanding annotations for non-model plants
+## Method development
 ### John Lemas
 ### 5-6-2025
 ---
@@ -21,27 +21,25 @@
 1. Obtain 'truth' dataset from [PLncDB](https://www.tobaccodb.org/plncdb/) for a given speices
 2. Generate a `PMID` list associated with RNA-seq projects under the 'species' tab in PLncDB
 3. Use `EDirect` and `SRA-Toolkit` to get raw data from each of these projects
-4. Download a reference genome and annotation file
-5. Trim raw `fastq` files and align trimmed reads to the reference genome
-6. Assemble a reference-guided *de novo* transcriptome using `StringTie`
-7. Obtain candidate lncRNAs using `grep` and `gffread`
-8. Run these candidates through `FEELnc`, `lncBoost`, `lncFinder`, `cpat`, and `DIAMOND`
-9. Intersect IDs that passed every tool to obtain high-confidence lncRNAs
-10. Use sequence alignment to compare high-confidence *ab initio* candidates to 'truth' dataset
+4. Download a reference genome, annotation file, and TE annotations
+5. Trim raw `fastq` files and filter out rRNA via `barrnap` & `SortMeRNA`
+6. Align trimmed clean reads to the reference genome
+7. Assemble a reference-guided *de novo* transcriptome using `StringTie`
+8. Obtain candidate lncRNAs using `grep` and `gffread`
+9. Run these candidates through `FEELnc`, `lncBoost`, `lncFinder`, `cpat`, and `DIAMOND`
+10. Intersect IDs that passed every tool to obtain high-confidence lncRNAs
+11. Use sequence alignment to compare high-confidence *ab initio* candidates to 'truth' dataset
  ---
 ## Working Directory
-- def_files
-  - definition files to create necessary images for each tool
-- scripts
-  - sbatch script templates for hpcc
-  - custom `R` and `python` scripts
 - species
   - 01_inputs
     - PMID metadata
     - list of sra IDs saved as `species_sra_IDs.txt`
-    - reference genome (`species.chromosomes.fa`) and annotation (`species_mRNA.gtf`)
+    - reference genome (`species.chromosomes.fa`)
+    - reference gene model annotation (`species_mRNA.gtf`)
+    - TE annotations (via EDTA)
   - 02_scripts
-    - scripts copied from parent script directory (see `scripts/README.md`)
+    - scripts copied from IWGC lncRNA pipeline
   - 03_outputs
     - pipeline output directories
 - truth_data
@@ -49,8 +47,9 @@
   - species directories
     - individual database lncRNA `fasta` and `gff3` files
     - full concatonated lncRNA files
-    - condensed lncRNA `fasta` files (see `scripts/README.md` `cd-hit` step)
+    - lncRNA `fasta` files condensed with `CD-HIT`
  ---
+ 
 ## Gathering inputs
 - Navigate to [PLncDB](https://www.tobaccodb.org/plncdb/)
 - Gather PMID information from the RNA-Seq table for a given species
@@ -58,8 +57,15 @@
 - Gather truth sequences from the downloads>species page on PLncDB
   - Download the lncRNA fasta files and gff3 files
 - Create working directory
-  - Clone this repository. Clone [Plant-lncPipe](https://github.com/xuechantian/Plant-LncRNA-pipeline-v2) and [FEELnc](https://github.com/tderrien/feelnc) into the `scripts` directory.
-  - Run `scripts/build_images.sb` array job to build each necessary image
+  - Clone [IWGC_lncRNA_pipeline](https://github.com/JohnLemas/IWGC_lncRNA_pipeline)
+  - Pull images from SyLabs
+    - `singularity pull library://jlemas/lncrna_annotation/plant_lncboost`
+    - `singularity pull library://jlemas/lncrna_annotation/sortmerna`
+    - `singularity pull library://jlemas/lncrna_annotation/rbio_tools`
+    - `singularity pull library://jlemas/lncrna_annotation/feelnc`
+    - `singularity pull library://jlemas/lncrna_annotation/cpat_plant`
+    - *OPTIONAL: pull EDTA image for TE annotations*
+        - `singularity pull library://jlemas/lncrna_annotation/edta_1.9.6`
   - Create the working directory for the species
     - `mkdir 01_inputs 02_scripts 03_outputs`
   - Copy scripts into `species/02_scripts` and run the `sed`  command (see `scripts/README.md`)
@@ -90,6 +96,8 @@ python3 /path/to/ncbi_datasets_cleanup.py [species] # run the cleanup script wit
 
 Move the new `chromosomes.fa` and `_mRNA.gtf` files into the `species/01_inputs` directory for indexing, and remove the ncbi_dataset directory, README file, and md5sum file from the datasets download. Optional: keep the compressed datasets download for later reference.
 
+*NOTE: If you do not have TE annotations available for your species, generate them with the given EDTA image. This may take a long time, so begin this step as soon as possible. See `scripts/README.md` for more information.*
+
 ### Create the UniProt database for DIAMOND:
 ```bash
 # Download the latest UniProt database release
@@ -116,7 +124,7 @@ sbatch IWGC_lncRNA_pipeline/species/02_scripts/cd-hit.sb
 
 ```
 
-This master set should be exhaustive of the known experimentally validated and high confidence predicted lncRNAs already published.
+This master database represents an exhaustive set of the known experimentally validated and high confidence predicted lncRNAs already published.
 
 ---
 ## Running the pipeline
@@ -124,17 +132,19 @@ This master set should be exhaustive of the known experimentally validated and h
 
 Once all the inputs have been gathered and the species working directory is created, the order of operations is as follows:
 
-### Steps 1 - 7: Preparing model inputs
+### Steps 1 - 8: Preparing model inputs
 1. `star_genomegenerate.sb`
 2. `prefetch_array.sb`
 3. `fastp.sb`
-4. `alignment_array.sb`
-5. `bam_indexing.sb`
-6. `stringtie_assemble.sb`
+4. `barrnap.sb`
+5. `sortmerna.sb`
+6. `alignment_array.sb`
+7. `bam_indexing.sb`
+8. `stringtie_assemble.sb`
 
-### Step 7: Merging assemblies and gathering candidates
+### Step 9: Merging assemblies and gathering candidates
 
-7. `stringtie_merge.sb`
+9. `stringtie_merge.sb`
 
 Once the merge step is complete, the output `gtf` file contains all of the aligned sequence locations and any information about an overlapping mRNA in that region. This script parses out transcripts that did not overlap with mRNA locations in the master output gtf file and outputs `candidates.gtf` and `candidates.fasta`. These unfiltered candidate locations, sequences, and stringtie transcript IDs are used in all of the following *ab initio* prediction models.
 
@@ -151,10 +161,18 @@ Once the merge step is complete, the output `gtf` file contains all of the align
 
 13. `intersect_classify.sb`
 
-This step merges output from all ML tools producing a `.txt` file with `StringTie` gene IDs for candidates that passed all filters and a table of concensus information. It then uses `FEELnc_classify.pl` to classify each predicted lncRNA. `intersect_classify.sb` eliminates the need for multiple R based images and handles all of the data parsing and file generation in one ~5 minute step using `intersect_ids.R` and `classifications.R`. 
+This step merges output from all ML tools producing a `.txt` file with `StringTie` gene IDs for candidates that passed all filters and a table of concensus information. It then uses `FEELnc_classify.pl` to classify each predicted lncRNA. `intersect_classify.sb` eliminates the need for multiple R based images and handles all of the data parsing and file generation in one ~5 minute step using `rbio_tools.sif`.
 
-### Step 14: Compare pipeline results to truth dataset
+### Step 14: Trace predictions back to specific SRA accession numbers
+
+14. `track_preds.sb`
+
+The original plan with this step was to back-trace tissue types from input read metadata. Doing so would allow for annotation of tissue-type specific predicted lncRNAs. Here, we're interested in understanding how many predictions are present from each of the input files since we are pulling from a wide array of public input data. This provides an additional level to benchmark this prediction pipeline.
+
+### Step 15: Compare pipeline results to truth dataset
 
 14. `minimap2.sb`
+
+Alignment results from species-specific published datasets are used to benchmark predictions. This step uses the 'truth_data' database for the species to investigate pipeline predictions. Benchmarking difficulties may arise due to poor sequence complimentarity between like lncRNAs between and potentially within species. Regardless, we needed an external dataset to assess results.
 
 ---
