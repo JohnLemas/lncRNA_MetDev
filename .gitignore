@@ -27,6 +27,12 @@ g.max/03_outputs/10_int_class/g.max_tmp.tsv
 g.max/03_outputs/11_trace/candidate*
 g.max/03_outputs/11_trace/sra_file_list.txt
 
+# --- log files --- #
+g.max/logs/g.max_align/
+g.max/logs/fastp/
+g.max/logs/sortmerna/
+g.max/logs/stringtie
+
 # ------ z.mays ------ #
 # --- Heavy inputs --- #
 z.mays/01_inputs/z.mays_indexed/
@@ -50,3 +56,9 @@ z.mays/03_outputs/10_int_class/*bed
 z.mays/03_outputs/10_int_class/z.mays_tmp.tsv
 z.mays/03_outputs/11_trace/sra_file_list.txt
 z.mays/03_outputs/11_trace/candidate*
+
+# --- log files --- #
+z.mays/logs/z.mays_align/
+z.mays/logs/fastp/
+z.mays/logs/sortmerna/
+z.mays/logs/stringtie
