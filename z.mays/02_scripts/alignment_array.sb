@@ -1,0 +1,57 @@
+#!/bin/bash --login
+#SBATCH --job-name=STAR_align
+#SBATCH --array=1-165
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=64G
+#SBATCH --time=02:00:00 # typical mapping rates for corn and soy completed this step in well under an hour
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/logs/z.mays_align/%x-%a.out # generates a ton of logs. use subdirectory in log file path
+
+# 1. Paths
+BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run"
+
+LIST="${BASE}/z.mays/01_inputs/z.mays_sra_IDs.txt" # list of sra accessions from EDirect query
+ID=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$LIST" | tr -d '\r' | xargs) # pulls the sra accession for the current array task ID
+
+DATA_DIR="${BASE}/z.mays/03_outputs/02_sortmerna/clean_reads" # this is where the cleaned, trimmed SortMeRNA-filtered reads are located
+INDEX_DIR="${BASE}/z.mays/01_inputs/z.mays_indexed" # indexed genome from star_genomegeneratete.sb script
+OUT_DIR="${BASE}/z.mays/03_outputs/03_STAR" # this is where the STAR output will go, which will be organized by sample ID (e.g., SRR1234567_Aligned.sortedByCoord.out.bam)
+
+mkdir -p $OUT_DIR
+
+set -euo pipefail
+
+# 2. Filename Logic
+# Check for paired-end first
+if [ -f "${DATA_DIR}/${ID}_1_sortmerna.fastq.gz" ]; then
+    echo "Sample $ID: PAIRED-END detected"
+    READS="${DATA_DIR}/${ID}_1_sortmerna.fastq.gz ${DATA_DIR}/${ID}_2_sortmerna.fastq.gz"
+# Otherwise check for single-end
+elif [ -f "${DATA_DIR}/${ID}_singles_sortmerna.fastq.gz" ]; then
+    echo "Sample $ID: SINGLE-END detected"
+    READS="${DATA_DIR}/${ID}_singles_sortmerna.fastq.gz"
+else
+    echo "ERROR: No files found for $ID in $DATA_DIR"
+    exit 1
+fi
+
+ml purge
+ml load STAR/2.7.11b-GCC-13.2.0 # this is the current module for use in MSU HPCC
+
+# 3. Run STAR
+STAR \
+    --runThreadN $SLURM_CPUS_PER_TASK \
+    --genomeDir $INDEX_DIR \
+    --readFilesIn $READS \
+    --readFilesCommand zcat \
+    --outFileNamePrefix ${OUT_DIR}/${ID}_ \
+    --outSAMtype BAM SortedByCoordinate \
+    --outSAMattrIHstart 0 \
+    --outSAMattributes NH HI AS nM NM \
+    --outSAMstrandField intronMotif
+
+# Flags
+# --outSAMattrIHstart 0 required for compatibility with certain older tools or specific pipelines that expect 0-based indexing for multi-mappers
+# -outSAMattributes NH: Number of reported alignments for the query; HI: Query hit index (distinguishes multiple alignments of the same read). AS: Alignment score; nM: Number of mismatches; NM: Edit distance to the reference (including insertions and deletions).
+# --outSAMstrandField intronMotif is used for strand-specific RNA-seq data, which is common in eukaryotic transcriptomics. It helps STAR to correctly assign reads to the appropriate strand based on the presence of canonical splice motifs (GT/AG, GC/AG, AT/AC) at intron-exon boundaries. This is crucial for accurate gene expression quantification and downstream analyses.
+
+echo "Alignment for $ID complete."

@@ -1,0 +1,142 @@
+#!/bin/bash --login
+#SBATCH --job-name=finalize
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=64G
+#SBATCH --time=00:30:00
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/logs/%x_%j.out
+
+# Fix the locale warnings and suppress the systemd/timedatectl warning from R packages
+export LC_ALL=C
+export LANG=C
+export TZ="UTC"
+date
+
+BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run"
+
+# Species/sample prefix used for all file naming below
+PREFIX="z.mays"
+
+# R parsing image for output files
+IMAGE="${BASE}/images/rbio_tools_dev.sif"
+
+# Single shared output directory for all intersect/classify steps (directory only, no prefix baked in)
+INT_CLASS_OUT="${BASE}/${PREFIX}/03_outputs/10_int_class"
+mkdir -p $INT_CLASS_OUT
+
+# File path prefix (directory + sample name) used throughout the rest of the script
+INT_PFX="${INT_CLASS_OUT}/${PREFIX}"
+
+# =======>------- Intersect IDs -------<======== #
+
+# Input files. script can run with at least two of the tools, and works with gtf and txt files.
+FEELnc="${BASE}/${PREFIX}/03_outputs/05_FEELnc/${PREFIX}_FEELnc.gtf"
+CPAT="${BASE}/${PREFIX}/03_outputs/06_cpat/${PREFIX}_cpat.output"
+lncBoost="${BASE}/${PREFIX}/03_outputs/07_lncBoost/${PREFIX}_predictions.txt"
+lncFinder="${BASE}/${PREFIX}/03_outputs/08_lncFinder/${PREFIX}_lncFinder_results.csv"
+DIAMOND="${BASE}/${PREFIX}/03_outputs/09_diamond/${PREFIX}_diamond_out.txt"
+
+echo -e ">>>Intersect:\nInput files:\n${FEELnc}\n${CPAT}\n${lncFinder}\n${lncBoost}\n${DIAMOND}\n...\n"
+
+# Pass the flags directly to the image
+cmd1="singularity run $IMAGE intersect -f $FEELnc -c $CPAT -l $lncFinder -b $lncBoost -d $DIAMOND -o $INT_PFX" # save run command in log file
+
+echo -e ">>> Running intersect script...\n${cmd1}\n"
+$cmd1
+
+echo -e ">>>Intersect:\nIntersection complete.\nlncRNA IDs:\n${INT_PFX}_final_ids.txt\nTool summary:\n${INT_PFX}_intersection_summary.csv\n"
+
+# =======>------- Pull seqs and gtf -------<======== #
+
+CAN_SEQS="${BASE}/${PREFIX}/03_outputs/04_stringtie/${PREFIX}_candidates.fasta"
+CAN_GTF="${BASE}/${PREFIX}/03_outputs/04_stringtie/${PREFIX}_candidates.gtf"
+
+echo -e ">>>Pulling sequences and gtf for final lncRNA IDs...\nInput files:\n${CAN_SEQS}\n${CAN_GTF}\n...\n"
+
+ml purge
+ml load SeqKit
+
+# Pull the fasta sequences for the final lncRNA IDs
+cmd2="seqkit grep -f ${INT_PFX}_final_ids.txt ${CAN_SEQS} > ${INT_PFX}_lncRNA.fasta"
+echo -e ">>> Pulling sequences...\n${cmd2}\n"
+seqkit grep -f ${INT_PFX}_final_ids.txt ${CAN_SEQS} > ${INT_PFX}_lncRNA.fasta
+
+# Pull the gtf entries for the final lncRNA IDs
+cmd3="grep -Fwf ${INT_PFX}_final_ids.txt ${CAN_GTF} > ${INT_PFX}_lncRNA.gtf"
+echo -e ">>> Pulling GTF entries...\n${cmd3}\n"
+grep -Fwf ${INT_PFX}_final_ids.txt ${CAN_GTF} > ${INT_PFX}_lncRNA.gtf
+
+# =======>------- Classify lncRNAs -------<======== #
+
+# 1. Generate classifications file via FEELnc_classifier.pl
+
+FEELnc_IMG="${BASE}/images/FEELnc2.sif"
+FEELNC_DIR="${BASE}/scripts/feelnc"
+LNC_GTF="${INT_PFX}_lncRNA.gtf"
+mRNA_GTF="${BASE}/${PREFIX}/01_inputs/${PREFIX}_mRNA.gtf"
+
+# 2. Run the classifier
+cmd4="singularity exec \
+  --env PERL5LIB="${FEELNC_DIR}/lib" \
+  $FEELnc_IMG \
+  perl ${FEELNC_DIR}/scripts/FEELnc_classifier.pl \
+    -i $LNC_GTF \
+    -a $mRNA_GTF \
+    -w 10000 \
+    -m 100000 \
+    -v 1 > '${INT_PFX}_lncRNA_classes.txt'
+"
+
+echo -e ">>> Running FEELnc_classifier.pl...\n${cmd4}\n"
+
+singularity exec \
+  --env PERL5LIB="${FEELNC_DIR}/lib" \
+  $FEELnc_IMG \
+  perl ${FEELNC_DIR}/scripts/FEELnc_classifier.pl \
+    -i $LNC_GTF \
+    -a $mRNA_GTF \
+    -w 10000 \
+    -m 100000 \
+    -v 1 > "${INT_PFX}_lncRNA_classes.txt"
+
+# 3. Parse output file
+cmd5="singularity run $IMAGE classify -i ${INT_PFX}_lncRNA_classes.txt -o $INT_CLASS_OUT"
+
+echo -e ">>> Running classification script...\n${cmd5}\n"
+$cmd5 
+
+echo -e ">>>Classification complete."
+
+# =======>------- Intersect lncRNA/TE -------<======== #
+
+TE_GFF3="${BASE}/${PREFIX}/01_inputs/${PREFIX}.TE.gff3"
+
+echo -e ">>>Intersect lncRNA/TE:\nInput files:\n${LNC_GTF}\n${TE_GFF3}\n...\n"
+
+cmd6="singularity run $IMAGE intersect_te -g $TE_GFF3 -t $LNC_GTF -o $INT_CLASS_OUT"
+
+echo -e ">>> Running lncRNA/TE intersection script...\n${cmd6}\n"
+$cmd6
+
+echo -e ">>>Intersect lncRNA/TE:\nIntersection complete.\nSummary table:\n${INT_CLASS_OUT}/TE_lncRNA_intersect.txt\n"
+
+# =======>------- Finalize annotation -------<======== #
+
+TEMP_TSV="${INT_PFX}_tmp.tsv"
+FINAL_TSV="${INT_PFX}_final_annotation.tsv"
+
+echo -e ">>>Finalize:\nBuilding final annotation table...\nInput dir:\n${INT_CLASS_OUT}\n...\n"
+
+cmd7="singularity run $IMAGE finalize -d $INT_CLASS_OUT -o $TEMP_TSV -p $PREFIX"
+
+echo -e ">>> Running build_final_annotation.R...\n${cmd7}\n"
+$cmd7
+
+cmd8="(head -n 1 $TEMP_TSV; tail -n +2 $TEMP_TSV | sort -k1,1V -k2,2n) > ${FINAL_TSV}"
+
+echo -e ">>> Sorting output based on chromosome and location\n${cmd8}\n"
+
+(head -n 1 $TEMP_TSV; tail -n +2 $TEMP_TSV | sort -k1,1V -k2,2n) > ${FINAL_TSV}
+
+echo -e ">>>Finalize:\nFinal annotation table complete:\n${FINAL_TSV}\n"
+
+date

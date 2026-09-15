@@ -1,0 +1,30 @@
+#!/bin/bash --login
+#SBATCH --job-name=DIAMOND
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=64G
+#SBATCH --time=02:00:00 # based on 165 candidates. DIAMOND is super fast
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/logs/%x_%j.out
+
+# load module
+ml purge
+ml load DIAMOND/2.1.8-GCC-12.3.0 # this is the current module for use in MSU HPCC
+
+# Load input files
+echo -e ">>>DIAMOND:\n...loading input files and database.."
+BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run"
+INPUT="${BASE}/z.mays/03_outputs/04_stringtie/z.mays_candidates.fasta" # this is the fasta file of candidate lncRNA sequences obtained from gffread -w z.mays_candidates.fasta -g z.mays_genome.fa z.mays_candidates.gtf
+OUTDIR="${BASE}/z.mays/03_outputs/09_diamond"
+OUTPUT="${OUTDIR}/z.mays_diamond_out.txt"
+DB="/mnt/scratch/lemasjoh/BASF/uniprot_db/uniprot_out.dmnd" # this is the DIAMOND-formatted database created from the uniprot_sprot.fasta file using diamond makedb --in uniprot_sprot.fasta -d uniprot_out.dmnd
+
+echo -e ">>>DIAMOND:\nDatabase:\n\t${DB}\nInput sequences:\n\t${INPUT}"
+
+echo -e "...create output directory:\n${OUTDIR}"
+mkdir -p $OUTDIR
+
+cmd1="diamond blastx --threads $SLURM_CPUS_PER_TASK -d $DB -q $INPUT -o $OUTPUT --outfmt 6 --sensitive --max-target-seqs 1 --evalue 1e-5" # save command in log file
+echo -e ">>>DIAMOND: run command:\n${cmd1}"
+
+$cmd1
+
+echo -e "..done. Output file:\n\t${OUTPUT}\nProcess complete."

@@ -1,0 +1,27 @@
+#!/bin/bash --login
+#SBATCH --job-name=cpat
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=32G
+#SBATCH --time=01:00:00 # based on 165 candidates. cpat is pretty fast
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/logs/%x-%j.out
+
+# Paths
+echo -e ">>>CPAT-plant:\n..loading image and data.."
+BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run"
+IMAGE="${BASE}/images/cpat_plant.sif" # path to cpat image built with singularity build -r cpat_plant.sif cpat_plant.def
+SEQS="${BASE}/z.mays/03_outputs/04_stringtie/z.mays_candidates.fasta" # fasta file obtained from gffread -w z.mays_candidates.fasta -g z.mays_genome.fa z.mays_candidates.gtf
+HEX="${BASE}/scripts/Plant-LncRNA-pipeline-v2/Model/Plant_Hexamer.tsv" # this is the hexamer table provided by Plant-LncPipe Github Repo
+LOGIT="${BASE}/scripts/Plant.logit.v2.RData" # also provided by Plant-LncPipe Github Repo, but wrong version. Re-saved to work with cpat.sif- use this one.
+OUT_DIR="${BASE}/z.mays/03_outputs/06_cpat"
+OUT_ALL="${OUT_DIR}/z.mays_cpat.output"
+
+echo -e "..creating output directory:\n\t${OUT_DIR}"
+mkdir -p $OUT_DIR
+
+echo -e ">>>CPAT-plant:\n.raw input data:\n\t${SEQS}\nnumber of sequences\n\t$(grep -c ">" ${SEQS})\n" # log the input files and number of sequences
+
+# run CPAT-plant
+echo -e ">>>CPAT-plant:\n..running command on raw input data.." 
+singularity exec $IMAGE cpat.py -x $HEX -d $LOGIT -g $SEQS -o $OUT_ALL
+
+echo -e ">>>CPAT-plant:\n..complete. Output saved to:\n\t${OUT_ALL}\n"

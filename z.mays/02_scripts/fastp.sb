@@ -1,0 +1,66 @@
+#!/bin/bash --login
+#SBATCH --job-name=fastp
+#SBATCH --array=1-165
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=16G
+#SBATCH --time=02:00:00
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/logs/fastp/%x-%j_%a.SLURMout
+
+# 1. Paths & Variables
+SPECIES_DIR="z.mays"
+SCRATCH_BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run"
+LIST="$SCRATCH_BASE/$SPECIES_DIR/01_inputs/z.mays_sra_IDs.txt"
+
+# Pull the specific ID for this array task line-by-line
+ID=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$LIST" | tr -d '\r' | xargs)
+
+IN_DIR="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/z.mays/01_inputs/raw_fastq" 
+OUT_DIR="$SCRATCH_BASE/$SPECIES_DIR/03_outputs/01_fastp"
+mkdir -p "$OUT_DIR"
+
+# 2. Environment Setup
+ml purge
+ml load Miniforge3
+conda activate fastp
+
+echo "Processing Array Task: $SLURM_ARRAY_TASK_ID | Sample ID: $ID"
+
+# --- SMART SEQUENCING MODE CHECK ---
+# Case 1: True PAIRED-END (Both _1 and _2 files must exist)
+if [ -f "${IN_DIR}/${ID}_1.fastq.gz" ] && [ -f "${IN_DIR}/${ID}_2.fastq.gz" ]; then
+    echo "Processing $ID as TRUE PAIRED-END"
+    fastp \
+      -i "${IN_DIR}/${ID}_1.fastq.gz" \
+      -I "${IN_DIR}/${ID}_2.fastq.gz" \
+      -o "${OUT_DIR}/${ID}_1_trim.fastq.gz" \
+      -O "${OUT_DIR}/${ID}_2_trim.fastq.gz" \
+      --detect_adapter_for_pe \
+      --thread 8 -x -g \
+      --html "${OUT_DIR}/${ID}_fastp.html" \
+      --json "${OUT_DIR}/${ID}_fastp.json"
+
+# Case 2: SINGLE-END but named with a '_1.fastq.gz' suffix
+elif [ -f "${IN_DIR}/${ID}_1.fastq.gz" ]; then
+    echo "Processing $ID as SINGLE-END (Input file: ${ID}_1.fastq.gz)"
+    fastp \
+      -i "${IN_DIR}/${ID}_1.fastq.gz" \
+      -o "${OUT_DIR}/${ID}_trim.fastq.gz" \
+      --thread 8 -x -g \
+      --html "${OUT_DIR}/${ID}_fastp.html" \
+      --json "${OUT_DIR}/${ID}_fastp.json"
+
+# Case 3: SINGLE-END named traditionally '.fastq.gz'
+elif [ -f "${IN_DIR}/${ID}.fastq.gz" ]; then
+    echo "Processing $ID as SINGLE-END (Input file: ${ID}.fastq.gz)"
+    fastp \
+      -i "${IN_DIR}/${ID}.fastq.gz" \
+      -o "${OUT_DIR}/${ID}_trim.fastq.gz" \
+      --thread 8 -x -g \
+      --html "${OUT_DIR}/${ID}_fastp.html" \
+      --json "${OUT_DIR}/${ID}_fastp.json"
+
+# Error Catching: File not found
+else
+    echo "ERROR: Could not find raw fastq data for $ID in $IN_DIR"
+    exit 1
+fi
