@@ -139,39 +139,38 @@ Once all the inputs have been gathered and the species working directory is crea
 4. `barrnap.sb`
 5. `sortmerna.sb`
 6. `alignment_array.sb`
-7. `bam_indexing.sb`
-8. `stringtie_assemble.sb`
+7. `stringtie_assemble.sb`
 
-### Step 9: Merging assemblies and gathering candidates
+### Step 8: Merging assemblies and gathering candidates
 
-9. `stringtie_merge.sb`
+8. `stringtie_merge.sb`
 
 Once the merge step is complete, the output `gtf` file contains all of the aligned sequence locations and any information about an overlapping mRNA in that region. This script parses out transcripts that did not overlap with mRNA locations in the master output gtf file and outputs `candidates.gtf` and `candidates.fasta`. These unfiltered candidate locations, sequences, and stringtie transcript IDs are used in all of the following *ab initio* prediction models.
 
-### Steps 8 - 12: Running the models
+### Steps 9 - 11: Running the models
 *Note that each of the models can run simultaneously*
 
-8. `FEELnc_filter.sb`
-9. `cpat.sb`
-10. `lncFinder.sb`
-11. `lncBoost.sb`
-12. `DIAMOND.sb`
+9. `FEELnc_filter.sb`
+10. `cpat.sb`
+11. `lncFinder.sb`
+12. `lncBoost.sb`
+13. `DIAMOND.sb`
 
-### Step 13: Intersect predictions and classify high-confidence lncRNAs
+### Step 14: Intersect predictions and classify high-confidence lncRNAs
 
-13. `intersect_classify.sb`
+14. `intersect_classify.sb`
 
 This step merges output from all ML tools producing a `.txt` file with `StringTie` gene IDs for candidates that passed all filters and a table of concensus information. It then uses `FEELnc_classify.pl` to classify each predicted lncRNA. `intersect_classify.sb` eliminates the need for multiple R based images and handles all of the data parsing and file generation in one ~5 minute step using `rbio_tools.sif`.
 
-### Step 14: Trace predictions back to specific SRA accession numbers
+### Step 15: Trace predictions back to specific SRA accession numbers
 
-14. `track_preds.sb`
+15. `track_preds.sb`
 
 The original plan with this step was to back-trace tissue types from input read metadata. Doing so would allow for annotation of tissue-type specific predicted lncRNAs. Here, we're interested in understanding how many predictions are present from each of the input files since we are pulling from a wide array of public input data. This provides an additional level to benchmark this prediction pipeline.
 
-### Step 15: Compare pipeline results to truth dataset
+### Step 16: Compare pipeline results to truth dataset
 
-14. `minimap2.sb`
+16. `minimap2.sb`
 
 Alignment results from species-specific published datasets are used to benchmark predictions. This step uses the 'truth_data' database for the species to investigate pipeline predictions. Benchmarking difficulties may arise due to poor sequence complimentarity between like lncRNAs between and potentially within species. Regardless, we needed an external dataset to assess results.
 
