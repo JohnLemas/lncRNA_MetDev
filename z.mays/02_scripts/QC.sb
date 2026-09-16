@@ -30,7 +30,7 @@ multiqc "${OUT_FASTP}" -o "${OUT_FASTP}/multiQC"
 # ==============================================================================
 # 2. QC for Clean (SortMeRNA) Reads
 # ==============================================================================
-IN_CLEAN="${BASE}/z.mays/03_outputs/02_sortmerna/clean"
+IN_CLEAN="${BASE}/z.mays/03_outputs/02_sortmerna/clean_reads"
 OUT_CLEAN="${BASE}/z.mays/03_outputs/02_sortmerna/QC"
 
 mkdir -p "${OUT_CLEAN}/multiQC"
