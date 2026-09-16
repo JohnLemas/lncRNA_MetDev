@@ -1,0 +1,32 @@
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/03_outputs/10_int_class/z.mays_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/03_outputs/12_verify/z.mays_cd-hit-0.9_vs_pred.paf
+
+[M::mm_idx_gen::0.472*0.87] collected minimizers
+[M::mm_idx_gen::0.549*1.77] sorted minimizers
+[M::main::0.549*1.77] loaded/built the index for 23580 target sequence(s)
+[M::mm_mapopt_update::0.608*1.70] mid_occ = 65
+[M::mm_idx_stat] kmer size: 15; skip: 5; is_hpc: 0; #seq: 23580
+[M::mm_idx_stat::0.648*1.66] distinct minimizers: 3312458 (82.48% are singletons); average occurrences: 1.438; average spacing: 3.016; total length: 14363314
+[M::worker_pipeline::1.021*3.25] mapped 7484 sequences
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/03_outputs/12_verify/z.mays_cd-hit-0.9_vs_pred.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/03_outputs/10_int_class/z.mays_lncRNA.fasta
+[M::main] Real time: 1.033 sec; CPU: 3.330 sec; Peak RSS: 0.247 GB
+Total predicted lncRNAs:
+	7484
+
+Predicted IDs that matched the /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa dataset:
+	3294
+
+False Positives:
+	4190
+
+number of EV sequences that were hit by predictions:
+	2512
+
+Number of EV sequences:
+	23580
+
+False negatives:
+	21068
+
