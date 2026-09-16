@@ -1,0 +1,29 @@
+#!/bin/bash --login
+#SBATCH --job-name=z.mays_cd-hit
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=1G
+#SBATCH --time=02:00:00
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/logs/%x-%j.out
+
+# Paths
+BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run"
+INPUT="${BASE}/truth_data/z.mays/z.mays_PLncDB_lncRNA.fa" # this is the combined fasta of all lncRNA sequences from PLncDB for the z.mays of interest
+OUTPUT="${BASE}/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa" # this is the output fasta file that will contain the representative sequences after clustering with CD-HIT at 90% identity
+
+# module
+ml purge
+ml load CD-HIT # this is the current module for use in MSU HPCC
+
+
+# command
+# -c sequence identity threshold, default 0.9
+# -M memory limit (in MB) for the program, default 800; 0 for unlimitted
+# -T number of threads, default 1; with 0, all CPUs will be used
+# -l length of throw_away_sequences, default 10
+cmd="cd-hit -i ${INPUT} -o ${OUTPUT} -c 0.9 -M 800 -T 8 -l 200"
+
+echo -e "run command:\n\t${cmd}\n" # save run command in log file for reproducibility and debugging purposes
+
+$cmd
+
+echo "done"
