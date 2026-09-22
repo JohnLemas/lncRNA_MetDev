@@ -2,7 +2,7 @@
 #SBATCH --job-name=QC
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=16G
-#SBATCH --time=08:00:00
+#SBATCH --time=04:00:00
 #SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/g.max/logs/%x-%j.SLURMout
 
 # Load all required modules at the start
@@ -10,33 +10,57 @@ ml purge
 ml load FastQC/0.12.1-Java-11
 ml load MultiQC
 
-BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run"
+BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run" # change this to reflect your working directory
 
 # ==============================================================================
-# 1. QC for FastP Reads
+# 1. QC for Raw Reads
+# ==============================================================================
+IN_RAW="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/g.max/01_inputs/raw_fastq"
+OUT_RAW="${IN_RAW}/QC"
+
+mkdir -p "${OUT_RAW}"
+
+echo -e ">>>Running QC on raw reads:\n$(ls -1 ${IN_RAW}/*.gz)"
+
+# Run FastQC on all raw gz files
+fastqc -t 8 -o "${OUT_RAW}" "${IN_RAW}"/*.gz
+
+# Run MultiQC on fastp QC outputs
+multiqc "${OUT_RAW}" -n "raw_report" -o "${OUT_RAW}" --no-data-dir
+
+echo ">>>Finished raw reads"
+
+# ==============================================================================
+# 2. QC for FastP Reads
 # ==============================================================================
 IN_FASTP="${BASE}/g.max/03_outputs/01_fastp"
 OUT_FASTP="${BASE}/g.max/03_outputs/01_fastp/QC"
 
-mkdir -p "${OUT_FASTP}/multiQC"
+mkdir -p "${OUT_FASTP}/"
 
-# Run FastQC on all fastp gz files
+echo -e ">>>Running QC on trimmed reads:\n$(ls -1 ${IN_FASTP}/*.gz)"
+
+# Run FastQC on trimmed reads
 fastqc -t 8 -o "${OUT_FASTP}" "${IN_FASTP}"/*.gz
 
-# Run MultiQC on fastp QC outputs
-multiqc "${OUT_FASTP}" -o "${OUT_FASTP}/multiQC"
+# Run MultiQC on FastQC outputs
+multiqc "${OUT_FASTP}" -n "trimmed_report" -o "${OUT_FASTP}" --no-data-dir
 
-
+echo ">>>Finished trimmed reads"
 # ==============================================================================
-# 2. QC for Clean (SortMeRNA) Reads
+# 3. QC for Clean (SortMeRNA) Reads
 # ==============================================================================
 IN_CLEAN="${BASE}/g.max/03_outputs/02_sortmerna/clean_reads"
-OUT_CLEAN="${BASE}/g.max/03_outputs/02_sortmerna/QC"
+OUT_CLEAN="${IN_CLEAN}/QC"
 
-mkdir -p "${OUT_CLEAN}/multiQC"
+mkdir -p "${OUT_CLEAN}"
+
+echo -e ">>> running QC on SortMeRNA-cleaned reads:\n$(ls -1 ${IN_CLEAN}/*.gz)"
 
 # Run FastQC on clean gz files
 fastqc -t 8 -o "${OUT_CLEAN}" "${IN_CLEAN}"/*.gz
 
 # Run MultiQC on clean QC outputs
-multiqc "${OUT_CLEAN}" -o "${OUT_CLEAN}/multiQC"
+multiqc "${OUT_CLEAN}" -n "clean_report" -o "${OUT_CLEAN}" --no-data-dir
+
+echo ">>> Quality check complete."
