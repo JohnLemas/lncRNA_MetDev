@@ -1,0 +1,43 @@
+#!/bin/bash --login
+#SBATCH --job-name=z.mays_tpm
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=16G
+#SBATCH --time=00:30:00
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run/z.mays/logs/%x_%j.out
+
+# ========>------- Build the lncRNA TPM matrix -------<======== #
+# NOTE: Run this AFTER stringtie_quantify.sb has produced t_data.ctab for every
+# sample. Like track_preds.sb, this has no dependency on intersect_classify.sb -
+# it only needs z.mays_candidates.gtf (to know which transcript_ids to keep) and
+# can run in parallel with the tissue-tracking step. intersect_classify.sb (or
+# build_final_annotation.R) should join the resulting *.summary.tsv onto the final
+# table on transcript_id, the same way it already joins in the tracking summary.
+
+BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run"
+PREFIX="z.mays"
+
+QUANT_DIR="${BASE}/${PREFIX}/03_outputs/04_stringtie"
+CANDIDATES_GTF="${BASE}/${PREFIX}/03_outputs/04_stringtie/${PREFIX}_candidates.gtf"
+METADATA="${BASE}/${PREFIX}/01_inputs/${PREFIX}_sra_IDs.txt"
+OUT_DIR="${BASE}/${PREFIX}/03_outputs/11_trace"
+OUT_PREFIX="${OUT_DIR}/${PREFIX}_lncRNA_TPM"
+
+mkdir -p "$OUT_DIR"
+
+IMAGE="${BASE}/images/rbio_tools_dev.sif"
+
+cmd_tpm="singularity run $IMAGE tpm \
+    -q \"$QUANT_DIR\" \
+    -c \"$CANDIDATES_GTF\" \
+    -m \"$METADATA\" \
+    -o \"$OUT_PREFIX\""
+
+echo -e ">>> Running build_tpm_matrix (parse_tpm_matrix.R)...\n${cmd_tpm}\n"
+
+singularity run $IMAGE tpm \
+    -q "$QUANT_DIR" \
+    -c "$CANDIDATES_GTF" \
+    -m "$METADATA" \
+    -o "$OUT_PREFIX"
+
+echo -e ">>> TPM matrix complete.\nPer-sample matrix: ${OUT_PREFIX}.matrix.tsv\nPer-tissue summary (if metadata has a tissue column): ${OUT_PREFIX}.summary.tsv\n"
