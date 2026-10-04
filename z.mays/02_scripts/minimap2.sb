@@ -9,7 +9,7 @@
 # Paths
 BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/trial_run"
 PRED="${BASE}/z.mays/03_outputs/10_int_class/z.mays_lncRNA.fasta" # Final candidates after running the intersection
-TRUTH="${BASE}/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa" # Truth dataset: EV sequences clustered at 90% identity with cd-hit. 
+TRUTH="${BASE}/test_truth/03_outputs/05_int_class/z.mays_PLncDB_filtered_0.9.fasta" # Truth dataset: EV sequences clustered at 90% identity with cd-hit. 
 OUTDIR="${BASE}/z.mays/03_outputs/12_verify"
 OUT_FILE="${OUTDIR}/z.mays_cd-hit-0.9_vs_pred.paf"
 LOG_FILE="${OUTDIR}/z.mays_log.txt"
