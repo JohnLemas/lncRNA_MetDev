@@ -1,0 +1,43 @@
+#!/bin/bash --login
+#SBATCH --job-name=species_sra_fetch
+#SBATCH --array=1-[number of accessions from wc -l sra_accessions.txt]
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+#SBATCH --time=03:00:00
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/logs/species_prefetch/%x-%j_%A_%a.out
+
+# Paths
+LIST="/mnt/scratch/lemasjoh/BASF/IWGC_lncRNA_pipeline/species/01_inputs/species_sra_IDs.txt"
+OUTDIR="/mnt/scratch/lemasjoh/BASF/IWGC_lncRNA_pipeline/species/01_inputs/raw_fastq"
+ID=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "$LIST" | tr -d '\r' | xargs) # pulls the sra accession for the current array task ID
+
+mkdir -p $OUTDIR
+
+ml purge
+ml load SRA-Toolkit
+ml load pigz/2.8-GCCcore-12.3.0 # this is the version that is compatible with SRA-Toolkit on MSU HPCC
+
+echo "Processing ID: $ID" # log the sra accession being processed
+
+# 1. Run Prefetch (only if not already downloaded)
+prefetch $ID --max-size 30G # Default is 20 G, but some Z. mays runs were larger. adjust this as necessary and always check the log files before running fastp and alignment_array
+
+# 2. Run fasterq-dump
+# --skip-technical: only keep biological reads
+echo "Starting fasterq-dump for $ID..."
+fasterq-dump $ID \
+    --outdir $OUTDIR \
+    --split-files \
+    --skip-technical \
+    --threads $SLURM_CPUS_PER_TASK \
+    --temp /tmp
+
+# 3. Gzip the results
+if [ $? -eq 0 ]; then
+    echo "Conversion complete. Compressing files..."
+    pigz -p $SLURM_CPUS_PER_TASK $OUTDIR/${ID}*.fastq 
+
+else
+    echo "fasterq-dump failed for $ID"
+    exit 1
+fi
