@@ -1,13 +1,13 @@
 #!/bin/bash --login
-#SBATCH --job-name=A.tha_cd-hit
+#SBATCH --job-name=cd-hit
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=1G
 #SBATCH --time=02:00:00
-#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/logs/%x-%j.out
+#SBATCH --output=/path/to/project/dir/species/logs/%x-%j.out
 
 # Env setup
-BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/"
-SPEC="A.tha"
+BASE="/path/to/project/dir"
+SPEC="species"
 
 ml purge
 ml load CD-HIT
