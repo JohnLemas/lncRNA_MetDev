@@ -1,0 +1,44 @@
+#!/bin/bash --login
+#SBATCH --job-name=A.tha_cd-hit
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=1G
+#SBATCH --time=02:00:00
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/logs/%x-%j.out
+
+# Env setup
+BASE="/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/"
+SPEC="A.tha"
+
+ml purge
+ml load CD-HIT
+ml load SeqKit
+
+# Paths
+INPUT="${BASE}/truth_data/${SPEC}/${SPEC}_PLncDB_lncRNA.fa" # this is the combined fasta of all lncRNA sequences from PLncDB for the A.tha of interest
+OUTPUT="${BASE}/truth_data/${SPEC}/${SPEC}_PLncDB_cd-hit.0.9.fa" # this is the output fasta file that will contain the representative sequences after clustering with CD-HIT at 90% identity
+
+TOT=$(grep -c "^>" ${INPUT})
+OLIM=$(seqkit seq -m 200 ${INPUT} | grep -c "^>")
+ULIM=$(seqkit seq -M 200 ${INPUT} | grep -c "^>")
+
+# command
+# -c sequence identity threshold, default 0.9
+# -M memory limit (in MB) for the program, default 800; 0 for unlimitted
+# -T number of threads, default 1; with 0, all CPUs will be used
+# -l length of throw_away_sequences, default 10
+cmd="cd-hit -i ${INPUT} -o ${OUTPUT} -c 0.9 -M 800 -T 8 -l 200"
+
+echo -e "run command:\n\t${cmd}\n"
+
+$cmd
+
+FIN=$(grep -c "^>" ${OUTPUT})
+
+echo "=========================================="
+echo -e "\tFull truth dataset: ${TOT}"
+echo -e "\tTruth seqs greater than 200 bp: ${OLIM}"
+echo -e "\tTruth seqs less than 200 bp: ${ULIM}"
+echo -e "\tFinal truth dataset: ${FIN}"
+echo "=========================================="
+
+echo "done"
