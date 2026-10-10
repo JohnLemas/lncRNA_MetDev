@@ -1,0 +1,43 @@
+ Command:
+    /opt/sortmerna/bin/sortmerna --ref /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/smr_v4.3_default_db.fasta --ref /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/A.tha_barrnap/custom_db.fasta --idx-dir /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/A.tha_barrnap/idx --index 0 --reads /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/02_sortmerna/tmp_decomp_sdl_li_high_1h_3/se.fq --aligned /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/02_sortmerna/rRNA_reads/sdl_li_high_1h_3_se_rRNA --other /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/02_sortmerna/clean_reads/sdl_li_high_1h_3_se_non_rRNA --fastx --workdir /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/02_sortmerna/workdir_se_sdl_li_high_1h_3 --threads 16 
+
+ Process pid = 
+
+ Parameters summary: 
+    Reference file: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/smr_v4.3_default_db.fasta
+        Seed length = 18
+        Pass 1 = 18, Pass 2 = 9, Pass 3 = 3
+        Gumbel lambda = 0.609384
+        Gumbel K = 0.337068
+        Minimal SW score based on E-value = 81
+    Reference file: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/A.tha_barrnap/custom_db.fasta
+        Seed length = 18
+        Pass 1 = 18, Pass 2 = 9, Pass 3 = 3
+        Gumbel lambda = 0.614811
+        Gumbel K = 0.346697
+        Minimal SW score based on E-value = 67
+    Number of seeds = 2
+    Edges = 4
+    SW match = 2
+    SW mismatch = -3
+    SW gap open penalty = 5
+    SW gap extend penalty = 2
+    SW ambiguous nucleotide = -3
+    SQ tags are not output
+    Number of alignment processing threads = 16
+    Reads file: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/02_sortmerna/tmp_decomp_sdl_li_high_1h_3/se.fq
+    Total reads = 27143804
+
+ Results:
+    Total reads passing E-value threshold = 330388 (1.22)
+    Total reads failing E-value threshold = 26813416 (98.78)
+    Minimum read length = 15
+    Maximum read length = 51
+    Mean read length    = 50
+
+ Coverage by database:
+    /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/smr_v4.3_default_db.fasta		1.22
+    /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/A.tha_barrnap/custom_db.fasta		0.00
+
+ Sun Oct  4 22:25:30 2026
+

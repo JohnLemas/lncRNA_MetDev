@@ -1,0 +1,44 @@
+ Command:
+    /opt/sortmerna/bin/sortmerna --ref /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/smr_v4.3_default_db.fasta --ref /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/A.tha_barrnap/custom_db.fasta --idx-dir /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/A.tha_barrnap/idx --index 0 --reads /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/01_fastp/ros_cld_81h_bio1_tec1_1_trim.fastq.gz --reads /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/01_fastp/ros_cld_81h_bio1_tec1_2_trim.fastq.gz --aligned /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/02_sortmerna/rRNA_reads/ros_cld_81h_bio1_tec1_pe_rRNA --other /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/02_sortmerna/clean_reads/ros_cld_81h_bio1_tec1_pe_non_rRNA --paired_in --out2 --fastx --workdir /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/02_sortmerna/workdir_pe_ros_cld_81h_bio1_tec1 --threads 16 
+
+ Process pid = 
+
+ Parameters summary: 
+    Reference file: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/smr_v4.3_default_db.fasta
+        Seed length = 18
+        Pass 1 = 18, Pass 2 = 9, Pass 3 = 3
+        Gumbel lambda = 0.609384
+        Gumbel K = 0.337068
+        Minimal SW score based on E-value = 83
+    Reference file: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/A.tha_barrnap/custom_db.fasta
+        Seed length = 18
+        Pass 1 = 18, Pass 2 = 9, Pass 3 = 3
+        Gumbel lambda = 0.614811
+        Gumbel K = 0.346697
+        Minimal SW score based on E-value = 69
+    Number of seeds = 2
+    Edges = 4
+    SW match = 2
+    SW mismatch = -3
+    SW gap open penalty = 5
+    SW gap extend penalty = 2
+    SW ambiguous nucleotide = -3
+    SQ tags are not output
+    Number of alignment processing threads = 16
+    Reads file: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/01_fastp/ros_cld_81h_bio1_tec1_1_trim.fastq.gz
+    Reads file: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/01_fastp/ros_cld_81h_bio1_tec1_2_trim.fastq.gz
+    Total reads = 35989004
+
+ Results:
+    Total reads passing E-value threshold = 139437 (0.39)
+    Total reads failing E-value threshold = 35849567 (99.61)
+    Minimum read length = 15
+    Maximum read length = 101
+    Mean read length    = 91
+
+ Coverage by database:
+    /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/smr_v4.3_default_db.fasta		0.39
+    /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/databases/A.tha_barrnap/custom_db.fasta		0.00
+
+ Sun Oct  4 01:55:55 2026
+
