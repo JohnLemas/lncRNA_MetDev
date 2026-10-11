@@ -1,7 +1,8 @@
 # --- project root --- #
+*.DS_Store
 databases/
 images/
-scripts/
+*xlsx
 
 # ------ g.max ------- #
 # --- Heavy inputs --- #
@@ -12,26 +13,10 @@ g.max/01_inputs/*gtf
 g.max/01_inputs/*gff3
 
 # --- Heavy outputs --- #
-g.max/03_outputs/01_fastp/
-g.max/03_outputs/02_sortmerna/
-g.max/03_outputs/03_STAR/*progress.out
-g.max/03_outputs/03_STAR/*bam
-g.max/03_outputs/03_STAR/*Log.out
-g.max/03_outputs/03_STAR/*tab
-g.max/03_outputs/04_stringtie/SRR_assemblies/
-g.max/03_outputs/04_stringtie/g.max_denovo_trans.gtf
-g.max/03_outputs/08_lncFinder/filtered_candidates.fasta
-g.max/03_outputs/10_int_class/Lnc*
-g.max/03_outputs/10_int_class/*bed
-g.max/03_outputs/10_int_class/g.max_tmp.tsv
-g.max/03_outputs/11_trace/candidate*
-g.max/03_outputs/11_trace/sra_file_list.txt
+g.max/03_outputs/
 
 # --- log files --- #
-g.max/logs/g.max_align/
-g.max/logs/fastp/
-g.max/logs/sortmerna/
-g.max/logs/stringtie
+g.max/logs/
 
 # ------ z.mays ------ #
 # --- Heavy inputs --- #
@@ -42,23 +27,7 @@ z.mays/01_inputs/*gtf
 z.mays/01_inputs/*gff3
 
 # --- Heavy outputs --- #
-z.mays/03_outputs/01_fastp/
-z.mays/03_outputs/02_sortmerna/
-z.mays/03_outputs/03_STAR/*progress.out
-z.mays/03_outputs/03_STAR/*bam
-z.mays/03_outputs/03_STAR/*Log.out
-z.mays/03_outputs/03_STAR/*tab
-z.mays/03_outputs/04_stringtie/SRR_assemblies/
-z.mays/03_outputs/04_stringtie/z.mays_denovo_trans.gtf
-z.mays/03_outputs/08_lncFinder/filtered_candidates.fasta
-z.mays/03_outputs/10_int_class/Lnc*
-z.mays/03_outputs/10_int_class/*bed
-z.mays/03_outputs/10_int_class/z.mays_tmp.tsv
-z.mays/03_outputs/11_trace/sra_file_list.txt
-z.mays/03_outputs/11_trace/candidate*
+z.mays/03_outputs/
 
 # --- log files --- #
-z.mays/logs/z.mays_align/
-z.mays/logs/fastp/
-z.mays/logs/sortmerna/
-z.mays/logs/stringtie
+z.mays/logs/
