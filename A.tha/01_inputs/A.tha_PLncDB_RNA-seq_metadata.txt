@@ -1,0 +1,376 @@
+30498193	SRP163044	SRR7947064	0 day post cold treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947065	0 day post cold treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947066	0 day post cold treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947067	20 days post cold treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947068	20 days post cold treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947069	20 days post cold treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947070	0 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947071	0 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947072	0 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947073	0 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947074	0 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947075	2 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947076	2 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947077	2 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947078	2 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947079	2 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947080	4 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947081	4 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947082	4 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947083	4 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947084	4 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947085	6 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947086	6 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947087	6 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947088	6 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947089	6 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947090	8 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947091	8 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947092	8hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947093	8 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947094	8 hour post ABA treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947095	0 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947096	0 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947097	0 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947098	2 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947099	2 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947100	2 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947101	4 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947102	4 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947103	4 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947104	6 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947105	6 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947106	6 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947107	8 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947108	8 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947109	8 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947110	0 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947111	0 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947112	2 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947113	2 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947114	4 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947115	4 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947116	6 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947117	6 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947118	8 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947119	8 hour post drought treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947120	no treatment	5.5-week-old	Inflorescences	Arabidopsis thaliana
+30498193	SRP163044	SRR7947121	no treatment	5.5-week-old	Inflorescences	Arabidopsis thaliana
+30498193	SRP163044	SRR7947122	no treatment	5.5-week-old	Inflorescences	Arabidopsis thaliana
+30498193	SRP163044	SRR7947123	no treatment	5.5-week-old	leaf	Arabidopsis thaliana
+30498193	SRP163044	SRR7947124	no treatment	5.5-week-old	leaf	Arabidopsis thaliana
+30498193	SRP163044	SRR7947125	no treatment	5.5-week-old	leaf	Arabidopsis thaliana
+30498193	SRP163044	SRR7947126	no treatment	5.5-week-old	silique	Arabidopsis thaliana
+30498193	SRP163044	SRR7947127	no treatment	5.5-week-old	silique	Arabidopsis thaliana
+30498193	SRP163044	SRR7947128	no treatment	5.5-week-old	silique	Arabidopsis thaliana
+30498193	SRP163044	SRR7947129	no treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947130	no treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947131	no treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947132	no treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947133	no treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947134	no treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947135	no treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947136	no treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947137	no treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947138	no treatment	2-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947139	no treatment	3-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947140	no treatment	4-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947141	no treatment	5-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947142	no treatment	6-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947143	no treatment	7-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947144	no treatment	8-week-old	seedling	Arabidopsis thaliana
+30498193	SRP163044	SRR7947145	no treatment	9-week-old	seedling	Arabidopsis thaliana
+28887353	SRP113651	SRR5875104	dehydrated on dry filter paper in Petri dishes till loss of 40% fresh weight	10 days old	seedling	Arabidopsis thaliana
+28887353	SRP113651	SRR5875105	dehydrated on dry filter paper in Petri dishes till loss of 40% fresh weight	10 days old	seedling	Arabidopsis thaliana
+28887353	SRP113651	SRR5875659	dehydrated on dry filter paper in Petri dishes till loss of 40% fresh weight	10 days old	seedling	Arabidopsis thaliana
+28887353	SRP113651	SRR5875675	dehydrated on dry filter paper in Petri dishes till loss of 40% fresh weight	10 days old	seedling	Arabidopsis thaliana
+28887353	SRP113651	SRR6008656	dehydrated on dry filter paper in Petri dishes till loss of 40% fresh weight	10 days old	seedling	Arabidopsis thaliana
+28887353	SRP113651	SRR6008841	dehydrated on dry filter paper in Petri dishes till loss of 40% fresh weight	10 days old	seedling	Arabidopsis thaliana
+28887353	SRP113651	SRR6008905	dehydrated on dry filter paper in Petri dishes till loss of 40% fresh weight	10 days old	seedling	Arabidopsis thaliana
+28887353	SRP113651	SRR6008907	dehydrated on dry filter paper in Petri dishes till loss of 40% fresh weight	10 days old	seedling	Arabidopsis thaliana
+30891054	ERP022071	ERR1886180	Timepoint 1	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886181	Timepoint 2	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886182	Timepoint 3	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886183	Timepoint 4	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886184	Timepoint 5	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886185	Timepoint 6	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886186	Timepoint 7	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886187	Timepoint 8	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886188	Timepoint 9	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886189	Timepoint 10	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886190	Timepoint 11	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886191	Timepoint 12	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886192	Timepoint 13	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886193	Timepoint 14	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886194	Timepoint 15	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886195	Timepoint 16	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886196	Timepoint 17	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886197	Timepoint 18	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886198	Timepoint 19	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886199	Timepoint 20	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886200	Timepoint 21	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886201	Timepoint 22	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886202	Timepoint 23	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886203	Timepoint 24	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886204	Timepoint 25	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886205	Timepoint 26	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886206	Timepoint 1	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886207	Timepoint 2	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886208	Timepoint 3	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886209	Timepoint 4	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886210	Timepoint 5	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886211	Timepoint 6	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886212	Timepoint 7	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886213	Timepoint 8	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886214	Timepoint 9	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886215	Timepoint 10	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886216	Timepoint 11	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886217	Timepoint 12	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886218	Timepoint 13	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886219	Timepoint 14	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886220	Timepoint 15	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886221	Timepoint 16	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886222	Timepoint 17	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886223	Timepoint 18	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886224	Timepoint 19	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886225	Timepoint 20	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886226	Timepoint 21	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886227	Timepoint 22	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886228	Timepoint 23	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886229	Timepoint 24	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886230	Timepoint 25	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886231	Timepoint 26	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886232	Timepoint 1	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886233	Timepoint 2	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886234	Timepoint 3	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886235	Timepoint 4	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886236	Timepoint 5	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886237	Timepoint 6	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886238	Timepoint 7	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886239	Timepoint 8	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886240	Timepoint 9	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886241	Timepoint 10	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886242	Timepoint 11	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886243	Timepoint 12	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886244	Timepoint 13	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886245	Timepoint 14	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886246	Timepoint 15	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886247	Timepoint 16	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886248	Timepoint 17	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886249	Timepoint 19	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886250	Timepoint 19	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886251	Timepoint 19	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886252	Timepoint 18	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886253	Timepoint 18	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886254	Timepoint 18	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886255	Timepoint 20	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886256	Timepoint 20	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886257	Timepoint 20	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886258	Timepoint 22	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886259	Timepoint 22	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886260	Timepoint 22	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886261	Timepoint 24	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886262	Timepoint 24	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886263	Timepoint 24	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886264	Timepoint 25	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886265	Timepoint 25	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886266	Timepoint 25	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886267	Timepoint 21	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886268	Timepoint 21	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886269	Timepoint 21	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886270	Timepoint 23	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886271	Timepoint 23	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886272	Timepoint 23	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886273	Timepoint 26	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886274	Timepoint 26	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886275	Timepoint 26	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886276	Timepoint 1	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886277	Timepoint 2	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886278	Timepoint 3	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886279	Timepoint 4	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886280	Timepoint 5	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886281	Timepoint 6	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886282	Timepoint 7	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886283	Timepoint 8	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886284	Timepoint 9	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886285	Timepoint 10	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886286	Timepoint 11	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886287	Timepoint 12	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886288	Timepoint 13	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886289	Timepoint 14	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886290	Timepoint 15	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886291	Timepoint 16	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886292	Timepoint 17	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886293	Timepoint 18	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886294	Timepoint 19	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886295	Timepoint 20	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886296	Timepoint 21	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886297	Timepoint 22	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886298	Timepoint 23	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886299	Timepoint 24	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886300	Timepoint 25	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886301	Timepoint 26	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886302	Timepoint 1	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886303	Timepoint 2	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886304	Timepoint 3	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886305	Timepoint 4	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886306	Timepoint 5	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886307	Timepoint 6	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886308	Timepoint 7	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886309	Timepoint 8	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886310	Timepoint 9	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886311	Timepoint 10	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886312	Timepoint 11	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886313	Timepoint 12	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886314	Timepoint 13	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886315	Timepoint 14	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886316	Timepoint 15	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886317	Timepoint 16	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886318	Timepoint 17	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886319	Timepoint 18	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886320	Timepoint 19	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886321	Timepoint 20	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886322	Timepoint 21	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886323	Timepoint 22	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886324	Timepoint 23	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886325	Timepoint 24	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886326	Timepoint 25	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886327	Timepoint 26	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886328	Timepoint 1	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886329	Timepoint 2	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886330	Timepoint 3	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886331	Timepoint 4	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886332	Timepoint 5	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886333	Timepoint 6	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886334	Timepoint 7	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886335	Timepoint 8	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886336	Timepoint 9	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886337	Timepoint 10	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886338	Timepoint 11	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886339	Timepoint 12	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886340	Timepoint 13	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886341	Timepoint 14	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886342	Timepoint 15	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886343	Timepoint 16	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886344	Timepoint 17	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886345	Timepoint 1	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886346	Timepoint 2	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886347	Timepoint 3	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886348	Timepoint 4	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886349	Timepoint 5	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886350	Timepoint 6	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886351	Timepoint 7	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886352	Timepoint 8	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886353	Timepoint 9	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886354	Timepoint 10	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886355	Timepoint 11	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886356	Timepoint 12	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886357	Timepoint 13	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886358	Timepoint 14	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886359	Timepoint 15	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886360	Timepoint 16	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886361	Timepoint 17	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886362	Timepoint 18	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886363	Timepoint 19	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886364	Timepoint 20	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886365	Timepoint 21	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886366	Timepoint 22	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886367	Timepoint 23	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886368	Timepoint 24	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886369	Timepoint 25	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886370	Timepoint 26	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886371	Timepoint 1	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886372	Timepoint 2	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886373	Timepoint 3	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886374	Timepoint 4	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886375	Timepoint 5	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886376	Timepoint 6	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886377	Timepoint 7	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886378	Timepoint 8	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886379	Timepoint 9	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886380	Timepoint 10	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886381	Timepoint 11	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886382	Timepoint 12	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886383	Timepoint 13	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886384	Timepoint 14	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886385	Timepoint 15	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886386	Timepoint 16	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886387	Timepoint 17	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886388	Timepoint 18	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886389	Timepoint 19	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886390	Timepoint 20	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886391	Timepoint 21	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886392	Timepoint 22	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886393	Timepoint 23	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886394	Timepoint 24	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886395	Timepoint 25	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886396	Timepoint 26	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886397	Timepoint 1	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886398	Timepoint 2	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886399	Timepoint 3	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886400	Timepoint 4	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886401	Timepoint 5	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886402	Timepoint 6	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886403	Timepoint 7	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886404	Timepoint 8	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886405	Timepoint 9	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886406	Timepoint 10	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886407	Timepoint 11	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886408	Timepoint 12	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886409	Timepoint 13	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886410	Timepoint 14	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886411	Timepoint 15	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886412	Timepoint 16	5-week-old	rosette	Arabidopsis thaliana
+30891054	ERP022071	ERR1886413	Timepoint 17	5-week-old	rosette	Arabidopsis thaliana
+30892644	DRP003686	DRR070501	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070502	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070503	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070504	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070505	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070506	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070507	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070508	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070509	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070510	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070511	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070512	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070513	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070514	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070515	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070516	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070517	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070518	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070519	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070520	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070521	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070522	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070523	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070524	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070525	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+30892644	DRP003686	DRR070526	nutrient-deficiency treatment for 4 days	4-week-old	root	Arabidopsis thaliana
+31851942	SRP133385	SRR6767632	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767633	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767634	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767635	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767636	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767637	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767639	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767640	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767642	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767643	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767644	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767645	"Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767646	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767647	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767648	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767649	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767650	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767651	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767652	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767653	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767654	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767655	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767656	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767657	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767658	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC) treatment\, followed by recovery in Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
+31851942	SRP133385	SRR6767659	"High light (1200 µmol.m-2.s-1\, leaf temperature: 22 oC) treatment\, followed by recovery in Growth light (60 µmol.m-2.s-1\, 22 oC)"	7 days old	seedling	Arabidopsis thaliana
