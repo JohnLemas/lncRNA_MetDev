@@ -1,0 +1,160 @@
+SRR1174205	rt_14d_1	root	14 day old seedling							
+SRR1174206	tlf_14d_1	trifoliate leaf	14 day old seedling							
+SRR1174207	sd_10-14dpa_1	seed	10-14 DPA							
+SRR1174208	sd_14-20dpa_1	seed	14-20 DPA							
+SRR1174209	psd_20dpa_1	pod seed	20 DPA							
+SRR1174211	psd_25dpa_1	pod seed	25 DPA							
+SRR1174212	psd_35dpa_1	pod seed	35 DPA							
+SRR1174213	stm_14d_1	stem	14 day old seedling							
+SRR1174214	stm_14d_2	stem	14 day old seedling							
+SRR1174215	tlf_14d_2	trifoliate leaf	14 day old seedling							
+SRR1174216	stm_14d_3	stem	14 day old seedling							
+SRR1174217	fl_1	flower	NA							
+SRR1174218	fl_2	flower	NA							
+SRR1174219	fl_3	flower	NA							
+SRR1174220	flbd_1	flower bud	NA							
+SRR1174221	pd_10-14dpa_1	pod	10-14 DPA							
+SRR1174222	sd_5-6dpa_1	seed	5-6 DPA							
+SRR1174223	pd_14-20dpa_1	pod	14-20 DPA							
+SRR1174224	pd_20dpa_1	pod	20 DPA							
+SRR1174225	sd_6-10dpa_1	seed	6-10 DPA							
+SRR1174226	tfl_14d_3	trifoliate leaf	14 day old seedling							
+SRR1174227	lb_1	leaf bud (SAM)	NA							
+SRR1174228	cot_4dpg_1	cotyledon	4 days post germination							
+SRR1174229	ylf_1	unexpanded young leaf	NA							
+SRR1174230	lb_2	leaf bud (M)	NA							
+SRR1174231	ysh_1	Young shoot	NA							
+SRR1174232	flbd_2	flower bud	NA							
+SRR1174233	sd_25dpa_1	seed	25 DPA							
+SRR2545896	rt_A[CO2]_0drt_1	root	NA							
+SRR2545897	rt_A[CO2]_0drt_2	root	NA							
+SRR2545898	rt_E[CO2]_0drt_1	root	NA							
+SRR2545899	rt_E[CO2]_0drt_2	root	NA							
+SRR2545900	rt_A[CO2]_50drt_1	root	NA							
+SRR2545901	rt_A[CO2]_50drt_2	root	NA							
+SRR2545902	rt_E[CO2]_50drt_1	root	NA							
+SRR2545903	rt_E[CO2]_50drt_2	root	NA							
+SRR3033496	VMS_WW_R1	root	Well-Watered							
+SRR3033497	VMS_WW_R2	root	Well-Watered							
+SRR3033498	MS_WW_R2	root	Well-Watered							
+SRR3033499	MS_WW_R3	root	Water Deficit							
+SRR3033500	SS_R1	root	Water Deficit							
+SRR3033501	SS_R2	root	Water Deficit							
+SRR3033502	SS_R3	root	Well-Watered							
+SRR3033503	SS_WW_R1	root	Well-Watered							
+SRR3033504	SS_WW_R2	root	Well-Watered							
+SRR3033505	SS_WW_R3	root	Water Deficit							
+SRR3033506	SR_R1	root	Water Deficit							
+SRR3033507	SR_R2	root	Water Deficit							
+SRR3033508	VMS_R3	root	Well-Watered							
+SRR3033509	SR_R3	root	Well-Watered							
+SRR3033510	SR_WW_R1	root	Well-Watered							
+SRR3033511	SR_WW_R2	root	Water Deficit							
+SRR3033512	SR_WW_R3	root	Water Deficit							
+SRR3033513	VMS_R1	root	Water Deficit							
+SRR3033514	VMS_R2	root	Well-Watered							
+SRR3033515	VMS_WW_R3	root	Well-Watered							
+SRR3033516	MS_R1	root	Well-Watered							
+SRR3033517	MS_R2	root	Water Deficit							
+SRR3033518	MS_R3	root	Water Deficit							
+SRR3033519	MS_WW_R1	root	Water Deficit							
+SRR3628740	lf_Y-wt_1	unexpanded young leaf	wild type							
+SRR3628741	lf_Y-wt_2	unexpanded young leaf	wild type							
+SRR3628742	lf_M-wt_1	trifoliate leaf	wild type							
+SRR3628743	lf_M-wt_2	trifoliate leaf	wild type							
+SRR3628744	lf_M-wt_3	trifoliate leaf	wild type							
+SRR3628745	lf_Y-mt_1	unexpanded young leaf	mutant							
+SRR3628746	lf_Y-mt_2	unexpanded young leaf	mutant							
+SRR3628748	lf_M-mt_1	trifoliate leaf	mutant							
+SRR3628749	lf_M-mt_2	trifoliate leaf	mutant							
+SRR5493867	rt_nod_1	root	no metadata							
+SRR5493868	rt_nod_2	root	no metadata							
+SRR5493869	rt_nod_3	root	no metadata							
+SRR5493870	rt_nod_4	root	no metadata							
+SRR5493871	rt_nod_5	root	no metadata							
+SRR5493872	rt_nod_6	root	no metadata							
+SRR5493873	rt_nod_7	root	no metadata							
+SRR5493874	rt_nod_8	root	no metadata							
+SRR5493875	rt_nod_9	root	no metadata							
+SRR5493876	rt_nod_10	root	no metadata							
+SRR5493877	rt_nod_11	root	no metadata							
+SRR5493878	rt_nod_12	root	no metadata							
+SRR5493879	rt_nod_13	root	no metadata							
+SRR5493880	rt_nod_14	root	no metadata							
+SRR5493881	rt_nod_15	root	no metadata							
+SRR5493882	rt_nod_16	root	no metadata							
+SRR5493883	rt_nod_17	root	no metadata							
+SRR5493884	rt_nod_18	root	no metadata							
+SRR5493885	rt_nod_19	root	no metadata							
+SRR5493886	rt_nod_20	root	no metadata							
+SRR5493887	rt_nod_21	root	no metadata							
+SRR5493888	rt_nod_22	root	no metadata							
+SRR5493889	rt_nod_23	root	no metadata							
+SRR5493890	rt_nod_24	root	no metadata							
+SRR5493891	rt_nod_25	root	no metadata							
+SRR5493892	rt_nod_26	root	no metadata							
+SRR5493893	rt_nod_27	root	no metadata							
+SRR5493894	rt_nod_28	root	no metadata							
+SRR5493895	rt_nod_29	root	no metadata							
+SRR5493896	rt_nod_30	root	no metadata							
+SRR5493897	rt_nod_31	root	no metadata							
+SRR5493898	rt_nod_32	root	no metadata							
+SRR5493899	rt_nod_33	root	no metadata							
+SRR5493900	rt_nod_34	root	no metadata							
+SRR5493901	rt_nod_35	root	no metadata							
+SRR5493902	rt_nod_36	root	no metadata							
+SRR5493903	rt_nod_37	root	no metadata							
+SRR5493904	rt_nod_38	root	no metadata							
+SRR5493905	rt_nod_39	root	no metadata							
+SRR5493906	rt_nod_40	root	no metadata							
+SRR5493907	rt_nod_41	root	no metadata							
+SRR5493908	rt_nod_42	root	no metadata							
+SRR5493909	rt_nod_43	root	no metadata							
+SRR5493910	rt_nod_44	root	no metadata							
+SRR5643347	rt_highFe_2.5Bic_R3	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643348	rt_highFe_2.5Bic_R2	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643349	rt_highFe_2.5Bic_R1	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643350	rt_highFe_0Bic_R3	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643351	rt_highFe_5Bic_R4	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643352	rt_highFe_5Bic_R3	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643353	rt_highFe_5Bic_R2	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643354	rt_highFe_5Bic_R1	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643355	rt_lowFe_0Bic_R2	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643356	rt_lowFe_0Bic_R1	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643357	rt_lowFe_5Bic_R1	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643358	rt_lowFe_5Bic_R3	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643359	rt_highFe_0Bic_R1	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643360	rt_lowFe_0Bic_R3	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643361	rt_lowFe_2.5Bic_R1	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643362	rt_lowFe_0Bic_R1	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643363	rt_lowFe_0Bic_R2	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643364	rt_lowFe_5Bic_R1	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643365	rt_lowFe_5Bic_R2	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643366	rt_lowFe_2.5Bic_R2	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643367	rt_lowFe_2.5Bic_R3	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643368	rt_lowFe_5Bic_R2	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643369	rt_lowFe_5Bic_R3	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643370	rt_highFe_0Bic_R1	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643371	rt_highFe_0Bic_R2	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643372	rt_highFe_2.5Bic_R1	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643373	rt_highFe_2.5Bic_R2	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643374	rt_highFe_0Bic_R2	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643375	rt_highFe_0Bic_R3	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643376	rt_highFe_5Bic_R2	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643377	rt_highFe_5Bic_R3	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643378	rt_highFe_2.5Bic_R3	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643379	rt_highFe_5Bic_R1	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643380	rt_lowFe_2.5Bic_R2	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643381	rt_lowFe_2.5Bic_R3	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643382	rt_lowFe_2.5Bic_R1	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR824155	lf_0h-fi_1	leaf	0_days_short-day_0h_floral_induction							
+SRR824156	lf_1d-fi_1	leaf	1_day_short-day							
+SRR824157	lf_2d-fi_1	leaf	2 days short-day							
+SRR824158	lf_3d-fi_1	leaf	3_days_short-day							
+SRR824159	sam_0d-fi_1	SAM	0_days_short-day_0h_floral_induction							
+SRR824160	sam_1d-fi_1	SAM	1_day_short-day							
+SRR824161	sam_2d-fi_1	SAM	2_days_short-day							
+SRR824162	sam_3d-fi_1	SAM	3_days_short-day							
+SRR824163	sam_4d-fi_1	SAM	4_days_short-day							
+SRR8447156	rt_salt_1	root	Salt stress							
+SRR8447157	rt_cont_1	root	Control							
