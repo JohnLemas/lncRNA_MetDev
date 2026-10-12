@@ -77,8 +77,8 @@ SRR5493873	rt_pH_-9.1_2	root	root hair cells under high pH (9.1)
 SRR5493874	rt_pH_-4.1_1	root	root hair cells under low pH (4.1)							
 SRR5493875	rt_60mM_Nacl_1	root	root hair cells under high salinity (60mM Nacl)							
 SRR5493876	rt_pH_-4.1_2	root	root hair cells under low pH (4.1)							
-SRR5493877	rt_60mM_Nacl_1	root	root hair cells under high salinity (60mM Nacl)							
-SRR5493878	rt_60mM_Nacl_2	root	root hair cells under high salinity (60mM Nacl)							
+SRR5493877	rt_60mM_Nacl_2	root	root hair cells under high salinity (60mM Nacl)							
+SRR5493878	rt_60mM_Nacl_3	root	root hair cells under high salinity (60mM Nacl)							
 SRR5493879	rt_low_K_1	root	root hair cells under Potassium deprivation							
 SRR5493880	rt_ctl_2	root	root hair cells control							
 SRR5493881	rt_ctl_3	root	root hair cells control							
@@ -89,7 +89,7 @@ SRR5493885	rt_low_Fe_1	root	root hair cells under Iron deprivation
 SRR5493886	rt_35C_1	root	root hair cells under high temperature (35C)							
 SRR5493887	rt_35C_2	root	root hair cells under high temperature (35C)							
 SRR5493888	rt_800ppm_CO2_3	root	root hair cells root hair cells under high CO2 (800ppm)							
-SRR5493889	rt_low_K_2	root	root hair cells under Potassium deprivation							
+SRR5493889	rt_low_K_3	root	root hair cells under Potassium deprivation							
 SRR5493890	rt_15C_1	root	root hair cells under low temperature (15C)							
 SRR5493891	rt_15C_2	root	root hair cells under low temperature (15C)							
 SRR5493892	rt_15C_3	root	root hair cells under low temperature (15C)							
@@ -109,44 +109,44 @@ SRR5493905	rt_low_N_3	root	root hair cells under Nitrogen deprivation
 SRR5493906	rt_35C_3	root	root hair cells under high temperature (35C)							
 SRR5493907	rt_low_Fe_3	root	root hair cells under Iron deprivation							
 SRR5493908	rt_15C_5	root	root hair cells under low temperature (15C)							
-SRR5493909	rt_low_K_3	root	root hair cells under Potassium deprivation							
+SRR5493909	rt_low_K_4	root	root hair cells under Potassium deprivation							
 SRR5493910	rt_35C_4	root	root hair cells under high temperature (35C)							
-SRR5643347	rt_highFe_2.5Bic_3	root	20 uM Fe and 2.5 mM Bicarbonate							
-SRR5643348	rt_highFe_2.5Bic_2	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643347	rt_highFe_2.5Bic_5	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643348	rt_highFe_2.5Bic_3	root	20 uM Fe and 2.5 mM Bicarbonate							
 SRR5643349	rt_highFe_2.5Bic_1	root	20 uM Fe and 2.5 mM Bicarbonate							
-SRR5643350	rt_highFe_0Bic_3	root	20 uM Fe and 0 mM Bicarbonate							
-SRR5643351	rt_highFe_5Bic_4	root	20 uM Fe and 5 mM Bicarbonate							
-SRR5643352	rt_highFe_5Bic_3	root	20 uM Fe and 5 mM Bicarbonate							
-SRR5643353	rt_highFe_5Bic_2	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643350	rt_highFe_0Bic_5	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643351	rt_highFe_5Bic_7	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643352	rt_highFe_5Bic_5	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643353	rt_highFe_5Bic_3	root	20 uM Fe and 5 mM Bicarbonate							
 SRR5643354	rt_highFe_5Bic_1	root	20 uM Fe and 5 mM Bicarbonate							
-SRR5643355	rt_lowFe_0Bic_2	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643355	rt_lowFe_0Bic_3	root	1.0 uM Fe and 0 mM Bicarbonate							
 SRR5643356	rt_lowFe_0Bic_1	root	1.0 uM Fe and 0 mM Bicarbonate							
 SRR5643357	rt_lowFe_5Bic_1	root	1.0 uM Fe and 5 mM Bicarbonate							
-SRR5643358	rt_lowFe_5Bic_3	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643358	rt_lowFe_5Bic_5	root	1.0 uM Fe and 5 mM Bicarbonate							
 SRR5643359	rt_highFe_0Bic_1	root	20 uM Fe and 0 mM Bicarbonate							
-SRR5643360	rt_lowFe_0Bic_3	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643360	rt_lowFe_0Bic_5	root	1.0 uM Fe and 0 mM Bicarbonate							
 SRR5643361	rt_lowFe_2.5Bic_1	root	1.0 uM Fe and 2.5 mM Bicarbonate							
-SRR5643362	rt_lowFe_0Bic_1	root	1.0 uM Fe and 0 mM Bicarbonate							
-SRR5643363	rt_lowFe_0Bic_2	root	1.0 uM Fe and 0 mM Bicarbonate							
-SRR5643364	rt_lowFe_5Bic_1	root	1.0 uM Fe and 5 mM Bicarbonate							
-SRR5643365	rt_lowFe_5Bic_2	root	1.0 uM Fe and 5 mM Bicarbonate							
-SRR5643366	rt_lowFe_2.5Bic_2	root	1.0 uM Fe and 2.5 mM Bicarbonate							
-SRR5643367	rt_lowFe_2.5Bic_3	root	1.0 uM Fe and 2.5 mM Bicarbonate							
-SRR5643368	rt_lowFe_5Bic_2	root	1.0 uM Fe and 5 mM Bicarbonate							
-SRR5643369	rt_lowFe_5Bic_3	root	1.0 uM Fe and 5 mM Bicarbonate							
-SRR5643370	rt_highFe_0Bic_1	root	20 uM Fe and 0 mM Bicarbonate							
-SRR5643371	rt_highFe_0Bic_2	root	20 uM Fe and 0 mM Bicarbonate							
-SRR5643372	rt_highFe_2.5Bic_1	root	20 uM Fe and 2.5 mM Bicarbonate							
-SRR5643373	rt_highFe_2.5Bic_2	root	20 uM Fe and 2.5 mM Bicarbonate							
-SRR5643374	rt_highFe_0Bic_2	root	20 uM Fe and 0 mM Bicarbonate							
-SRR5643375	rt_highFe_0Bic_3	root	20 uM Fe and 0 mM Bicarbonate							
-SRR5643376	rt_highFe_5Bic_2	root	20 uM Fe and 5 mM Bicarbonate							
-SRR5643377	rt_highFe_5Bic_3	root	20 uM Fe and 5 mM Bicarbonate							
-SRR5643378	rt_highFe_2.5Bic_3	root	20 uM Fe and 2.5 mM Bicarbonate							
-SRR5643379	rt_highFe_5Bic_1	root	20 uM Fe and 5 mM Bicarbonate							
-SRR5643380	rt_lowFe_2.5Bic_2	root	1.0 uM Fe and 2.5 mM Bicarbonate							
-SRR5643381	rt_lowFe_2.5Bic_3	root	1.0 uM Fe and 2.5 mM Bicarbonate							
-SRR5643382	rt_lowFe_2.5Bic_1	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643362	rt_lowFe_0Bic_2	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643363	rt_lowFe_0Bic_4	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643364	rt_lowFe_5Bic_2	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643365	rt_lowFe_5Bic_3	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643366	rt_lowFe_2.5Bic_3	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643367	rt_lowFe_2.5Bic_5	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643368	rt_lowFe_5Bic_4	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643369	rt_lowFe_5Bic_6	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643370	rt_highFe_0Bic_2	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643371	rt_highFe_0Bic_3	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643372	rt_highFe_2.5Bic_2	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643373	rt_highFe_2.5Bic_4	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643374	rt_highFe_0Bic_4	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643375	rt_highFe_0Bic_6	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643376	rt_highFe_5Bic_4	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643377	rt_highFe_5Bic_6	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643378	rt_highFe_2.5Bic_6	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643379	rt_highFe_5Bic_2	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643380	rt_lowFe_2.5Bic_4	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643381	rt_lowFe_2.5Bic_6	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643382	rt_lowFe_2.5Bic_2	root	1.0 uM Fe and 2.5 mM Bicarbonate							
 SRR824155	lf_0h-fi_1	leaf	0_days_short-day_0h_floral_induction							
 SRR824156	lf_1d-fi_1	leaf	1_day_short-day							
 SRR824157	lf_2d-fi_1	leaf	2 days short-day							
