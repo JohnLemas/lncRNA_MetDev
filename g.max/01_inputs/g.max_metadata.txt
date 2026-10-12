@@ -1,160 +1,160 @@
-SRR1174205	rt_14d_1	root	14 day old seedling												
-SRR1174206	tlf_14d_1	trifoliate leaf	14 day old seedling												
-SRR1174207	sd_10-14dpa_1	seed	10-14 DPA												
-SRR1174208	sd_14-20dpa_1	seed	14-20 DPA												
-SRR1174209	psd_20dpa_1	pod seed	20 DPA												
-SRR1174211	psd_25dpa_1	pod seed	25 DPA												
-SRR1174212	psd_35dpa_1	pod seed	35 DPA												
-SRR1174213	stm_14d_1	stem	14 day old seedling												
-SRR1174214	stm_14d_2	stem	14 day old seedling												
-SRR1174215	tlf_14d_2	trifoliate leaf	14 day old seedling												
-SRR1174216	stm_14d_3	stem	14 day old seedling												
-SRR1174217	fl_1	flower	NA												
-SRR1174218	fl_2	flower	NA												
-SRR1174219	fl_3	flower	NA												
-SRR1174220	flbd_1	flower bud	NA												
-SRR1174221	pd_10-14dpa_1	pod	10-14 DPA												
-SRR1174222	sd_5-6dpa_1	seed	5-6 DPA												
-SRR1174223	pd_14-20dpa_1	pod	14-20 DPA												
-SRR1174224	pd_20dpa_1	pod	20 DPA												
-SRR1174225	sd_6-10dpa_1	seed	6-10 DPA												
-SRR1174226	tfl_14d_3	trifoliate leaf	14 day old seedling												
-SRR1174227	lb_1	leaf bud (SAM)	NA												
-SRR1174228	cot_4dpg_1	cotyledon	4 days post germination												
-SRR1174229	ylf_1	unexpanded young leaf	NA												
-SRR1174230	lb_2	leaf bud (M)	NA												
-SRR1174231	ysh_1	Young shoot	NA												
-SRR1174232	flbd_2	flower bud	NA												
-SRR1174233	sd_25dpa_1	seed	25 DPA												
-SRR2545896	rt_A[CO2]_0drt_1	root	Control-ambient CO2												
-SRR2545897	rt_A[CO2]_0drt_2	root	Control-ambient CO2												
-SRR2545898	rt_E[CO2]_0drt_1	root	Control-elevated CO2												
-SRR2545899	rt_E[CO2]_0drt_2	root	Control-elevated CO2												
-SRR2545900	rt_A[CO2]_50drt_1	root	Drought-ambient CO2												
-SRR2545901	rt_A[CO2]_50drt_2	root	Drought-ambient CO2												
-SRR2545902	rt_E[CO2]_50drt_1	root	Drought-elevated CO2												
-SRR2545903	rt_E[CO2]_50drt_2	root	Drought-elevated CO2												
-SRR3033496	rt_vms_r1	root	Well-Watered												
-SRR3033497	rt_vms_r2	root	Well-Watered												
-SRR3033498	rt_ms_r2	root	Well-Watered												
-SRR3033499	rt_ms_r3	root	Water Deficit												
-SRR3033500	rt_ss_r1	root	Water Deficit												
-SRR3033501	rt_ss_r2	root	Water Deficit												
-SRR3033502	rt_ss_r3	root	Well-Watered												
-SRR3033503	rt_ss_r1	root	Well-Watered												
-SRR3033504	rt_ss_r2	root	Well-Watered												
-SRR3033505	rt_ss_r3	root	Water Deficit												
-SRR3033506	rt_sr_r1	root	Water Deficit												
-SRR3033507	rt_sr_r2	root	Water Deficit												
-SRR3033508	rt_vms_r3	root	Well-Watered												
-SRR3033509	rt_sr_r3	root	Well-Watered												
-SRR3033510	rt_sr_r1	root	Well-Watered												
-SRR3033511	rt_sr_r2	root	Water Deficit												
-SRR3033512	rt_sr_r3	root	Water Deficit												
-SRR3033513	rt_vms_r1	root	Water Deficit												
-SRR3033514	rt_vms_r2	root	Well-Watered												
-SRR3033515	rt_vms_r3	root	Well-Watered												
-SRR3033516	rt_ms_r1	root	Well-Watered												
-SRR3033517	rt_ms_r2	root	Water Deficit												
-SRR3033518	rt_ms_r3	root	Water Deficit												
-SRR3033519	rt_ms_r1	root	Water Deficit												
-SRR3628740	lf_Y-wt_1	unexpanded young leaf	wild type												
-SRR3628741	lf_Y-wt_2	unexpanded young leaf	wild type												
-SRR3628742	lf_M-wt_1	trifoliate leaf	wild type												
-SRR3628743	lf_M-wt_2	trifoliate leaf	wild type												
-SRR3628744	lf_M-wt_3	trifoliate leaf	wild type												
-SRR3628745	lf_Y-mt_1	unexpanded young leaf	mutant												
-SRR3628746	lf_Y-mt_2	unexpanded young leaf	mutant												
-SRR3628748	lf_M-mt_1	trifoliate leaf	mutant												
-SRR3628749	lf_M-mt_2	trifoliate leaf	mutant												
-SRR5493867	rt_800ppm_CO2_1	root	root hair cells under high CO2 (800ppm)								rt	800ppm	CO2	1	rt_800ppm_CO2_1
-SRR5493868	rt_drt_stress_1	root	root hair cells under drought stress								rt	drt	stress	1	rt_drt_stress_1
-SRR5493869	rt_ctl_1	root	root hair cells control								rt		ctl	1	rt_ctl_1
-SRR5493870	rt_drt_stress_2	root	root hair cells under drought stress								rt	drt	stress	2	rt_drt_stress_2
-SRR5493871	rt_drt_stress_3	root	root hair cells under drought stress								rt	drt	stress	3	rt_drt_stress_3
-SRR5493872	rt_pH_-9.1_1	root	root hair cells under high pH (9.1)								rt	pH	-9.1	1	rt_pH_-9.1_1
-SRR5493873	rt_pH_-9.1_2	root	root hair cells under high pH (9.1)								rt	pH	-9.1	2	rt_pH_-9.1_2
-SRR5493874	rt_pH_-4.1_1	root	root hair cells under low pH (4.1)								rt	pH	-4.1	1	rt_pH_-4.1_1
-SRR5493875	rt_60mM_Nacl_1	root	root hair cells under high salinity (60mM Nacl)								rt	60mM	Nacl	1	rt_60mM_Nacl_1
-SRR5493876	rt_pH_-4.1_2	root	root hair cells under low pH (4.1)								rt	pH	-4.1	2	rt_pH_-4.1_2
-SRR5493877	rt_60mM_Nacl_1	root	root hair cells under high salinity (60mM Nacl)								rt	60mM	Nacl	1	rt_60mM_Nacl_1
-SRR5493878	rt_60mM_Nacl_2	root	root hair cells under high salinity (60mM Nacl)								rt	60mM	Nacl	2	rt_60mM_Nacl_2
-SRR5493879	rt_low_K_1	root	root hair cells under Potassium deprivation								rt	low	K	1	rt_low_K_1
-SRR5493880	rt_ctl_2	root	root hair cells control								rt		ctl	2	rt_ctl_2
-SRR5493881	rt_ctl_3	root	root hair cells control								rt		ctl	3	rt_ctl_3
-SRR5493882	rt_800ppm_CO2_2	root	root hair cells under high CO2 (800ppm)								rt	800ppm	CO2	2	rt_800ppm_CO2_2
-SRR5493883	rt_low_P_1	root	root hair cells under Phosphorous deprivation								rt	low	P	1	rt_low_P_1
-SRR5493884	rt_low_K_2	root	root hair cells under Potassium deprivation								rt	low	K	2	rt_low_K_2
-SRR5493885	rt_low_Fe_1	root	root hair cells under Iron deprivation								rt	low	Fe	1	rt_low_Fe_1
-SRR5493886	rt_35C_1	root	root hair cells under high temperature (35C)								rt	35C		1	rt_35C_1
-SRR5493887	rt_35C_2	root	root hair cells under high temperature (35C)								rt	35C		2	rt_35C_2
-SRR5493888	rt_800ppm_CO2_3	root	root hair cells root hair cells under high CO2 (800ppm)								rt	800ppm	CO2	3	rt_800ppm_CO2_3
-SRR5493889	rt_low_K_2	root	root hair cells under Potassium deprivation								rt	low	K	2	rt_low_K_2
-SRR5493890	rt_15C_1	root	root hair cells under low temperature (15C)								rt	15C		1	rt_15C_1
-SRR5493891	rt_15C_2	root	root hair cells under low temperature (15C)								rt	15C		2	rt_15C_2
-SRR5493892	rt_15C_3	root	root hair cells under low temperature (15C)								rt	15C		3	rt_15C_3
-SRR5493893	rt_pH_-9.1_3	root	root hair cells under high pH (9.1)								rt	pH	-9.1	3	rt_pH_-9.1_3
-SRR5493894	rt_ctl_4	root	root hair cells control								rt		ctl	4	rt_ctl_4
-SRR5493895	rt_ctl_5	root	root hair cells control								rt		ctl	5	rt_ctl_5
-SRR5493896	rt_ctl_6	root	root hair cells control								rt		ctl	6	rt_ctl_6
-SRR5493897	rt_low_N_1	root	root hair cells under Nitrogen deprivation								rt	low	N	1	rt_low_N_1
-SRR5493898	rt_low_P_2	root	root hair cells under Phosphorous deprivation								rt	low	P	2	rt_low_P_2
-SRR5493899	rt_low_P_3	root	root hair cells under Phosphorous deprivation								rt	low	P	3	rt_low_P_3
-SRR5493900	rt_low_N_2	root	root hair cells under Nitrogen deprivation								rt	low	N	2	rt_low_N_2
-SRR5493901	rt_pH_-4.1_3	root	root hair cells under low pH (4.1)								rt	pH	-4.1	3	rt_pH_-4.1_3
-SRR5493902	rt_15C_4	root	root hair cells under low temperature (15C)								rt	15C		4	rt_15C_4
-SRR5493903	rt_low_Fe_2	root	root hair cells under Iron deprivation								rt	low	Fe	2	rt_low_Fe_2
-SRR5493904	rt_ctl_7	root	root hair cells control								rt		ctl	7	rt_ctl_7
-SRR5493905	rt_low_N_3	root	root hair cells under Nitrogen deprivation								rt	low	N	3	rt_low_N_3
-SRR5493906	rt_35C_3	root	root hair cells under high temperature (35C)								rt		35C	3	rt_35C_3
-SRR5493907	rt_low_Fe_3	root	root hair cells under Iron deprivation								rt	low	Fe	3	rt_low_Fe_3
-SRR5493908	rt_15C_5	root	root hair cells under low temperature (15C)								rt		15C	5	rt_15C_5
-SRR5493909	rt_low_K_3	root	root hair cells under Potassium deprivation								rt	low	K	3	rt_low_K_3
-SRR5493910	rt_35C_4	root	root hair cells under high temperature (35C)								rt		35C	4	rt_35C_4
-SRR5643347	rt_highFe_2.5Bic_3	root	20 uM Fe and 2.5 mM Bicarbonate												
-SRR5643348	rt_highFe_2.5Bic_2	root	20 uM Fe and 2.5 mM Bicarbonate												
-SRR5643349	rt_highFe_2.5Bic_1	root	20 uM Fe and 2.5 mM Bicarbonate												
-SRR5643350	rt_highFe_0Bic_3	root	20 uM Fe and 0 mM Bicarbonate												
-SRR5643351	rt_highFe_5Bic_4	root	20 uM Fe and 5 mM Bicarbonate												
-SRR5643352	rt_highFe_5Bic_3	root	20 uM Fe and 5 mM Bicarbonate												
-SRR5643353	rt_highFe_5Bic_2	root	20 uM Fe and 5 mM Bicarbonate												
-SRR5643354	rt_highFe_5Bic_1	root	20 uM Fe and 5 mM Bicarbonate												
-SRR5643355	rt_lowFe_0Bic_2	root	1.0 uM Fe and 0 mM Bicarbonate												
-SRR5643356	rt_lowFe_0Bic_1	root	1.0 uM Fe and 0 mM Bicarbonate												
-SRR5643357	rt_lowFe_5Bic_1	root	1.0 uM Fe and 5 mM Bicarbonate												
-SRR5643358	rt_lowFe_5Bic_3	root	1.0 uM Fe and 5 mM Bicarbonate												
-SRR5643359	rt_highFe_0Bic_1	root	20 uM Fe and 0 mM Bicarbonate												
-SRR5643360	rt_lowFe_0Bic_3	root	1.0 uM Fe and 0 mM Bicarbonate												
-SRR5643361	rt_lowFe_2.5Bic_1	root	1.0 uM Fe and 2.5 mM Bicarbonate												
-SRR5643362	rt_lowFe_0Bic_1	root	1.0 uM Fe and 0 mM Bicarbonate												
-SRR5643363	rt_lowFe_0Bic_2	root	1.0 uM Fe and 0 mM Bicarbonate												
-SRR5643364	rt_lowFe_5Bic_1	root	1.0 uM Fe and 5 mM Bicarbonate												
-SRR5643365	rt_lowFe_5Bic_2	root	1.0 uM Fe and 5 mM Bicarbonate												
-SRR5643366	rt_lowFe_2.5Bic_2	root	1.0 uM Fe and 2.5 mM Bicarbonate												
-SRR5643367	rt_lowFe_2.5Bic_3	root	1.0 uM Fe and 2.5 mM Bicarbonate												
-SRR5643368	rt_lowFe_5Bic_2	root	1.0 uM Fe and 5 mM Bicarbonate												
-SRR5643369	rt_lowFe_5Bic_3	root	1.0 uM Fe and 5 mM Bicarbonate												
-SRR5643370	rt_highFe_0Bic_1	root	20 uM Fe and 0 mM Bicarbonate												
-SRR5643371	rt_highFe_0Bic_2	root	20 uM Fe and 0 mM Bicarbonate												
-SRR5643372	rt_highFe_2.5Bic_1	root	20 uM Fe and 2.5 mM Bicarbonate												
-SRR5643373	rt_highFe_2.5Bic_2	root	20 uM Fe and 2.5 mM Bicarbonate												
-SRR5643374	rt_highFe_0Bic_2	root	20 uM Fe and 0 mM Bicarbonate												
-SRR5643375	rt_highFe_0Bic_3	root	20 uM Fe and 0 mM Bicarbonate												
-SRR5643376	rt_highFe_5Bic_2	root	20 uM Fe and 5 mM Bicarbonate												
-SRR5643377	rt_highFe_5Bic_3	root	20 uM Fe and 5 mM Bicarbonate												
-SRR5643378	rt_highFe_2.5Bic_3	root	20 uM Fe and 2.5 mM Bicarbonate												
-SRR5643379	rt_highFe_5Bic_1	root	20 uM Fe and 5 mM Bicarbonate												
-SRR5643380	rt_lowFe_2.5Bic_2	root	1.0 uM Fe and 2.5 mM Bicarbonate												
-SRR5643381	rt_lowFe_2.5Bic_3	root	1.0 uM Fe and 2.5 mM Bicarbonate												
-SRR5643382	rt_lowFe_2.5Bic_1	root	1.0 uM Fe and 2.5 mM Bicarbonate												
-SRR824155	lf_0h-fi_1	leaf	0_days_short-day_0h_floral_induction												
-SRR824156	lf_1d-fi_1	leaf	1_day_short-day												
-SRR824157	lf_2d-fi_1	leaf	2 days short-day												
-SRR824158	lf_3d-fi_1	leaf	3_days_short-day												
-SRR824159	sam_0d-fi_1	SAM	0_days_short-day_0h_floral_induction												
-SRR824160	sam_1d-fi_1	SAM	1_day_short-day												
-SRR824161	sam_2d-fi_1	SAM	2_days_short-day												
-SRR824162	sam_3d-fi_1	SAM	3_days_short-day												
-SRR824163	sam_4d-fi_1	SAM	4_days_short-day												
-SRR8447156	rt_salt_1	root	Salt stress												
-SRR8447157	rt_cont_1	root	Control												
+SRR1174205	rt_14d_1	root	14 day old seedling							
+SRR1174206	tlf_14d_1	trifoliate leaf	14 day old seedling							
+SRR1174207	sd_10-14dpa_1	seed	10-14 DPA							
+SRR1174208	sd_14-20dpa_1	seed	14-20 DPA							
+SRR1174209	psd_20dpa_1	pod seed	20 DPA							
+SRR1174211	psd_25dpa_1	pod seed	25 DPA							
+SRR1174212	psd_35dpa_1	pod seed	35 DPA							
+SRR1174213	stm_14d_1	stem	14 day old seedling							
+SRR1174214	stm_14d_2	stem	14 day old seedling							
+SRR1174215	tlf_14d_2	trifoliate leaf	14 day old seedling							
+SRR1174216	stm_14d_3	stem	14 day old seedling							
+SRR1174217	fl_1	flower	NA							
+SRR1174218	fl_2	flower	NA							
+SRR1174219	fl_3	flower	NA							
+SRR1174220	flbd_1	flower bud	NA							
+SRR1174221	pd_10-14dpa_1	pod	10-14 DPA							
+SRR1174222	sd_5-6dpa_1	seed	5-6 DPA							
+SRR1174223	pd_14-20dpa_1	pod	14-20 DPA							
+SRR1174224	pd_20dpa_1	pod	20 DPA							
+SRR1174225	sd_6-10dpa_1	seed	6-10 DPA							
+SRR1174226	tfl_14d_3	trifoliate leaf	14 day old seedling							
+SRR1174227	lb_1	leaf bud (SAM)	NA							
+SRR1174228	cot_4dpg_1	cotyledon	4 days post germination							
+SRR1174229	ylf_1	unexpanded young leaf	NA							
+SRR1174230	lb_2	leaf bud (M)	NA							
+SRR1174231	ysh_1	Young shoot	NA							
+SRR1174232	flbd_2	flower bud	NA							
+SRR1174233	sd_25dpa_1	seed	25 DPA							
+SRR2545896	rt_A[CO2]_0drt_1	root	Control-ambient CO2							
+SRR2545897	rt_A[CO2]_0drt_2	root	Control-ambient CO2							
+SRR2545898	rt_E[CO2]_0drt_1	root	Control-elevated CO2							
+SRR2545899	rt_E[CO2]_0drt_2	root	Control-elevated CO2							
+SRR2545900	rt_A[CO2]_50drt_1	root	Drought-ambient CO2							
+SRR2545901	rt_A[CO2]_50drt_2	root	Drought-ambient CO2							
+SRR2545902	rt_E[CO2]_50drt_1	root	Drought-elevated CO2							
+SRR2545903	rt_E[CO2]_50drt_2	root	Drought-elevated CO2							
+SRR3033496	rt_vms_r1	root	Well-Watered							
+SRR3033497	rt_vms_r2	root	Well-Watered							
+SRR3033498	rt_ms_r2	root	Well-Watered							
+SRR3033499	rt_ms_r3	root	Water Deficit							
+SRR3033500	rt_ss_r1	root	Water Deficit							
+SRR3033501	rt_ss_r2	root	Water Deficit							
+SRR3033502	rt_ss_r3	root	Well-Watered							
+SRR3033503	rt_ss_r1	root	Well-Watered							
+SRR3033504	rt_ss_r2	root	Well-Watered							
+SRR3033505	rt_ss_r3	root	Water Deficit							
+SRR3033506	rt_sr_r1	root	Water Deficit							
+SRR3033507	rt_sr_r2	root	Water Deficit							
+SRR3033508	rt_vms_r3	root	Well-Watered							
+SRR3033509	rt_sr_r3	root	Well-Watered							
+SRR3033510	rt_sr_r1	root	Well-Watered							
+SRR3033511	rt_sr_r2	root	Water Deficit							
+SRR3033512	rt_sr_r3	root	Water Deficit							
+SRR3033513	rt_vms_r1	root	Water Deficit							
+SRR3033514	rt_vms_r2	root	Well-Watered							
+SRR3033515	rt_vms_r3	root	Well-Watered							
+SRR3033516	rt_ms_r1	root	Well-Watered							
+SRR3033517	rt_ms_r2	root	Water Deficit							
+SRR3033518	rt_ms_r3	root	Water Deficit							
+SRR3033519	rt_ms_r1	root	Water Deficit							
+SRR3628740	lf_Y-wt_1	unexpanded young leaf	wild type							
+SRR3628741	lf_Y-wt_2	unexpanded young leaf	wild type							
+SRR3628742	lf_M-wt_1	trifoliate leaf	wild type							
+SRR3628743	lf_M-wt_2	trifoliate leaf	wild type							
+SRR3628744	lf_M-wt_3	trifoliate leaf	wild type							
+SRR3628745	lf_Y-mt_1	unexpanded young leaf	mutant							
+SRR3628746	lf_Y-mt_2	unexpanded young leaf	mutant							
+SRR3628748	lf_M-mt_1	trifoliate leaf	mutant							
+SRR3628749	lf_M-mt_2	trifoliate leaf	mutant							
+SRR5493867	rt_800ppm_CO2_1	root	root hair cells under high CO2 (800ppm)							
+SRR5493868	rt_drt_stress_1	root	root hair cells under drought stress							
+SRR5493869	rt_ctl_1	root	root hair cells control							
+SRR5493870	rt_drt_stress_2	root	root hair cells under drought stress							
+SRR5493871	rt_drt_stress_3	root	root hair cells under drought stress							
+SRR5493872	rt_pH_-9.1_1	root	root hair cells under high pH (9.1)							
+SRR5493873	rt_pH_-9.1_2	root	root hair cells under high pH (9.1)							
+SRR5493874	rt_pH_-4.1_1	root	root hair cells under low pH (4.1)							
+SRR5493875	rt_60mM_Nacl_1	root	root hair cells under high salinity (60mM Nacl)							
+SRR5493876	rt_pH_-4.1_2	root	root hair cells under low pH (4.1)							
+SRR5493877	rt_60mM_Nacl_1	root	root hair cells under high salinity (60mM Nacl)							
+SRR5493878	rt_60mM_Nacl_2	root	root hair cells under high salinity (60mM Nacl)							
+SRR5493879	rt_low_K_1	root	root hair cells under Potassium deprivation							
+SRR5493880	rt_ctl_2	root	root hair cells control							
+SRR5493881	rt_ctl_3	root	root hair cells control							
+SRR5493882	rt_800ppm_CO2_2	root	root hair cells under high CO2 (800ppm)							
+SRR5493883	rt_low_P_1	root	root hair cells under Phosphorous deprivation							
+SRR5493884	rt_low_K_2	root	root hair cells under Potassium deprivation							
+SRR5493885	rt_low_Fe_1	root	root hair cells under Iron deprivation							
+SRR5493886	rt_35C_1	root	root hair cells under high temperature (35C)							
+SRR5493887	rt_35C_2	root	root hair cells under high temperature (35C)							
+SRR5493888	rt_800ppm_CO2_3	root	root hair cells root hair cells under high CO2 (800ppm)							
+SRR5493889	rt_low_K_2	root	root hair cells under Potassium deprivation							
+SRR5493890	rt_15C_1	root	root hair cells under low temperature (15C)							
+SRR5493891	rt_15C_2	root	root hair cells under low temperature (15C)							
+SRR5493892	rt_15C_3	root	root hair cells under low temperature (15C)							
+SRR5493893	rt_pH_-9.1_3	root	root hair cells under high pH (9.1)							
+SRR5493894	rt_ctl_4	root	root hair cells control							
+SRR5493895	rt_ctl_5	root	root hair cells control							
+SRR5493896	rt_ctl_6	root	root hair cells control							
+SRR5493897	rt_low_N_1	root	root hair cells under Nitrogen deprivation							
+SRR5493898	rt_low_P_2	root	root hair cells under Phosphorous deprivation							
+SRR5493899	rt_low_P_3	root	root hair cells under Phosphorous deprivation							
+SRR5493900	rt_low_N_2	root	root hair cells under Nitrogen deprivation							
+SRR5493901	rt_pH_-4.1_3	root	root hair cells under low pH (4.1)							
+SRR5493902	rt_15C_4	root	root hair cells under low temperature (15C)							
+SRR5493903	rt_low_Fe_2	root	root hair cells under Iron deprivation							
+SRR5493904	rt_ctl_7	root	root hair cells control							
+SRR5493905	rt_low_N_3	root	root hair cells under Nitrogen deprivation							
+SRR5493906	rt_35C_3	root	root hair cells under high temperature (35C)							
+SRR5493907	rt_low_Fe_3	root	root hair cells under Iron deprivation							
+SRR5493908	rt_15C_5	root	root hair cells under low temperature (15C)							
+SRR5493909	rt_low_K_3	root	root hair cells under Potassium deprivation							
+SRR5493910	rt_35C_4	root	root hair cells under high temperature (35C)							
+SRR5643347	rt_highFe_2.5Bic_3	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643348	rt_highFe_2.5Bic_2	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643349	rt_highFe_2.5Bic_1	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643350	rt_highFe_0Bic_3	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643351	rt_highFe_5Bic_4	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643352	rt_highFe_5Bic_3	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643353	rt_highFe_5Bic_2	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643354	rt_highFe_5Bic_1	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643355	rt_lowFe_0Bic_2	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643356	rt_lowFe_0Bic_1	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643357	rt_lowFe_5Bic_1	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643358	rt_lowFe_5Bic_3	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643359	rt_highFe_0Bic_1	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643360	rt_lowFe_0Bic_3	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643361	rt_lowFe_2.5Bic_1	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643362	rt_lowFe_0Bic_1	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643363	rt_lowFe_0Bic_2	root	1.0 uM Fe and 0 mM Bicarbonate							
+SRR5643364	rt_lowFe_5Bic_1	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643365	rt_lowFe_5Bic_2	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643366	rt_lowFe_2.5Bic_2	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643367	rt_lowFe_2.5Bic_3	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643368	rt_lowFe_5Bic_2	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643369	rt_lowFe_5Bic_3	root	1.0 uM Fe and 5 mM Bicarbonate							
+SRR5643370	rt_highFe_0Bic_1	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643371	rt_highFe_0Bic_2	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643372	rt_highFe_2.5Bic_1	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643373	rt_highFe_2.5Bic_2	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643374	rt_highFe_0Bic_2	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643375	rt_highFe_0Bic_3	root	20 uM Fe and 0 mM Bicarbonate							
+SRR5643376	rt_highFe_5Bic_2	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643377	rt_highFe_5Bic_3	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643378	rt_highFe_2.5Bic_3	root	20 uM Fe and 2.5 mM Bicarbonate							
+SRR5643379	rt_highFe_5Bic_1	root	20 uM Fe and 5 mM Bicarbonate							
+SRR5643380	rt_lowFe_2.5Bic_2	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643381	rt_lowFe_2.5Bic_3	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR5643382	rt_lowFe_2.5Bic_1	root	1.0 uM Fe and 2.5 mM Bicarbonate							
+SRR824155	lf_0h-fi_1	leaf	0_days_short-day_0h_floral_induction							
+SRR824156	lf_1d-fi_1	leaf	1_day_short-day							
+SRR824157	lf_2d-fi_1	leaf	2 days short-day							
+SRR824158	lf_3d-fi_1	leaf	3_days_short-day							
+SRR824159	sam_0d-fi_1	SAM	0_days_short-day_0h_floral_induction							
+SRR824160	sam_1d-fi_1	SAM	1_day_short-day							
+SRR824161	sam_2d-fi_1	SAM	2_days_short-day							
+SRR824162	sam_3d-fi_1	SAM	3_days_short-day							
+SRR824163	sam_4d-fi_1	SAM	4_days_short-day							
+SRR8447156	rt_salt_1	root	Salt stress							
+SRR8447157	rt_cont_1	root	Control							
