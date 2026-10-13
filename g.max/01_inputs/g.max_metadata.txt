@@ -34,30 +34,30 @@ SRR2545900	rt_A[CO2]_50drt_1	root	Drought-ambient CO2
 SRR2545901	rt_A[CO2]_50drt_2	root	Drought-ambient CO2							
 SRR2545902	rt_E[CO2]_50drt_1	root	Drought-elevated CO2							
 SRR2545903	rt_E[CO2]_50drt_2	root	Drought-elevated CO2							
-SRR3033496	rt_vms_r1	root	Well-Watered							
-SRR3033497	rt_vms_r2	root	Well-Watered							
-SRR3033498	rt_ms_r2	root	Well-Watered							
-SRR3033499	rt_ms_r3	root	Water Deficit							
-SRR3033500	rt_ss_r1	root	Water Deficit							
-SRR3033501	rt_ss_r2	root	Water Deficit							
-SRR3033502	rt_ss_r3	root	Well-Watered							
-SRR3033503	rt_ss_r1	root	Well-Watered							
-SRR3033504	rt_ss_r2	root	Well-Watered							
-SRR3033505	rt_ss_r3	root	Water Deficit							
-SRR3033506	rt_sr_r1	root	Water Deficit							
-SRR3033507	rt_sr_r2	root	Water Deficit							
-SRR3033508	rt_vms_r3	root	Well-Watered							
-SRR3033509	rt_sr_r3	root	Well-Watered							
-SRR3033510	rt_sr_r1	root	Well-Watered							
-SRR3033511	rt_sr_r2	root	Water Deficit							
-SRR3033512	rt_sr_r3	root	Water Deficit							
-SRR3033513	rt_vms_r1	root	Water Deficit							
-SRR3033514	rt_vms_r2	root	Well-Watered							
-SRR3033515	rt_vms_r3	root	Well-Watered							
-SRR3033516	rt_ms_r1	root	Well-Watered							
-SRR3033517	rt_ms_r2	root	Water Deficit							
-SRR3033518	rt_ms_r3	root	Water Deficit							
-SRR3033519	rt_ms_r1	root	Water Deficit							
+SRR3033496	rt_vms_ctl_1	root	Well-Watered							
+SRR3033497	rt_vms_ctl_2	root	Well-Watered							
+SRR3033498	rt_ms_ctl_2	root	Well-Watered							
+SRR3033499	rt_ms_ctl_3	root	Well-Watered							
+SRR3033500	rt_ss_1	root	Water Deficit							
+SRR3033501	rt_ss_2	root	Water Deficit							
+SRR3033502	rt_ss_3	root	Water Deficit							
+SRR3033503	rt_ss_ctl_1	root	Well-Watered							
+SRR3033504	rt_ss_ctl_2	root	Well-Watered							
+SRR3033505	rt_ss_ctl_3	root	Well-Watered							
+SRR3033506	rt_sr_1	root	Water Deficit							
+SRR3033507	rt_sr_2	root	Water Deficit							
+SRR3033508	rt_vms_3	root	Water Deficit							
+SRR3033509	rt_sr_3	root	Water Deficit							
+SRR3033510	rt_sr_ctl_1	root	Well-Watered							
+SRR3033511	rt_sr_ctl_2	root	Well-Watered							
+SRR3033512	rt_sr_ctl_3	root	Well-Watered							
+SRR3033513	rt_vms_1	root	Water Deficit							
+SRR3033514	rt_vms_2	root	Water Deficit							
+SRR3033515	rt_vms_ctl_3	root	Well-Watered							
+SRR3033516	rt_ms_1	root	Water Deficit							
+SRR3033517	rt_ms_2	root	Water Deficit							
+SRR3033518	rt_ms_3	root	Water Deficit							
+SRR3033519	rt_ms_ctl_1	root	Well-Watered							
 SRR3628740	lf_Y-wt_1	unexpanded young leaf	wild type							
 SRR3628741	lf_Y-wt_2	unexpanded young leaf	wild type							
 SRR3628742	lf_M-wt_1	trifoliate leaf	wild type							
