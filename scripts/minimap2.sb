@@ -3,60 +3,64 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
-#SBATCH --time=00:30:00
+#SBATCH --time=01:00:00
 #SBATCH --output=/path/to/project/dir/logs/%x_%j.out
 
 # Paths
 BASE="/path/to/project/dir"
 SPEC="species"
+IDENTITY=0.95   # minimum matches / alignment-block length to count as a hit
 
-PRED="${BASE}/${SPEC}/03_outputs/11_int_class/${SPEC}_lncRNA.fasta" # Final candidates after running the intersection
-TRUTH="${BASE}/truth_data/${SPEC}/${SPEC}_PLncDB_cd-hit.0.9.fa" # Truth dataset: EV sequences clustered at 90% identity with cd-hit. 
+CAND="${BASE}/${SPEC}/03_outputs/04_stringtie/${SPEC}_candidates.fasta"   # initial candidates (before filtering)
+PRED="${BASE}/${SPEC}/03_outputs/11_int_class/${SPEC}_lncRNA.fasta"       # final candidates after the intersection
+TRUTH="${BASE}/truth_data/${SPEC}/${SPEC}_PLncDB_cd-hit.0.9.fa"           # Truth dataset: EV sequences clustered at 90% identity with cd-hit
 OUTDIR="${BASE}/${SPEC}/03_outputs/12_verify"
-OUT_FILE="${OUTDIR}/${SPEC}_cd-hit-0.9_vs_pred.paf"
 LOG_FILE="${OUTDIR}/${SPEC}_log.txt"
+TABLE_TSV="${OUTDIR}/${SPEC}_summary_table.tsv"
 
-# 1. First, create the output directory inside the running job
-mkdir -p $OUTDIR
+# Create the output directory inside the running job
+mkdir -p "$OUTDIR"
 
-# 2. Redirect all stdout and stderr from this point forward into your log text file
+# Send all stdout/stderr from here on to the log file as well
 exec > >(tee -a "${LOG_FILE}") 2>&1
 
 ml purge
 ml load minimap2
 
-cmd="minimap2 -x cdna -t 8 $TRUTH $PRED -o $OUT_FILE"
+TOTAL_TRUTH=$(grep -c ">" "${TRUTH}")
 
-echo -e "\n\trun command:\n${cmd}\n"
+# Align one query set to the truth set and print one TSV row of stats.
+# Usage: run_stage <label> <query_fasta>
+run_stage() {
+    local label="$1" query="$2"
+    local paf="${OUTDIR}/${SPEC}_${label}_vs_truth.paf"
 
-$cmd
+    # Progress goes to stderr so it doesn't pollute the captured table row
+    echo -e "\n\trun command:\nminimap2 -x cdna -t 8 $TRUTH $query -o $paf\n" >&2
+    minimap2 -x cdna -t 8 "$TRUTH" "$query" -o "$paf" 2>&1 >/dev/null | tail -n 3 >&2
 
-# Total ML Predictions
-TOTAL_PRED=$(grep -c ">" ${PRED}) # total number of predicted lncRNAs
+    local total tp fp hit fn
+    total=$(grep -c ">" "$query")                                                   # total queries
+    tp=$(awk -v id=$IDENTITY '$10/$11 > id {print $1}' "$paf" | sort -u | wc -l)   # queries matching truth
+    fp=$((total - tp))                                                              # queries not in truth
+    hit=$(awk -v id=$IDENTITY '$10/$11 > id {print $6}' "$paf" | sort -u | wc -l)  # truth seqs hit
+    fn=$((TOTAL_TRUTH - hit))                                                       # truth seqs missed
 
-echo -e "Total predicted lncRNAs:\n\t${TOTAL_PRED}\n"
+    awk -v l="$label" -v t="$total" -v tp="$tp" -v fp="$fp" -v h="$hit" -v tt="$TOTAL_TRUTH" -v fn="$fn" 'BEGIN{
+        fpp = (t  > 0) ? 100*fp/t  : 0;   # FP % of queries (1 - precision)
+        fnp = (tt > 0) ? 100*fn/tt : 0;   # FN % of truth   (1 - recall)
+        printf "%s\t%d\t%d\t%d\t%.2f\t%d\t%d\t%d\t%.2f\t%.2f\t%.2f\n", l, t, tp, fp, fpp, tt, h, fn, fnp, 100-fpp, 100-fnp
+    }'
+}
 
-# Count unique ML IDs that matched the Truth with >95% identity
-TP=$(awk '{if($10/$11 > 0.95) print $1}' $OUT_FILE | sort -u | wc -l) # true positives
+# Build the table
+{
+    echo -e "Stage\tQueries\tTP\tFP\tFP_%\tTruth_total\tTruth_hit\tFN\tFN_%\tPrecision_%\tRecall_%"
+    run_stage "candidates" "$CAND"
+    run_stage "final"      "$PRED"
+} > "$TABLE_TSV"
 
-echo -e "Predicted IDs that matched the ${TRUTH} dataset:\n\t${TP}\n"
-
-# FP = Total - TP
-FP=$((TOTAL_PRED - TP)) # number of predictions that were not in the truth dataset
-
-echo -e "False Positives:\n\t${FP}\n"
-
-# Count how many Truth IDs were actually hit by the ML predictions
-HIT_TRUTH=$(awk '{if($10/$11 > 0.95) print $6}' $OUT_FILE | sort -u | wc -l) # out of all of the truth dataset, how many were hit by the predictions? 
-
-echo -e "number of EV sequences that were hit by predictions:\n\t${HIT_TRUTH}\n"
-
-# Total Truth Sequences
-TOTAL_TRUTH=$(grep -c ">" ${TRUTH}) # total truth dataset
-
-echo -e "Number of EV sequences:\n\t${TOTAL_TRUTH}\n"
-
-# FN = Total Truth - Hit Truth
-FN=$((TOTAL_TRUTH - HIT_TRUTH)) # number of sequences in the truth dataset that were not hit by any prediction
-
-echo -e "False negatives:\n\t${FN}\n"
+echo -e "\n===== ${SPEC}: comparison against ${TRUTH##*/} (identity > ${IDENTITY}) =====\n"
+column -t -s $'\t' "$TABLE_TSV"
+echo -e "\nTSV saved to: ${TABLE_TSV}"
+echo -e "FP_% = FP / queries   |   FN_% = FN / truth sequences\n"
