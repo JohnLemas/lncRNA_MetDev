@@ -1,165 +1,165 @@
-SRR189769	ant_anthesis_1
-SRR189760	cob_10dbe_1
-SRR445244	ear_B73_1
-SRR2144442	ear_DS_R1_1
-SRR2144443	ear_DS_R1_2
-SRR2144444	ear_DS_R1_3
-SRR2144445	ear_DS_R1_4
-SRR2144418	ear_DS_V12_1
-SRR2144419	ear_DS_V12_2
-SRR2144420	ear_DS_V12_3
-SRR2144421	ear_DS_V12_4
-SRR2144426	ear_DS_V14_1
-SRR2144427	ear_DS_V14_2
-SRR2144428	ear_DS_V14_3
-SRR2144429	ear_DS_V14_4
-SRR2144434	ear_DS_V16_1
-SRR2144435	ear_DS_V16_2
-SRR2144436	ear_DS_V16_3
-SRR2144437	ear_DS_V16_4
-SRR2144410	ear_WW_R1_1
-SRR2144411	ear_WW_R1_2
-SRR2144412	ear_WW_R1_3
-SRR2144413	ear_WW_R1_4
-SRR2144386	ear_WW_V12_1
-SRR2144387	ear_WW_V12_2
-SRR2144388	ear_WW_V12_3
-SRR2144389	ear_WW_V12_4
-SRR2144394	ear_WW_V14_1
-SRR2144395	ear_WW_V14_2
-SRR2144396	ear_WW_V14_3
-SRR2144397	ear_WW_V14_4
-SRR2144402	ear_WW_V16_1
-SRR2144403	ear_WW_V16_2
-SRR2144404	ear_WW_V16_3
-SRR2144405	ear_WW_V16_4
-SRR393018	emb_1
-SRR5983968	emb_15dap_1
-SRR254170	emb_2
-SRR5983967	emb_20dap_1
-SRR254176	emb_3
-SRR5983969	emb_9dap_1
-SRR364432	emb_B73_1
-SRR364433	emb_B73_2
-SRR364435	emb_B73_3
-SRR254169	emb_sac_1
-SRR364426	end_1
-SRR5983965	end_15dap_1
-SRR5983964	end_20dap_1
-SRR189768	end_25dap_1
-SRR5983966	end_9dap_1
-SRR364427	end_B73_2
-SRR364428	end_B73_3
-SRR039503	lf_1cm_1
-SRR039504	lf_1cm_2
-SRR189761	lf_20das_1
-SRR189774	lf_20das_1
-SRR3737038	lf_3hat_1
-SRR039505	lf_4cm_1
-SRR039506	lf_4cm_2
-SRR3737039	lf_96hat_1
-SRR039501	lf_base_1
-SRR039502	lf_base_2
-SRR354214	lf_bs_1
-SRR354215	lf_bs_2
-SRR3737037	lf_ct_1
-SRR2144438	lf_DS_R1_1
-SRR2144439	lf_DS_R1_2
-SRR2144440	lf_DS_R1_3
-SRR2144441	lf_DS_R1_4
-SRR2144414	lf_DS_V12_1
-SRR2144415	lf_DS_V12_2
-SRR2144416	lf_DS_V12_3
-SRR2144417	lf_DS_V12_4
-SRR2144422	lf_DS_V14_1
-SRR2144423	lf_DS_V14_2
-SRR2144424	lf_DS_V14_3
-SRR2144425	lf_DS_V14_4
-SRR2144430	lf_DS_V16_1
-SRR2144431	lf_DS_V16_2
-SRR2144432	lf_DS_V16_3
-SRR2144433	lf_DS_V16_4
-SRR354212	lf_mes_1
-SRR354213	lf_mes_2
-SRR2070626	lf_Ndef_cont_1
-SRR2070627	lf_Ndef_trt_1
-SRR039507	lf_tip_1
-SRR039508	lf_tip_2
-SRR1213570	lf_v1_1
-SRR1213571	lf_v1_2
-SRR1213574	lf_v1_3
-SRR1213575	lf_v1_4
-SRR2144406	lf_WW_R1_1
-SRR2144407	lf_WW_R1_2
-SRR2144408	lf_WW_R1_3
-SRR2144409	lf_WW_R1_4
-SRR2144382	lf_WW_V12_1
-SRR2144383	lf_WW_V12_2
-SRR2144384	lf_WW_V12_3
-SRR2144385	lf_WW_V12_4
-SRR2144390	lf_WW_V14_1
-SRR2144391	lf_WW_V14_2
-SRR2144392	lf_WW_V14_3
-SRR2144393	lf_WW_V14_4
-SRR2144398	lf_WW_V16_1
-SRR2144399	lf_WW_V16_2
-SRR2144400	lf_WW_V16_3
-SRR2144401	lf_WW_V16_4
-SRR254171	ovl_1
-SRR254172	ovl_2
-SRR254175	ovl_3
-SRR189770	ovl_anthesis_1
-SRR250416	pol_1
-SRR255405	pol_2
-SRR252662	pol_3
-SRR189771	pol_anthesis_1
-SRR3737041	rt_3hat_1
-SRR3737042	rt_96hat_1
-SRR395191	rt_B73_1
-SRR395192	rt_B73_2
-SRR395194	rt_B73_3
-SRR395208	rt_B73_4
-SRR3737040	rt_ct_1
-SRR035245	sam_L1_1
-SRR035246	sam_L1_2
-SRR035247	sam_L2_1
-SRR035248	sam_L2_2
-SRR393017	sd_1
-SRR189773	sd_10dap_1
-SRR242505	sdl_1
-SRR248565	sdl_2
-SRR250415	sdl_3
-SRR445382	sh_B73_1
-SRR189772	silk_anthesis_1
-SRR393016	tas_2
-SRR445383	tssl_B73_1
-SRR2144472	tssl_DS_R1_1
-SRR2144473	tssl_DS_R1_2
-SRR2144474	tssl_DS_R1_3
-SRR2144475	tssl_DS_R1_4
-SRR2144461	tssl_DS_V12_1
-SRR2144462	tssl_DS_V12_2
-SRR2144463	tssl_DS_V12_3
-SRR2144464	tssl_DS_V14_1
-SRR2144465	tssl_DS_V14_2
-SRR2144466	tssl_DS_V14_3
-SRR2144467	tssl_DS_V14_4
-SRR2144468	tssl_DS_V16_1
-SRR2144469	tssl_DS_V16_2
-SRR2144470	tssl_DS_V16_3
-SRR2144471	tssl_DS_V16_4
-SRR2144458	tssl_WW_R1_1
-SRR2144459	tssl_WW_R1_2
-SRR2144460	tssl_WW_R1_3
-SRR2144446	tssl_WW_V12_1
-SRR2144447	tssl_WW_V12_2
-SRR2144448	tssl_WW_V12_3
-SRR2144449	tssl_WW_V12_4
-SRR2144450	tssl_WW_V14_1
-SRR2144451	tssl_WW_V14_2
-SRR2144452	tssl_WW_V14_3
-SRR2144453	tssl_WW_V14_4
-SRR2144454	tssl_WW_V16_1
-SRR2144455	tssl_WW_V16_2
-SRR2144456	tssl_WW_V16_3
-SRR2144457	tssl_WW_V16_4
+SRR035245	sam_L1_1	sam	NA
+SRR035246	sam_L1_2	sam	NA
+SRR035247	sam_L2_1	sam	NA
+SRR035248	sam_L2_2	sam	NA
+SRR039501	lf_base_1	leaf	base
+SRR039502	lf_base_2	leaf	base
+SRR039503	lf_1cm_1	leaf	minus1cm
+SRR039504	lf_1cm_2	leaf	minus1cm
+SRR039505	lf_4cm_1	leaf	plus4cm
+SRR039506	lf_4cm_2	leaf	plus4cm
+SRR039507	lf_tip_1	leaf	tip
+SRR039508	lf_tip_2	leaf	tip
+SRR1213570	lf_v1_1	leaf	V1-seedling
+SRR1213571	lf_v1_2	leaf	V1-seedling
+SRR1213574	lf_v1_3	leaf	V1-seedling
+SRR1213575	lf_v1_4	leaf	V1-seedling
+SRR189760	cob_10dbe_1	cob	10 days before cob emergence
+SRR189761	lf_20das_1	leaf	20 days after sowing
+SRR189768	end_25dap_1	endosperm	25 DAP
+SRR189769	ant_anthesis_1	anthers	Anthesis
+SRR189770	ovl_anthesis_1	ovule	Anthesis
+SRR189771	pol_anthesis_1	pollen	Anthesis
+SRR189772	silk_anthesis_1	silk	Anthesis
+SRR189773	sd_10dap_1	seed	10 DAP
+SRR189774	lf_20das_2	leaf	20 days after sowing
+SRR2070626	lf_Ndef_cont_1	leaf	Nitrogen deficiency
+SRR2070627	lf_Ndef_trt_1	leaf	Nitrogen deficiency
+SRR2144382	lf_WW_V12_1	leaf	well-watered
+SRR2144383	lf_WW_V12_2	leaf	well-watered
+SRR2144384	lf_WW_V12_3	leaf	well-watered
+SRR2144385	lf_WW_V12_4	leaf	well-watered
+SRR2144386	ear_WW_V12_1	ear	well-watered
+SRR2144387	ear_WW_V12_2	ear	well-watered
+SRR2144388	ear_WW_V12_3	ear	well-watered
+SRR2144389	ear_WW_V12_4	ear	well-watered
+SRR2144390	lf_WW_V14_1	leaf	well-watered
+SRR2144391	lf_WW_V14_2	leaf	well-watered
+SRR2144392	lf_WW_V14_3	leaf	well-watered
+SRR2144393	lf_WW_V14_4	leaf	well-watered
+SRR2144394	ear_WW_V14_1	ear	well-watered
+SRR2144395	ear_WW_V14_2	ear	well-watered
+SRR2144396	ear_WW_V14_3	ear	well-watered
+SRR2144397	ear_WW_V14_4	ear	well-watered
+SRR2144398	lf_WW_V16_1	leaf	well-watered
+SRR2144399	lf_WW_V16_2	leaf	well-watered
+SRR2144400	lf_WW_V16_3	leaf	well-watered
+SRR2144401	lf_WW_V16_4	leaf	well-watered
+SRR2144402	ear_WW_V16_1	ear	well-watered
+SRR2144403	ear_WW_V16_2	ear	well-watered
+SRR2144404	ear_WW_V16_3	ear	well-watered
+SRR2144405	ear_WW_V16_4	ear	well-watered
+SRR2144406	lf_WW_R1_1	leaf	well-watered
+SRR2144407	lf_WW_R1_2	leaf	well-watered
+SRR2144408	lf_WW_R1_3	leaf	well-watered
+SRR2144409	lf_WW_R1_4	leaf	well-watered
+SRR2144410	ear_WW_R1_1	ear	well-watered
+SRR2144411	ear_WW_R1_2	ear	well-watered
+SRR2144412	ear_WW_R1_3	ear	well-watered
+SRR2144413	ear_WW_R1_4	ear	well-watered
+SRR2144414	lf_DS_V12_1	leaf	drought-stressed
+SRR2144415	lf_DS_V12_2	leaf	drought-stressed
+SRR2144416	lf_DS_V12_3	leaf	drought-stressed
+SRR2144417	lf_DS_V12_4	leaf	drought-stressed
+SRR2144418	ear_DS_V12_1	ear	drought-stressed
+SRR2144419	ear_DS_V12_2	ear	drought-stressed
+SRR2144420	ear_DS_V12_3	ear	drought-stressed
+SRR2144421	ear_DS_V12_4	ear	drought-stressed
+SRR2144422	lf_DS_V14_1	leaf	drought-stressed
+SRR2144423	lf_DS_V14_2	leaf	drought-stressed
+SRR2144424	lf_DS_V14_3	leaf	drought-stressed
+SRR2144425	lf_DS_V14_4	leaf	drought-stressed
+SRR2144426	ear_DS_V14_1	ear	drought-stressed
+SRR2144427	ear_DS_V14_2	ear	drought-stressed
+SRR2144428	ear_DS_V14_3	ear	drought-stressed
+SRR2144429	ear_DS_V14_4	ear	drought-stressed
+SRR2144430	lf_DS_V16_1	leaf	drought-stressed
+SRR2144431	lf_DS_V16_2	leaf	drought-stressed
+SRR2144432	lf_DS_V16_3	leaf	drought-stressed
+SRR2144433	lf_DS_V16_4	leaf	drought-stressed
+SRR2144434	ear_DS_V16_1	ear	drought-stressed
+SRR2144435	ear_DS_V16_2	ear	drought-stressed
+SRR2144436	ear_DS_V16_3	ear	drought-stressed
+SRR2144437	ear_DS_V16_4	ear	drought-stressed
+SRR2144438	lf_DS_R1_1	leaf	drought-stressed
+SRR2144439	lf_DS_R1_2	leaf	drought-stressed
+SRR2144440	lf_DS_R1_3	leaf	drought-stressed
+SRR2144441	lf_DS_R1_4	leaf	drought-stressed
+SRR2144442	ear_DS_R1_1	ear	drought-stressed
+SRR2144443	ear_DS_R1_2	ear	drought-stressed
+SRR2144444	ear_DS_R1_3	ear	drought-stressed
+SRR2144445	ear_DS_R1_4	ear	drought-stressed
+SRR2144446	tssl_WW_V12_1	tassel	well-watered
+SRR2144447	tssl_WW_V12_2	tassel	well-watered
+SRR2144448	tssl_WW_V12_3	tassel	well-watered
+SRR2144449	tssl_WW_V12_4	tassel	well-watered
+SRR2144450	tssl_WW_V14_1	tassel	well-watered
+SRR2144451	tssl_WW_V14_2	tassel	well-watered
+SRR2144452	tssl_WW_V14_3	tassel	well-watered
+SRR2144453	tssl_WW_V14_4	tassel	well-watered
+SRR2144454	tssl_WW_V16_1	tassel	well-watered
+SRR2144455	tssl_WW_V16_2	tassel	well-watered
+SRR2144456	tssl_WW_V16_3	tassel	well-watered
+SRR2144457	tssl_WW_V16_4	tassel	well-watered
+SRR2144458	tssl_WW_R1_1	tassel	well-watered
+SRR2144459	tssl_WW_R1_2	tassel	well-watered
+SRR2144460	tssl_WW_R1_3	tassel	well-watered
+SRR2144461	tssl_DS_V12_1	tassel	drought-stressed
+SRR2144462	tssl_DS_V12_2	tassel	drought-stressed
+SRR2144463	tssl_DS_V12_3	tassel	drought-stressed
+SRR2144464	tssl_DS_V14_1	tassel	drought-stressed
+SRR2144465	tssl_DS_V14_2	tassel	drought-stressed
+SRR2144466	tssl_DS_V14_3	tassel	drought-stressed
+SRR2144467	tssl_DS_V14_4	tassel	drought-stressed
+SRR2144468	tssl_DS_V16_1	tassel	drought-stressed
+SRR2144469	tssl_DS_V16_2	tassel	drought-stressed
+SRR2144470	tssl_DS_V16_3	tassel	drought-stressed
+SRR2144471	tssl_DS_V16_4	tassel	drought-stressed
+SRR2144472	tssl_DS_R1_1	tassel	drought-stressed
+SRR2144473	tssl_DS_R1_2	tassel	drought-stressed
+SRR2144474	tssl_DS_R1_3	tassel	drought-stressed
+SRR2144475	tssl_DS_R1_4	tassel	drought-stressed
+SRR242505	sdl_1	seedling	MaizeSeedling1
+SRR248565	sdl_2	seedling	MaizeSeedling2
+SRR250415	sdl_3	seedling	MaizeSeedling3
+SRR250416	pol_1	pollen	MaizePollen1
+SRR252662	pol_3	pollen	MaizePollen3
+SRR254169	emb_sac_1	embryo	MaizeEmbryoSac1
+SRR254170	emb_2	embryo	MaizeEmbryoSac2
+SRR254171	ovl_1	ovule	MaizeOvule1
+SRR254172	ovl_2	ovule	MaizeOvule2
+SRR254175	ovl_3	ovule	MaizeOvule3
+SRR254176	emb_3	embryo	MaizeEmbryoSac3
+SRR255405	pol_2	pollen	MaizePollen2
+SRR354212	lf_mes_1	leaf	mesophyll cell
+SRR354213	lf_mes_2	leaf	mesophyll cell
+SRR354214	lf_bs_1	leaf	bundle sheath
+SRR354215	lf_bs_2	leaf	bundle sheath
+SRR364426	end_1	endosperm	NA
+SRR364427	end_B73_2	endosperm	B73 endosperm 2
+SRR364428	end_B73_3	endosperm	B73 endosperm 3
+SRR364432	emb_B73_1	embryo	B73 embryo
+SRR364433	emb_B73_2	embryo	B73 embryo 2
+SRR364435	emb_B73_3	embryo	B73 embryo 3
+SRR3737037	lf_ct_1	leaf	Control
+SRR3737038	lf_3hat_1	leaf	3 hrs Na and B exposure
+SRR3737039	lf_96hat_1	leaf	96 hrs Na and B exposure
+SRR3737040	rt_ct_1	root	Control
+SRR3737041	rt_3hat_1	root	3 hrs Na and B exposure
+SRR3737042	rt_96hat_1	root	96 hrs Na and B exposure
+SRR393016	tas_2	tassel	Tassel emergence from whorl
+SRR393017	sd_1	seed	5 DAP
+SRR393018	emb_1	embryo	25 DAP
+SRR395191	rt_B73_1	root	NA
+SRR395192	rt_B73_2	root	NA
+SRR395194	rt_B73_3	root	NA
+SRR395208	rt_B73_4	root	NA
+SRR445244	ear_B73_1	ear	B73
+SRR445382	sh_B73_1	shoot	B74
+SRR445383	tssl_B73_1	tassel	B75
+SRR5983964	end_20dap_1	endosperm	20 DAP endosperm
+SRR5983965	end_15dap_1	endosperm	15 DAP endosperm
+SRR5983966	end_9dap_1	endosperm	9 DAP endosperm
+SRR5983967	emb_20dap_1	embryo	20 DAP embryo
+SRR5983968	emb_15dap_1	embryo	15 DAP embryo
+SRR5983969	emb_9dap_1	embryo	9 DAP embryo
