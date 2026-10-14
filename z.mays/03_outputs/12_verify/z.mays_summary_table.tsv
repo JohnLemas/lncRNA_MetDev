@@ -1,0 +1,4 @@
+Stage	Queries	TP	FP	FP_%	Truth_total	Truth_hit	FN	FN_%	Precision_%	Recall_%
+candidates	121373	19414	101959	84.00	23580	9840	13740	58.27	16.00	41.73
+final	7927	3556	4371	55.14	23580	2841	20739	87.95	44.86	12.05
+annotated_ncRNA	7804	0	7804	100.00	23580	0	23580	100.00	0.00	0.00
