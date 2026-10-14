@@ -81,7 +81,7 @@ $1 in chr {
 # ==============================================================================
 echo "--> STEP 2: Standardizing master GFF3..."
 CLEAN_GFF=$CLEAN_DIR/$SPEC.clean.gff3
-agat_convert_sp_gxf2gxf.pl -g "$GFF_CHR" -o "$CLEAN_GFF"
+agat_convert_sp_gxf2gxf.pl -g "$GFF_CHR" -o "$CLEAN_GFF" --log "$CLEAN_DIR/$SPEC.clean.agat.log"
 
 
 # ==============================================================================
@@ -96,14 +96,16 @@ MRNA_FA=$OUT_DIR/$SPEC.mRNA.fa
 agat_sp_filter_feature_by_attribute_value.pl \
     --gff "$CLEAN_GFF" \
     --attribute biotype --value mRNA \
-    -o "$MRNA_GTF"
+    -o "$MRNA_GTF" \
+    --log "$CLEAN_DIR/$SPEC.mrna_filter.agat.log"
 
 # Extract spliced coding sequence
 agat_sp_extract_sequences.pl \
     -g "$MRNA_GTF" \
     -f "$FASTA_CHR" \
     -t exon --merge \
-    -o "$MRNA_FA"
+    -o "$MRNA_FA" \
+    --log "$CLEAN_DIR/$SPEC.mrna_seq.agat.log"
 
 
 # ==============================================================================
@@ -134,7 +136,7 @@ if [ ! -s "$IDS" ]; then
 else
     # First pass lncRNA filter
     LNC_PASS1=$CLEAN_DIR/lnc.pass1.gff3
-    agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN_GFF" --keep_list "$IDS" -o "$LNC_PASS1"
+    agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN_GFF" --keep_list "$IDS" -o "$LNC_PASS1" --log "$CLEAN_DIR/$SPEC.lnc_filter.agat.log"
 
     # Drop candidate genes that also express mRNAs
     MRNA_GENES=$CLEAN_DIR/mrna_genes.txt
@@ -144,14 +146,15 @@ else
     grep -v -x -F -f "$MRNA_GENES" "$IDS" > "$IDS_FINAL" || true
 
     if [ -s "$IDS_FINAL" ]; then
-        agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN_GFF" --keep_list "$IDS_FINAL" -o "$LNC_GTF"
+        agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN_GFF" --keep_list "$IDS_FINAL" -o "$LNC_GTF" --log "$CLEAN_DIR/$SPEC.lnc_filter.agat.log"
 
         LNC_RAW_FA=$CLEAN_DIR/lncRNA.raw.fa
         agat_sp_extract_sequences.pl \
             -g "$LNC_GTF" \
             -f "$FASTA_CHR" \
             -t exon --merge \
-            -o "$LNC_RAW_FA"
+            -o "$LNC_RAW_FA" \
+            --log "$CLEAN_DIR/$SPEC.lnc_seq.agat.log"
 
         seqkit seq -m "$MIN_LEN" "$LNC_RAW_FA" > "$LNC_FA"
     else
