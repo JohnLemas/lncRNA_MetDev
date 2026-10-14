@@ -30,14 +30,16 @@ mkdir -p "$CLEAN_DIR" "$OUT_DIR"
 echo "[$(date)] Starting processing for species: $SPEC"
 
 # ==============================================================================
-# STEP 1: Parse Chromosomes & Rename FASTA + GFF
+# DELIVERABLE 1: Clean Assembly & Master GTF (For STAR genomeGenerate)
 # ==============================================================================
 MAP_FILE=$CLEAN_DIR/chr_map.tsv
-FASTA_CHR=$CLEAN_DIR/$SPEC.chromosomes.fa
+FASTA_CHR=$OUT_DIR/$SPEC.chromosomes.fa
 GFF_CHR=$CLEAN_DIR/$SPEC.chromosomes.gff3
+MASTER_GTF=$OUT_DIR/$SPEC.chromosomes.gtf
 
-echo "--> STEP 1: Renaming accession IDs to chr1, chr2, etc..."
+echo "--> STEP 1: Building renamed chromosome-level assembly and master GTF..."
 
+# Parse accession to chrN mappings from FASTA headers
 grep "^>" $FASTA_RAW | awk '
 /chromosome/ {
     acc = $1; sub(/^>/, "", acc);
@@ -56,8 +58,10 @@ if [ ! -s "$MAP_FILE" ]; then
     exit 1
 fi
 
+# 1a. Write Chromosome-only FASTA with updated chrN headers
 seqkit replace -p '^(\S+).*' -r '{kv}' -k "$MAP_FILE" "$FASTA_RAW" > "$FASTA_CHR"
 
+# 1b. Filter raw GFF to retain only primary chromosomes
 awk -F'\t' -v map="$MAP_FILE" '
 BEGIN {
     while ((getline < map) > 0) chr[$1] = $2;
@@ -69,11 +73,13 @@ $1 in chr {
     print $0;
 }' "$GFF_RAW" > "$GFF_CHR"
 
+# 1c. Standardize and output Master GTF directly to 01_inputs (for STAR)
+agat_convert_sp_gxf2gxf.pl \
+    -g "$GFF_CHR" \
+    -o "$MASTER_GTF" \
+    --log "$CLEAN_DIR/$SPEC.master_gtf.agat.log"
 
-# ==============================================================================
-# STEP 2: Standardize Full Annotations with AGAT
-# ==============================================================================
-echo "--> STEP 2: Standardizing master GFF3..."
+# Internal clean GFF3 copy for downstream AGAT queries
 CLEAN_GFF=$CLEAN_DIR/$SPEC.clean.gff3
 agat_convert_sp_gxf2gxf.pl \
     -g "$GFF_CHR" \
@@ -82,36 +88,29 @@ agat_convert_sp_gxf2gxf.pl \
 
 
 # ==============================================================================
-# STEP 3: Process mRNA Branch
+# DELIVERABLE 2: Pure mRNA GTF
 # ==============================================================================
-echo "--> STEP 3: Extracting mRNA GTF and Spliced FASTA..."
+echo "--> STEP 2: Extracting pure mRNA GTF..."
 
 MRNA_GTF=$OUT_DIR/$SPEC.mRNA.gtf
-MRNA_FA=$OUT_DIR/$SPEC.mRNA.fa
 
+# Filter master annotation down to mRNA features only and format as GTF
 agat_sp_filter_feature_by_attribute_value.pl \
     --gff "$CLEAN_GFF" \
     --attribute biotype --value mRNA \
     -o "$MRNA_GTF" \
     --log "$CLEAN_DIR/$SPEC.mrna_filter.agat.log"
 
-agat_sp_extract_sequences.pl \
-    -g "$MRNA_GTF" \
-    -f "$FASTA_CHR" \
-    -t exon --merge \
-    -o "$MRNA_FA" \
-    --log "$CLEAN_DIR/$SPEC.mrna_seq.agat.log"
-
 
 # ==============================================================================
-# STEP 4: Process Reference lncRNA Branch (Unfiltered)
+# DELIVERABLE 3: Unfiltered Reference lncRNA GFF & Spliced FASTA
 # ==============================================================================
-echo "--> STEP 4: Extracting unfiltered reference lncRNAs..."
+echo "--> STEP 3: Extracting complete, unfiltered reference lncRNAs..."
 
 IDS=$CLEAN_DIR/ref_lncRNA_gene_ids.txt
 : > "$IDS"
 
-# Pull parent gene IDs for all lnc_RNA / antisense_RNA features
+# Capture all reference-annotated lnc_RNA / antisense_RNA gene IDs
 awk -F'\t' '$3=="lnc_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN_GFF" >> "$IDS"
 awk -F'\t' '$3=="gene" && $9~/gene_biotype=lncRNA/{if(match($9,/ID=[^;]+/)) print substr($9,RSTART+3,RLENGTH-3)}' "$CLEAN_GFF" >> "$IDS"
 
@@ -121,23 +120,23 @@ fi
 
 sort -u "$IDS" -o "$IDS"
 
-LNC_GTF=$OUT_DIR/$SPEC.lncRNA.gtf
+LNC_GFF=$OUT_DIR/$SPEC.lncRNA.gff
 LNC_FA=$OUT_DIR/$SPEC.lncRNA.fa
 
 if [ ! -s "$IDS" ]; then
-    echo "WARNING: No annotated lncRNAs found for $SPEC."
-    touch "$LNC_GTF" "$LNC_FA"
+    echo "WARNING: No annotated lncRNAs found in reference for $SPEC."
+    touch "$LNC_GFF" "$LNC_FA"
 else
-    # Extract complete reference lncRNA feature set to GTF
+    # Extract original, unfiltered reference lncRNA annotations as GFF
     agat_sp_filter_feature_from_keep_list.pl \
         --gff "$CLEAN_GFF" \
         --keep_list "$IDS" \
-        -o "$LNC_GTF" \
+        -o "$LNC_GFF" \
         --log "$CLEAN_DIR/$SPEC.lnc_filter.agat.log"
 
-    # Extract exact spliced FASTA sequences directly from reference GTF
+    # Extract spliced nucleotide sequences for reference lncRNAs
     agat_sp_extract_sequences.pl \
-        -g "$LNC_GTF" \
+        -g "$LNC_GFF" \
         -f "$FASTA_CHR" \
         -t exon --merge \
         -o "$LNC_FA" \
@@ -146,15 +145,16 @@ fi
 
 
 # ==============================================================================
-# STEP 5: Output Summary
+# Summary
 # ==============================================================================
 echo "================================================="
 echo " PROCESSING COMPLETE"
-echo " Final Outputs in $OUT_DIR:"
-echo "  - mRNA GTF    : $MRNA_GTF"
-echo "  - mRNA FASTA  : $MRNA_FA"
-echo "  - lncRNA GTF  : $LNC_GTF"
-echo "  - lncRNA FASTA: $LNC_FA"
+echo " Final Deliverables in $OUT_DIR:"
+echo "  1. Primary Genome FASTA : $FASTA_CHR"
+echo "  2. Master GTF (STAR)    : $MASTER_GTF"
+echo "  3. mRNA GTF             : $MRNA_GTF"
+echo "  4. Reference lncRNA GFF : $LNC_GFF"
+echo "  5. Reference lncRNA FA  : $LNC_FA"
 echo "================================================="
-seqkit stats "$MRNA_FA" "$LNC_FA"
+seqkit stats "$FASTA_CHR" "$LNC_FA"
 echo "[$(date)] Finished successfully."
