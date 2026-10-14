@@ -1,92 +1,167 @@
 #!/bin/bash
-#SBATCH --job-name=lncRNA_extract
+#SBATCH --job-name=extract_rna
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
-#SBATCH --cpus-per-task=2
+#SBATCH --cpus-per-task=4
 #SBATCH --mem=32G
 #SBATCH --time=04:00:00
 
 set -euo pipefail
 
-# ---------------- user settings ----------------
+# ---------------- User Settings ----------------
 BASE="/path/to/working/dir"
-SPEC="species"                 # e.g. A.tha
-MIN_LEN=200                  # minimum spliced length (nt)
-INCLUDE_ANTISENSE=yes        # yes/no: also keep antisense_RNA transcripts
-# Paths from `datasets download genome ... --reference --include gff3,genome`
-DATASETS=$(ls -d $BASE/$SPEC/ncbi_dataset/data/*/) # find the accession directory created by datasets
-GFF_IN=${DATASETS}/genomic.gff # change this line to point to the annotation file if you have a different file name
-FASTA_IN=${DATASETS}/genomic.fna # change this line to point to the genome file if you have a different file name
+SPEC="species"                 # e.g. g.max, z.mays, A.tha
+MIN_LEN=200                  # Minimum length for lncRNAs (bp)
+INCLUDE_ANTISENSE=yes        # Include antisense_RNA in lncRNA extraction
+
+# Paths to raw NCBI download
+DATASETS=$(ls -d $BASE/$SPEC/ncbi_dataset/data/*/)
+GFF_RAW=${DATASETS}/genomic.gff
+FASTA_RAW=${DATASETS}/*_genomic.fna
 # -----------------------------------------------
 
 module load AGAT
 module load SeqKit
 
-# Directory configuration:
-# CLEAN_DIR: stores all intermediate/temporary AGAT files (01_inputs/AGAT)
-# OUT_DIR  : stores final output lncRNA FASTA and GFF3 (01_inputs)
+# Directory setup
 CLEAN_DIR=$BASE/$SPEC/01_inputs/AGAT
 OUT_DIR=$BASE/$SPEC/01_inputs
 mkdir -p "$CLEAN_DIR" "$OUT_DIR"
 
-CLEAN=$CLEAN_DIR/$SPEC.clean.gff3
-echo "[$(date)] species=$SPEC"
-echo "GFF   : $GFF_IN"
-echo "FASTA : $FASTA_IN"
+echo "[$(date)] Starting processing for species: $SPEC"
 
-# 1. Clean / standardize with AGAT
-agat_convert_sp_gxf2gxf.pl -g "$GFF_IN" -o "$CLEAN"
+# ==============================================================================
+# STEP 1: Parse Chromosomes & Rename FASTA + GFF
+# ==============================================================================
+MAP_FILE=$CLEAN_DIR/chr_map.tsv
+FASTA_CHR=$CLEAN_DIR/$SPEC.chromosomes.fa
+GFF_CHR=$CLEAN_DIR/$SPEC.chromosomes.gff3
 
-echo "--- feature types (clean GFF) ---"
-grep -v '^#' "$CLEAN" | cut -f3 | sort | uniq -c
-echo "--- sources (AGAT-added rows would show here) ---"
-grep -v '^#' "$CLEAN" | cut -f2 | sort | uniq -c
+echo "--> STEP 1: Renaming accession IDs to chr1, chr2, etc..."
 
-# 2. Gene IDs that own an lncRNA transcript (or are flagged lncRNA at gene level)
-IDS_TMP=$CLEAN_DIR/$SPEC.ids.tmp
+# Create mapping table from FASTA headers (Accession -> chrN)
+grep "^>" $FASTA_RAW | awk '
+/chromosome/ {
+    acc = $1; sub(/^>/, "", acc);
+    for(i=1; i<=NF; i++) {
+        if ($i ~ /^chromosome$/) {
+            num = $(i+1);
+            gsub(/[^A-Za-z0-9]/, "", num);
+            print acc "\tchr" num;
+            break;
+        }
+    }
+}' > "$MAP_FILE"
+
+if [ ! -s "$MAP_FILE" ]; then
+    echo "ERROR: Could not parse chromosome names from $FASTA_RAW" >&2
+    exit 1
+fi
+
+echo "Detected $(wc -l < "$MAP_FILE") primary chromosomes."
+
+# Rename FASTA headers
+seqkit replace -p '^(\S+).*' -r '{kv}' -k "$MAP_FILE" "$FASTA_RAW" > "$FASTA_CHR"
+
+# Filter and rename GFF to primary chromosomes
+awk -F'\t' -v map="$MAP_FILE" '
+BEGIN {
+    while ((getline < map) > 0) chr[$1] = $2;
+    OFS="\t";
+}
+/^#/ { next }
+$1 in chr {
+    $1 = chr[$1];
+    print $0;
+}' "$GFF_RAW" > "$GFF_CHR"
+
+
+# ==============================================================================
+# STEP 2: Standardize Full Annotations with AGAT
+# ==============================================================================
+echo "--> STEP 2: Standardizing master GFF3..."
+CLEAN_GFF=$CLEAN_DIR/$SPEC.clean.gff3
+agat_convert_sp_gxf2gxf.pl -g "$GFF_CHR" -o "$CLEAN_GFF"
+
+
+# ==============================================================================
+# STEP 3: Process mRNA Branch
+# ==============================================================================
+echo "--> STEP 3: Extracting mRNA GTF and Spliced FASTA..."
+
+MRNA_GTF=$OUT_DIR/$SPEC.mRNA.gtf
+MRNA_FA=$OUT_DIR/$SPEC.mRNA.fa
+
+# Extract mRNA biotypes directly into standard GTF format
+agat_sp_filter_feature_by_attribute_value.pl \
+    --gff "$CLEAN_GFF" \
+    --attribute biotype --value mRNA \
+    -o "$MRNA_GTF"
+
+# Extract spliced coding sequence
+agat_sp_extract_sequences.pl \
+    -g "$MRNA_GTF" \
+    -f "$FASTA_CHR" \
+    -t exon --merge \
+    -o "$MRNA_FA"
+
+
+# ==============================================================================
+# STEP 4: Process lncRNA Branch
+# ==============================================================================
+echo "--> STEP 4: Extracting lncRNA GTF and Spliced FASTA..."
+
+# Collect target lncRNA gene IDs
+IDS_TMP=$CLEAN_DIR/lnc_ids.tmp
 : > "$IDS_TMP"
-awk -F'\t' '$3=="lnc_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN" >> "$IDS_TMP"
-awk -F'\t' '$3=="gene" && $9~/gene_biotype=lncRNA/{if(match($9,/ID=[^;]+/)) print substr($9,RSTART+3,RLENGTH-3)}' "$CLEAN" >> "$IDS_TMP"
+awk -F'\t' '$3=="lnc_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN_GFF" >> "$IDS_TMP"
+awk -F'\t' '$3=="gene" && $9~/gene_biotype=lncRNA/{if(match($9,/ID=[^;]+/)) print substr($9,RSTART+3,RLENGTH-3)}' "$CLEAN_GFF" >> "$IDS_TMP"
+
 if [ "$INCLUDE_ANTISENSE" = "yes" ]; then
-    awk -F'\t' '$3=="antisense_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN" >> "$IDS_TMP"
+    awk -F'\t' '$3=="antisense_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN_GFF" >> "$IDS_TMP"
 fi
-IDS=$CLEAN_DIR/$SPEC.lnc_gene_ids.txt
+
+IDS=$CLEAN_DIR/lnc_gene_ids.txt
 sort -u "$IDS_TMP" > "$IDS"
-echo "lncRNA candidate genes: $(wc -l < "$IDS")"
-[ -s "$IDS" ] || { echo "ERROR: no lncRNA gene IDs found, check feature types above" >&2; exit 1; }
 
-# 3. First-pass subset, then find genes that also own an mRNA and drop them
-LNC1=$CLEAN_DIR/$SPEC.lnc.pass1.gff3
-agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN" --keep_list "$IDS" -o "$LNC1"
+# First pass lncRNA filter
+LNC_PASS1=$CLEAN_DIR/lnc.pass1.gff3
+agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN_GFF" --keep_list "$IDS" -o "$LNC_PASS1"
 
-MRNA_GENES=$CLEAN_DIR/$SPEC.mrna_genes.txt
-awk -F'\t' '$3=="mRNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$LNC1" | sort -u > "$MRNA_GENES"
-echo "genes dropped for owning an mRNA: $(wc -l < "$MRNA_GENES")"
+# Drop candidate genes that also express mRNAs
+MRNA_GENES=$CLEAN_DIR/mrna_genes.txt
+awk -F'\t' '$3=="mRNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$LNC_PASS1" | sort -u > "$MRNA_GENES"
 
-IDS_FINAL=$CLEAN_DIR/$SPEC.lnc_gene_ids.nomrna.txt
-grep -v -x -F -f "$MRNA_GENES" "$IDS" > "$IDS_FINAL" || true   # grep exits 1 if nothing is left
-[ -s "$IDS_FINAL" ] || { echo "ERROR: no genes left after mRNA removal" >&2; exit 1; }
+IDS_FINAL=$CLEAN_DIR/lnc_gene_ids.nomrna.txt
+grep -v -x -F -f "$MRNA_GENES" "$IDS" > "$IDS_FINAL" || true
 
-# Final GFF placed directly in 01_inputs
-LNC=$OUT_DIR/$SPEC.lnc.gff3
-agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN" --keep_list "$IDS_FINAL" -o "$LNC"
+# Extract final lncRNA GTF into 01_inputs
+LNC_GTF=$OUT_DIR/$SPEC.lncRNA.gtf
+agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN_GFF" --keep_list "$IDS_FINAL" -o "$LNC_GTF"
 
-echo "--- feature types (final lncRNA GFF) ---"
-grep -v '^#' "$LNC" | cut -f3 | sort | uniq -c
-if grep -v '^#' "$LNC" | cut -f3 | grep -qwE 'mRNA|CDS'; then
-    echo "WARNING: mRNA/CDS still present in $LNC" >&2
-fi
+# Extract spliced lncRNA sequences
+LNC_RAW_FA=$CLEAN_DIR/lncRNA.raw.fa
+agat_sp_extract_sequences.pl \
+    -g "$LNC_GTF" \
+    -f "$FASTA_CHR" \
+    -t exon --merge \
+    -o "$LNC_RAW_FA"
 
-# 4. Extract spliced sequences directly using input FASTA (raw FASTA kept in 01_inputs/AGAT)
-RAW_FA=$CLEAN_DIR/$SPEC.lnc.raw.fa
-agat_sp_extract_sequences.pl -g "$LNC" -f "$FASTA_IN" -t exon --merge -o "$RAW_FA"
+# Length filter final lncRNA FASTA into 01_inputs
+LNC_FA=$OUT_DIR/$SPEC.lncRNA.${MIN_LEN}nt.fa
+seqkit seq -m "$MIN_LEN" "$LNC_RAW_FA" > "$LNC_FA"
 
-# 5. Length filter and generate final FASTA in 01_inputs
-FILT_FA=$OUT_DIR/$SPEC.lnc.${MIN_LEN}nt.fa
-seqkit seq -m "$MIN_LEN" "$RAW_FA" > "$FILT_FA"
 
-echo "transcripts in final GFF (lnc_RNA + antisense_RNA): $(grep -v '^#' "$LNC" | cut -f3 | grep -cwE 'lnc_RNA|antisense_RNA' || true)"
-echo "sequences extracted (raw): $(grep -c '>' "$RAW_FA")"
-echo "sequences extracted (filtered): $(grep -c '>' "$FILT_FA")"
-seqkit stats "$RAW_FA" "$FILT_FA"
-echo "[$(date)] done"
+# ==============================================================================
+# STEP 5: Output Summary
+# ==============================================================================
+echo "================================================="
+echo " PROCESSING COMPLETE"
+echo " Final Outputs in $OUT_DIR:"
+echo "  - mRNA GTF    : $MRNA_GTF"
+echo "  - mRNA FASTA  : $MRNA_FA"
+echo "  - lncRNA GTF  : $LNC_GTF"
+echo "  - lncRNA FASTA: $LNC_FA"
+echo "================================================="
+seqkit stats "$MRNA_FA" "$LNC_FA"
+echo "[$(date)] Finished successfully."
