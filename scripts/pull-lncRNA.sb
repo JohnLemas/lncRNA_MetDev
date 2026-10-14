@@ -1,0 +1,88 @@
+#!/bin/bash
+#SBATCH --job-name=lncRNA_extract
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=32G
+#SBATCH --time=04:00:00
+
+set -euo pipefail
+
+# ---------------- user settings ----------------
+BASE="/path/to/working/dir"
+SPEC="species"                 # e.g. A.tha
+MIN_LEN=200                  # minimum spliced length (nt)
+INCLUDE_ANTISENSE=yes        # yes/no: also keep antisense_RNA transcripts
+# Paths from `datasets download genome ... --reference --include gff3,genome`
+GFF_IN=$(ls "$BASE/$SPEC"/01_inputs/ncbi_dataset/data/*/genomic.gff | head -n1)
+FASTA_IN=$(ls "$BASE/$SPEC"/01_inputs/ncbi_dataset/data/*/*_genomic.fna | head -n1)
+# -----------------------------------------------
+
+module load AGAT
+module load SeqKit
+
+CLEAN_DIR=$BASE/$SPEC/02_clean
+OUT_DIR=$BASE/$SPEC/03_lncrna
+mkdir -p "$CLEAN_DIR" "$OUT_DIR"
+
+CLEAN=$CLEAN_DIR/$SPEC.clean.gff3
+echo "[$(date)] species=$SPEC"
+echo "GFF   : $GFF_IN"
+echo "FASTA : $FASTA_IN"
+
+# 1. Clean / standardize with AGAT
+agat_convert_sp_gxf2gxf.pl -g "$GFF_IN" -o "$CLEAN"
+
+echo "--- feature types (clean GFF) ---"
+grep -v '^#' "$CLEAN" | cut -f3 | sort | uniq -c
+echo "--- sources (AGAT-added rows would show here) ---"
+grep -v '^#' "$CLEAN" | cut -f2 | sort | uniq -c
+
+# 2. Gene IDs that own an lncRNA transcript (or are flagged lncRNA at gene level)
+IDS_TMP=$OUT_DIR/$SPEC.ids.tmp
+: > "$IDS_TMP"
+awk -F'\t' '$3=="lnc_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN" >> "$IDS_TMP"
+awk -F'\t' '$3=="gene" && $9~/gene_biotype=lncRNA/{if(match($9,/ID=[^;]+/)) print substr($9,RSTART+3,RLENGTH-3)}' "$CLEAN" >> "$IDS_TMP"
+if [ "$INCLUDE_ANTISENSE" = "yes" ]; then
+    awk -F'\t' '$3=="antisense_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN" >> "$IDS_TMP"
+fi
+IDS=$OUT_DIR/$SPEC.lnc_gene_ids.txt
+sort -u "$IDS_TMP" > "$IDS"
+echo "lncRNA candidate genes: $(wc -l < "$IDS")"
+[ -s "$IDS" ] || { echo "ERROR: no lncRNA gene IDs found, check feature types above" >&2; exit 1; }
+
+# 3. First-pass subset, then find genes that also own an mRNA and drop them
+LNC1=$OUT_DIR/$SPEC.lnc.pass1.gff3
+agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN" --keep_list "$IDS" -o "$LNC1"
+
+MRNA_GENES=$OUT_DIR/$SPEC.mrna_genes.txt
+awk -F'\t' '$3=="mRNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$LNC1" | sort -u > "$MRNA_GENES"
+echo "genes dropped for owning an mRNA: $(wc -l < "$MRNA_GENES")"
+
+IDS_FINAL=$OUT_DIR/$SPEC.lnc_gene_ids.nomrna.txt
+grep -v -x -F -f "$MRNA_GENES" "$IDS" > "$IDS_FINAL" || true   # grep exits 1 if nothing is left
+[ -s "$IDS_FINAL" ] || { echo "ERROR: no genes left after mRNA removal" >&2; exit 1; }
+
+LNC=$OUT_DIR/$SPEC.lnc.gff3
+agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN" --keep_list "$IDS_FINAL" -o "$LNC"
+
+echo "--- feature types (final lncRNA GFF) ---"
+grep -v '^#' "$LNC" | cut -f3 | sort | uniq -c
+if grep -v '^#' "$LNC" | cut -f3 | grep -qwE 'mRNA|CDS'; then
+    echo "WARNING: mRNA/CDS still present in $LNC" >&2
+fi
+
+# 4. Extract spliced sequences. Symlink the FASTA so AGAT writes its index in a writable dir
+FASTA_LINK=$OUT_DIR/$SPEC.genome.fa
+ln -sf "$FASTA_IN" "$FASTA_LINK"
+RAW_FA=$OUT_DIR/$SPEC.lnc.fa
+agat_sp_extract_sequences.pl -g "$LNC" -f "$FASTA_LINK" -t exon --merge -o "$RAW_FA"
+
+# 5. Length filter and summary
+FILT_FA=$OUT_DIR/$SPEC.lnc.${MIN_LEN}nt.fa
+seqkit seq -m "$MIN_LEN" "$RAW_FA" > "$FILT_FA"
+
+echo "transcripts in final GFF (lnc_RNA + antisense_RNA): $(grep -v '^#' "$LNC" | cut -f3 | grep -cwE 'lnc_RNA|antisense_RNA' || true)"
+echo "sequences extracted: $(grep -c '>' "$RAW_FA")"
+seqkit stats "$RAW_FA" "$FILT_FA"
+echo "[$(date)] done"
