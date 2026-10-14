@@ -107,7 +107,7 @@ agat_sp_extract_sequences.pl \
 
 
 # ==============================================================================
-# STEP 4: Process lncRNA Branch
+# STEP 4: Process lncRNA Branch (Conditional)
 # ==============================================================================
 echo "--> STEP 4: Extracting lncRNA GTF and Spliced FASTA..."
 
@@ -124,32 +124,41 @@ fi
 IDS=$CLEAN_DIR/lnc_gene_ids.txt
 sort -u "$IDS_TMP" > "$IDS"
 
-# First pass lncRNA filter
-LNC_PASS1=$CLEAN_DIR/lnc.pass1.gff3
-agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN_GFF" --keep_list "$IDS" -o "$LNC_PASS1"
-
-# Drop candidate genes that also express mRNAs
-MRNA_GENES=$CLEAN_DIR/mrna_genes.txt
-awk -F'\t' '$3=="mRNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$LNC_PASS1" | sort -u > "$MRNA_GENES"
-
-IDS_FINAL=$CLEAN_DIR/lnc_gene_ids.nomrna.txt
-grep -v -x -F -f "$MRNA_GENES" "$IDS" > "$IDS_FINAL" || true
-
-# Extract final lncRNA GTF into 01_inputs
 LNC_GTF=$OUT_DIR/$SPEC.lncRNA.gtf
-agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN_GFF" --keep_list "$IDS_FINAL" -o "$LNC_GTF"
-
-# Extract spliced lncRNA sequences
-LNC_RAW_FA=$CLEAN_DIR/lncRNA.raw.fa
-agat_sp_extract_sequences.pl \
-    -g "$LNC_GTF" \
-    -f "$FASTA_CHR" \
-    -t exon --merge \
-    -o "$LNC_RAW_FA"
-
-# Length filter final lncRNA FASTA into 01_inputs
 LNC_FA=$OUT_DIR/$SPEC.lncRNA.${MIN_LEN}nt.fa
-seqkit seq -m "$MIN_LEN" "$LNC_RAW_FA" > "$LNC_FA"
+
+# Check if lncRNAs exist in this annotation
+if [ ! -s "$IDS" ]; then
+    echo "WARNING: No annotated lncRNAs found for $SPEC. Skipping lncRNA extraction."
+    touch "$LNC_GTF" "$LNC_FA"  # Create empty files so downstream workflow tools don't crash
+else
+    # First pass lncRNA filter
+    LNC_PASS1=$CLEAN_DIR/lnc.pass1.gff3
+    agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN_GFF" --keep_list "$IDS" -o "$LNC_PASS1"
+
+    # Drop candidate genes that also express mRNAs
+    MRNA_GENES=$CLEAN_DIR/mrna_genes.txt
+    awk -F'\t' '$3=="mRNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$LNC_PASS1" | sort -u > "$MRNA_GENES"
+
+    IDS_FINAL=$CLEAN_DIR/lnc_gene_ids.nomrna.txt
+    grep -v -x -F -f "$MRNA_GENES" "$IDS" > "$IDS_FINAL" || true
+
+    if [ -s "$IDS_FINAL" ]; then
+        agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN_GFF" --keep_list "$IDS_FINAL" -o "$LNC_GTF"
+
+        LNC_RAW_FA=$CLEAN_DIR/lncRNA.raw.fa
+        agat_sp_extract_sequences.pl \
+            -g "$LNC_GTF" \
+            -f "$FASTA_CHR" \
+            -t exon --merge \
+            -o "$LNC_RAW_FA"
+
+        seqkit seq -m "$MIN_LEN" "$LNC_RAW_FA" > "$LNC_FA"
+    else
+        echo "WARNING: All lncRNA candidate genes overlapped with mRNAs. Creating empty output files."
+        touch "$LNC_GTF" "$LNC_FA"
+    fi
+fi
 
 
 # ==============================================================================
