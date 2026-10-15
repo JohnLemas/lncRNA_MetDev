@@ -14,9 +14,9 @@ SPEC="species"                 # e.g. g.max, z.mays, A.tha
 INCLUDE_ANTISENSE=yes        # yes/no: keep antisense_RNA features if present
 
 # Paths to raw NCBI download
-DATASETS=$(ls -d $BASE/$SPEC/ncbi_dataset/data/*/)
-GFF_RAW=${DATASETS}/genomic.gff
-FASTA_RAW=${DATASETS}/*_genomic.fna
+DATASETS=$(ls -d $BASE/$SPEC/ncbi_dataset/data/*/) # needs a trailing slash
+GFF_RAW=$(ls ${DATASETS}*genomic.gff) # no slash between data dir and file name
+FASTA_RAW=$(ls ${DATASETS}*genomic.fna) # no slash between data dir and file name
 # -----------------------------------------------
 
 module load AGAT
@@ -77,14 +77,12 @@ $1 in chr {
 agat_convert_sp_gxf2gxf.pl \
     -g "$GFF_CHR" \
     -o "$MASTER_GTF" \
-    --log "$CLEAN_DIR/$SPEC.master_gtf.agat.log"
 
 # Internal clean GFF3 copy for downstream AGAT queries
 CLEAN_GFF=$CLEAN_DIR/$SPEC.clean.gff3
 agat_convert_sp_gxf2gxf.pl \
     -g "$GFF_CHR" \
     -o "$CLEAN_GFF" \
-    --log "$CLEAN_DIR/$SPEC.clean.agat.log"
 
 
 # ==============================================================================
@@ -98,8 +96,7 @@ MRNA_GTF=$OUT_DIR/$SPEC.mRNA.gtf
 agat_sp_filter_feature_by_attribute_value.pl \
     --gff "$CLEAN_GFF" \
     --attribute biotype --value mRNA \
-    -o "$MRNA_GTF" \
-    --log "$CLEAN_DIR/$SPEC.mrna_filter.agat.log"
+    -o "$MRNA_GTF" 
 
 
 # ==============================================================================
@@ -131,16 +128,14 @@ else
     agat_sp_filter_feature_from_keep_list.pl \
         --gff "$CLEAN_GFF" \
         --keep_list "$IDS" \
-        -o "$LNC_GFF" \
-        --log "$CLEAN_DIR/$SPEC.lnc_filter.agat.log"
+        -o "$LNC_GFF" 
 
     # Extract spliced nucleotide sequences for reference lncRNAs
     agat_sp_extract_sequences.pl \
         -g "$LNC_GFF" \
         -f "$FASTA_CHR" \
         -t exon --merge \
-        -o "$LNC_FA" \
-        --log "$CLEAN_DIR/$SPEC.lnc_seq.agat.log"
+        -o "$LNC_FA"
 fi
 
 
