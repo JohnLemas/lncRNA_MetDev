@@ -1,33 +1,14 @@
 # --- project root --- #
 *.DS_Store
+*.Rhistory
 databases/
 images/
 *xlsx
+*pdf
 
-# ------ g.max ------- #
-# --- Heavy inputs --- #
-g.max/01_inputs/g.max_indexed/
-g.max/01_inputs/*fa
-g.max/01_inputs/*fa.fai
-g.max/01_inputs/*gtf
-g.max/01_inputs/*gff3
-
-# --- Heavy outputs --- #
-g.max/03_outputs/
-
-# --- log files --- #
-g.max/logs/
-
-# ------ z.mays ------ #
-# --- Heavy inputs --- #
-z.mays/01_inputs/z.mays_indexed/
-z.mays/01_inputs/*fa
-z.mays/01_inputs/*fa.fai
-z.mays/01_inputs/*gtf
-z.mays/01_inputs/*gff3
-
-# --- Heavy outputs --- #
-z.mays/03_outputs/
-
-# --- log files --- #
-z.mays/logs/
+# --- Add specific files with -f --- #
+g.max/
+z.mays/
+A.tha/
+*ncbi_dataset/
+*ncbi_dataset.zip
