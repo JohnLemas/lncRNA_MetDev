@@ -1,155 +1,128 @@
-#!/bin/bash --login
-#SBATCH --job-name=extract_rna
+#!/bin/bash
+#SBATCH --job-name=lncRNA_extract
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=2
 #SBATCH --mem=32G
 #SBATCH --time=04:00:00
 
 set -euo pipefail
 
-# ---------------- User Settings ----------------
-BASE="/path/to/working/dir"
-SPEC="species"                 # e.g. g.max, z.mays, A.tha
-INCLUDE_ANTISENSE=yes        # yes/no: keep antisense_RNA features if present
-
-# Paths to raw NCBI download
-DATASETS=$(ls -d $BASE/$SPEC/ncbi_dataset/data/*/) # needs a trailing slash
-GFF_RAW=$(ls ${DATASETS}*genomic.gff) # no slash between data dir and file name
-FASTA_RAW=$(ls ${DATASETS}*genomic.fna) # no slash between data dir and file name
+# ---------------- user settings ----------------
+BASE=/path/to/working/dir
+SPEC=species                 # e.g. A.tha
+MIN_LEN=200                  # minimum spliced length (nt)
+INCLUDE_ANTISENSE=yes        # yes/no: also keep antisense_RNA transcripts
+CHR_PREFIX=chr               # nuclear chromosomes become <prefix><N>; organelles <prefix>M / <prefix>C
+GFF_IN=$(ls "$BASE/$SPEC"/01_inputs/ncbi_dataset/data/*/genomic.gff | head -n1)
+FASTA_IN=$(ls "$BASE/$SPEC"/01_inputs/ncbi_dataset/data/*/*_genomic.fna | head -n1)
 # -----------------------------------------------
 
 module load AGAT
 module load SeqKit
 
-# Directory setup
-CLEAN_DIR=$BASE/$SPEC/01_inputs/AGAT
-OUT_DIR=$BASE/$SPEC/01_inputs
+CLEAN_DIR=$BASE/$SPEC/02_clean
+OUT_DIR=$BASE/$SPEC/03_lncrna
 mkdir -p "$CLEAN_DIR" "$OUT_DIR"
+echo "[$(date)] species=$SPEC"; echo "GFF: $GFF_IN"; echo "FASTA: $FASTA_IN"
 
-echo "[$(date)] Starting processing for species: $SPEC"
-
-# ==============================================================================
-# DELIVERABLE 1: Clean Assembly & Master GTF (For STAR genomeGenerate)
-# ==============================================================================
-MAP_FILE=$CLEAN_DIR/chr_map.tsv
-FASTA_CHR=$OUT_DIR/$SPEC.chromosomes.fa
-GFF_CHR=$CLEAN_DIR/$SPEC.chromosomes.gff3
-MASTER_GTF=$OUT_DIR/$SPEC.chromosomes.gtf
-
-echo "--> STEP 1: Building renamed chromosome-level assembly and master GTF..."
-
-# Parse accession to chrN mappings from FASTA headers
-grep "^>" $FASTA_RAW | awk '
-/chromosome/ {
-    acc = $1; sub(/^>/, "", acc);
-    for(i=1; i<=NF; i++) {
-        if ($i ~ /^chromosome$/) {
-            num = $(i+1);
-            gsub(/[^A-Za-z0-9]/, "", num);
-            print acc "\tchr" num;
-            break;
-        }
-    }
-}' > "$MAP_FILE"
-
-if [ ! -s "$MAP_FILE" ]; then
-    echo "ERROR: Could not parse chromosome names from $FASTA_RAW" >&2
-    exit 1
+# ---------- 0. Rename sequences consistently in FASTA and GFF ----------
+# Map built from GFF 'region' features: chromosome=N -> <prefix>N; mito -> <prefix>M; chloroplast -> <prefix>C.
+# Sequences without a region mapping (scaffolds) keep their accession.
+MAP=$CLEAN_DIR/$SPEC.seqid_map.tsv      # old_id  new_id  class(nuclear|organelle)
+awk -F'\t' -v pfx="$CHR_PREFIX" '
+  !/^#/ && $3=="region" && !seen[$1]++ {
+    n=""; g="";
+    if (match($9,/chromosome=[^;]+/)) n=substr($9,RSTART+11,RLENGTH-11);
+    if (match($9,/genome=[^;]+/))     g=substr($9,RSTART+7,RLENGTH-7);
+    if (n!="")                                   print $1"\t"pfx n"\tnuclear";
+    else if (g=="mitochondrion")                 print $1"\t"pfx"M\torganelle";
+    else if (g=="chloroplast" || g=="plastid")   print $1"\t"pfx"C\torganelle";
+  }' "$GFF_IN" > "$MAP"
+[ -s "$MAP" ] || { echo "ERROR: no region features with chromosome=/genome= found; cannot build rename map" >&2; exit 1; }
+if [ -n "$(cut -f2 "$MAP" | sort | uniq -d)" ]; then
+    echo "ERROR: duplicate new names in $MAP:" >&2; cut -f2 "$MAP" | sort | uniq -d >&2; exit 1
 fi
+echo "--- rename map ---"; cat "$MAP"
 
-# 1a. Write Chromosome-only FASTA with updated chrN headers
-seqkit replace -p '^(\S+).*' -r '{kv}' -k "$MAP_FILE" "$FASTA_RAW" > "$FASTA_CHR"
+GENOME=$CLEAN_DIR/$SPEC.genome.fa
+awk 'NR==FNR{m[$1]=$2;next} /^>/{id=substr($1,2); print ">" ((id in m)?m[id]:id); next} {print}' "$MAP" "$FASTA_IN" > "$GENOME"
 
-# 1b. Filter raw GFF to retain only primary chromosomes
-awk -F'\t' -v map="$MAP_FILE" '
-BEGIN {
-    while ((getline < map) > 0) chr[$1] = $2;
-    OFS="\t";
-}
-/^#/ { next }
-$1 in chr {
-    $1 = chr[$1];
-    print $0;
-}' "$GFF_RAW" > "$GFF_CHR"
+GFF_RENAMED=$CLEAN_DIR/$SPEC.renamed.gff3
+awk -F'\t' -v OFS='\t' 'NR==FNR{m[$1]=$2;next}
+     /^##gff-version/{print;next} /^#/{next}
+     {if($1 in m)$1=m[$1]; print}' "$MAP" "$GFF_IN" > "$GFF_RENAMED"
 
-# 1c. Standardize and output Master GTF directly to 01_inputs (for STAR)
-agat_convert_sp_gxf2gxf.pl \
-    -g "$GFF_CHR" \
-    -o "$MASTER_GTF" \
+# ---------- 0b. Chrom sizes (bp), karyotype for RIdeogram ----------
+SIZES=$CLEAN_DIR/$SPEC.chrom.sizes
+seqkit fx2tab -n -l -i "$GENOME" > "$SIZES"                    # name <tab> length
+KARYO=$CLEAN_DIR/$SPEC.karyotype.txt
+{ printf 'Chr\tStart\tEnd\n'
+  awk -F'\t' -v OFS='\t' 'NR==FNR{ if($3=="nuclear") k[$2]=1; next } ($1 in k){print $1, 0, $2}' "$MAP" "$SIZES"
+} > "$KARYO"
+echo "--- genome size ---"
+awk -F'\t' 'NR==FNR{ if($3=="nuclear") k[$2]=1; next } {t+=$2; if($1 in k) n+=$2}
+            END{printf "total bp: %d\nnuclear chromosome bp: %d\nsequences: %d\n", t, n, FNR}' "$MAP" "$SIZES"
+echo "--- karyotype ---"; cat "$KARYO"
 
-# Internal clean GFF3 copy for downstream AGAT queries
-CLEAN_GFF=$CLEAN_DIR/$SPEC.clean.gff3
-agat_convert_sp_gxf2gxf.pl \
-    -g "$GFF_CHR" \
-    -o "$CLEAN_GFF" \
+# ---------- 1. Clean with AGAT ----------
+CLEAN=$CLEAN_DIR/$SPEC.clean.gff3
+agat_convert_sp_gxf2gxf.pl -g "$GFF_RENAMED" -o "$CLEAN"
 
+echo "--- feature types (clean GFF) ---"; grep -v '^#' "$CLEAN" | cut -f3 | sort | uniq -c
+echo "--- sources (AGAT-added rows would show here) ---"; grep -v '^#' "$CLEAN" | cut -f2 | sort | uniq -c
 
-# ==============================================================================
-# DELIVERABLE 2: Pure mRNA GTF
-# ==============================================================================
-echo "--> STEP 2: Extracting pure mRNA GTF..."
+# ---------- 1b. Real GTF of the full annotation (for STAR index) ----------
+GTF_FULL=$CLEAN_DIR/$SPEC.clean.gtf
+agat_convert_sp_gff2gtf.pl --gff "$CLEAN" -o "$GTF_FULL"
 
-MRNA_GTF=$OUT_DIR/$SPEC.mRNA.gtf
-
-# Filter master annotation down to mRNA features only and format as GTF
-agat_sp_filter_feature_by_attribute_value.pl \
-    --gff "$CLEAN_GFF" \
-    --attribute biotype --value mRNA \
-    -o "$MRNA_GTF" 
-
-
-# ==============================================================================
-# DELIVERABLE 3: Unfiltered Reference lncRNA GFF & Spliced FASTA
-# ==============================================================================
-echo "--> STEP 3: Extracting complete, unfiltered reference lncRNAs..."
-
-IDS=$CLEAN_DIR/ref_lncRNA_gene_ids.txt
-: > "$IDS"
-
-# Capture all reference-annotated lnc_RNA / antisense_RNA gene IDs
-awk -F'\t' '$3=="lnc_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN_GFF" >> "$IDS"
-awk -F'\t' '$3=="gene" && $9~/gene_biotype=lncRNA/{if(match($9,/ID=[^;]+/)) print substr($9,RSTART+3,RLENGTH-3)}' "$CLEAN_GFF" >> "$IDS"
-
+# ---------- 2. lncRNA gene IDs ----------
+IDS_TMP=$OUT_DIR/$SPEC.ids.tmp; : > "$IDS_TMP"
+awk -F'\t' '$3=="lnc_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN" >> "$IDS_TMP"
+awk -F'\t' '$3=="gene" && $9~/gene_biotype=lncRNA/{if(match($9,/ID=[^;]+/)) print substr($9,RSTART+3,RLENGTH-3)}' "$CLEAN" >> "$IDS_TMP"
 if [ "$INCLUDE_ANTISENSE" = "yes" ]; then
-    awk -F'\t' '$3=="antisense_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN_GFF" >> "$IDS"
+    awk -F'\t' '$3=="antisense_RNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$CLEAN" >> "$IDS_TMP"
 fi
+IDS=$OUT_DIR/$SPEC.lnc_gene_ids.txt; sort -u "$IDS_TMP" > "$IDS"
+echo "lncRNA candidate genes: $(wc -l < "$IDS")"
+[ -s "$IDS" ] || { echo "ERROR: no lncRNA gene IDs found, check feature types above" >&2; exit 1; }
 
-sort -u "$IDS" -o "$IDS"
+# ---------- 3. Subset, drop genes that also own an mRNA ----------
+LNC1=$OUT_DIR/$SPEC.lnc.pass1.gff3
+agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN" --keep_list "$IDS" -o "$LNC1"
+MRNA_GENES=$OUT_DIR/$SPEC.mrna_genes.txt
+awk -F'\t' '$3=="mRNA"{if(match($9,/Parent=[^;]+/)) print substr($9,RSTART+7,RLENGTH-7)}' "$LNC1" | sort -u > "$MRNA_GENES"
+echo "genes dropped for owning an mRNA: $(wc -l < "$MRNA_GENES")"
+IDS_FINAL=$OUT_DIR/$SPEC.lnc_gene_ids.nomrna.txt
+grep -v -x -F -f "$MRNA_GENES" "$IDS" > "$IDS_FINAL" || true
+[ -s "$IDS_FINAL" ] || { echo "ERROR: no genes left after mRNA removal" >&2; exit 1; }
 
-LNC_GFF=$OUT_DIR/$SPEC.lncRNA.gff
-LNC_FA=$OUT_DIR/$SPEC.lncRNA.fa
+LNC=$OUT_DIR/$SPEC.lnc.gff3
+agat_sp_filter_feature_from_keep_list.pl --gff "$CLEAN" --keep_list "$IDS_FINAL" -o "$LNC"
+echo "--- feature types (final lncRNA GFF) ---"; grep -v '^#' "$LNC" | cut -f3 | sort | uniq -c
+if grep -v '^#' "$LNC" | cut -f3 | grep -qwE 'mRNA|CDS'; then echo "WARNING: mRNA/CDS still in $LNC" >&2; fi
 
-if [ ! -s "$IDS" ]; then
-    echo "WARNING: No annotated lncRNAs found in reference for $SPEC."
-    touch "$LNC_GFF" "$LNC_FA"
-else
-    # Extract original, unfiltered reference lncRNA annotations as GFF
-    agat_sp_filter_feature_from_keep_list.pl \
-        --gff "$CLEAN_GFF" \
-        --keep_list "$IDS" \
-        -o "$LNC_GFF" 
+GTF_LNC=$OUT_DIR/$SPEC.lnc.gtf
+agat_convert_sp_gff2gtf.pl --gff "$LNC" -o "$GTF_LNC"
 
-    # Extract spliced nucleotide sequences for reference lncRNAs
-    agat_sp_extract_sequences.pl \
-        -g "$LNC_GFF" \
-        -f "$FASTA_CHR" \
-        -t exon --merge \
-        -o "$LNC_FA"
-fi
+# ---------- 4. Extract spliced sequences ----------
+RAW_FA=$OUT_DIR/$SPEC.lnc.fa
+agat_sp_extract_sequences.pl -g "$LNC" -f "$GENOME" -t exon --merge -o "$RAW_FA"
 
+# ---------- 5. Length filter and summary ----------
+FILT_FA=$OUT_DIR/$SPEC.lnc.${MIN_LEN}nt.fa
+seqkit seq -m "$MIN_LEN" "$RAW_FA" > "$FILT_FA"
+echo "transcripts in final GFF: $(grep -v '^#' "$LNC" | cut -f3 | grep -cwE 'lnc_RNA|antisense_RNA' || true)"
+echo "sequences extracted: $(grep -c '>' "$RAW_FA")"
+seqkit stats "$RAW_FA" "$FILT_FA"
 
-# ==============================================================================
-# Summary
-# ==============================================================================
-echo "================================================="
-echo " PROCESSING COMPLETE"
-echo " Final Deliverables in $OUT_DIR:"
-echo "  1. Primary Genome FASTA : $FASTA_CHR"
-echo "  2. Master GTF (STAR)    : $MASTER_GTF"
-echo "  3. mRNA GTF             : $MRNA_GTF"
-echo "  4. Reference lncRNA GFF : $LNC_GFF"
-echo "  5. Reference lncRNA FA  : $LNC_FA"
-echo "================================================="
-seqkit stats "$FASTA_CHR" "$LNC_FA"
-echo "[$(date)] Finished successfully."
+# ---------- 6. Sanity checks for STAR ----------
+for f in "$GTF_FULL" "$GTF_LNC"; do
+    echo "--- $f ---"
+    grep -v '^#' "$f" | cut -f3 | sort | uniq -c
+    bad=$(grep -v '^#' "$f" | cut -f1 | sort -u | comm -23 - <(cut -f1 "$SIZES" | sort -u) | wc -l)
+    echo "seqids in GTF not in FASTA: $bad"
+    [ "$bad" -eq 0 ] || echo "WARNING: $f has sequence names missing from $GENOME" >&2
+    grep -v '^#' "$f" | awk -F'\t' '$3=="exon" && $9 !~ /transcript_id/ {c++} END{print "exon lines missing transcript_id:", c+0}'
+done
+echo "[$(date)] done"
