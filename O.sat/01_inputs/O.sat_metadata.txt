@@ -105,4 +105,3 @@ SRR1213585	rt_bf_3	root	roots_sampled_before_flowering
 SRR1213586	rt_af_4	root	roots_sampled_after_flowering
 SRR1213587	gr_2	grain	milk_grains
 SRR1213588	sd_2	seed	mature_seeds
-
