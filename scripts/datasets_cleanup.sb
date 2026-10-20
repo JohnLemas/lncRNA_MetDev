@@ -92,7 +92,19 @@ awk -F'\t' "$ATTR_FN"'
   $3=="gene" { if (attr($9,"ID") in g) print; next }
   $3=="mRNA" { print; next }
   { p=attr($9,"Parent"); if (p!="" && (p in tx)) print }' "$CLEAN" "$CLEAN" > "$MRNA_GFF"
-agat_convert_sp_gff2gtf.pl --gff "$MRNA_GFF" -o "$MRNA_GTF"
+MRNA_GTF_AGAT=$TMP/$SPEC.mRNA.agat_raw.gtf          # untouched AGAT output, kept for reference
+agat_convert_sp_gff2gtf.pl --gff "$MRNA_GFF" -o "$MRNA_GTF_AGAT"
+
+# AGAT decodes URL-escaped characters, so an ID like gene-PHT4%3B1 comes out as gene_id "gene-PHT4;1".
+# GTF has no escaping, and StringTie splits attributes on ';' even inside quotes, so it dies with
+# "Error parsing attribute gene_id". Replace ';' with '_' inside every quoted value; nothing else changes,
+# and a gene keeps the same ID on all of its lines.
+perl -pe 's/"([^"]*)"/my $x=$1; $x =~ s{;}{_}g; "\"$x\""/ge' "$MRNA_GTF_AGAT" > "$MRNA_GTF"
+N_FIXED=$(diff "$MRNA_GTF_AGAT" "$MRNA_GTF" | grep -c '^>' || true)
+echo "mRNA GTF: $N_FIXED lines had ';' inside quoted values (replaced with '_')"
+if ! perl -ne 'while (/"([^"]*)"/g) { exit 1 if $1 =~ /;/ }' "$MRNA_GTF"; then
+    echo "ERROR: ';' still present inside quoted attribute values in $MRNA_GTF" >&2; exit 1
+fi
 
 # ---------- 6. Deliverables: lncRNA GFF3 + sequences (unfiltered) ----------
 LNC_TX=$TMP/$SPEC.lnc_transcript_ids.txt; LNC_G=$TMP/$SPEC.lnc_gene_ids.txt
