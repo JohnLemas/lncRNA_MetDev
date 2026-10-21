@@ -5,7 +5,8 @@
 # Maps lncRNA, mRNA and TE locations onto a genome with RIdeogram.
 #
 # Inputs
-#   1. genome FASTA            (.fa / .fasta, optionally .gz)
+#   1. karyotype file          (<SPEC>.karyotype.txt from datasets_cleanup.sb: tab-separated
+#                               Chr, Start, End with a header; nuclear chromosomes only)
 #   2. lncRNA annotation       (the A.tha_final_annotation.tsv table; needs columns
 #                               Chr, Start, Stop, lncRNA_gene, Category and,
 #                               optionally, mean_TPM_* for the expression filter)
@@ -13,14 +14,12 @@
 #   4. TE annotation           (GFF3/GTF-style, 9 tab-separated columns)
 #
 # Outputs (in out_dir)
-#   assembly_sequence_lengths.tsv   every sequence in the FASTA (seqid, length)
-#   chromosome_lengths.tsv          RIdeogram karyotype file (Chr, Start, End)
 #   density_*.tsv                   per-window feature counts used for the heatmaps
 #   ideogram_*.svg / .pdf / .png    the figures
 #
 # Usage
 #   Interactive: edit the CONFIG block below and source the script.
-#   Command line: Rscript lncRNA_ideogram.R genome.fa lncRNA.tsv mRNA.gff3 TE.gff3 [out_dir]
+#   Command line: Rscript lncRNA_ideogram.R karyotype.txt lncRNA.tsv mRNA.gff3 TE.gff3 [out_dir]
 #
 # install.packages(c("tidyverse", "RIdeogram", "rsvg"))   # rsvg: SVG -> PDF/PNG
 # ==============================================================================
@@ -35,16 +34,16 @@ suppressPackageStartupMessages({
 # ------------------------------------------------------------------------------
 setwd("~/Library/CloudStorage/OneDrive-MichiganStateUniversity/Dissertation/chapter4/lncRNA_met_dev")
 
-genome_fa   <- "A.tha/genome/A.tha_genome.fa"                                   # <- edit
+karyotype_file <- "A.tha/01_inputs/A.tha.karyotype.txt"                         # <- from datasets_cleanup.sb
 lncRNA_file <- "A.tha/03_outputs/11_int_class/A.tha_final_annotation.tsv"
-mrna_file   <- "A.tha/annotation/A.tha_mRNA.gff3"                               # <- edit
+mrna_file   <- "A.tha/01_inputs/A.tha_mRNA.gtf"                                 # <- from datasets_cleanup.sb
 te_file     <- "A.tha/annotation/A.tha_TE.gff3"                                 # <- edit
 out_dir     <- "A.tha/03_outputs/13_ideogram"
 
 # Command-line arguments override the paths above
 cli <- commandArgs(trailingOnly = TRUE)
 if (length(cli) >= 4) {
-  genome_fa   <- cli[1]
+  karyotype_file <- cli[1]
   lncRNA_file <- cli[2]
   mrna_file   <- cli[3]
   te_file     <- cli[4]
@@ -52,8 +51,8 @@ if (length(cli) >= 4) {
 }
 
 window_bp     <- 500000          # window size for mRNA / TE / lncRNA density heatmaps
-chrom_regex   <- "^Chr[0-9]+$"   # sequences kept as chromosomes AFTER renaming (see norm_chr)
-mrna_feature  <- "^mRNA$"        # regex matched against GFF column 3 for the mRNA file
+mrna_feature  <- "^(mRNA|transcript)$"   # regex matched against GFF/GTF column 3 for the mRNA file
+                                         # (AGAT's GTF writes mRNAs as 'transcript'; the gene lines are excluded)
 te_feature    <- NULL            # regex for GFF column 3 in the TE file; NULL = use every row
 
 # Optional: restrict the lncRNAs to the expressed set used in the TPM figures
@@ -67,25 +66,9 @@ dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 # HELPERS
 # ------------------------------------------------------------------------------
 
-# Make sequence names comparable between the FASTA, the GFFs and the lncRNA table:
-# "1", "chr1" and "Chr1" all become "Chr1"; "Mt"/"Pt" become "ChrMt"/"ChrPt" and are
-# dropped by chrom_regex.
+# Make sequence names comparable between the karyotype, the GFF/GTFs and the lncRNA table:
+# "1", "chr1" and "Chr1" all become "Chr1".
 norm_chr <- function(x) paste0("Chr", sub("^[Cc][Hh][Rr]", "", trimws(x)))
-
-# Sequence lengths from a FASTA (plain or .gz) without needing Bioconductor
-read_fasta_lengths <- function(path) {
-  con <- if (grepl("\\.gz$", path)) gzfile(path, "rt") else file(path, "rt")
-  on.exit(close(con))
-  lines <- readLines(con)
-  is_hdr <- startsWith(lines, ">")
-  if (!any(is_hdr)) stop("No FASTA headers (lines starting with '>') found in ", path)
-  lines <- lines[which(is_hdr)[1]:length(lines)]
-  is_hdr <- startsWith(lines, ">")
-  grp <- cumsum(is_hdr)
-  total <- tapply(ifelse(is_hdr, 0L, nchar(lines)), grp, sum)
-  ids <- sub("\\s.*$", "", sub("^>\\s*", "", lines[is_hdr]))
-  tibble(seqid = ids, length = as.numeric(total))
-}
 
 # Minimal GFF/GTF reader: seqid, feature, start, end
 read_gff <- function(path) {
@@ -154,28 +137,23 @@ make_ideogram <- function(name, overlaid, label = NULL, label_type = NULL,
 }
 
 # ------------------------------------------------------------------------------
-# 1. CHROMOSOME LENGTHS FROM THE ASSEMBLY
+# 1. KARYOTYPE (written by datasets_cleanup.sb; already nuclear chromosomes only)
 # ------------------------------------------------------------------------------
-seq_lengths <- read_fasta_lengths(genome_fa)
-write.table(seq_lengths, file.path(out_dir, "assembly_sequence_lengths.tsv"),
-            sep = "\t", quote = FALSE, row.names = FALSE)
-
-karyotype <- seq_lengths %>%
-  mutate(Chr = norm_chr(seqid)) %>%
-  filter(grepl(chrom_regex, Chr)) %>%
-  transmute(Chr, Start = 1, End = length)
+karyotype <- read.delim(karyotype_file, sep = "\t", stringsAsFactors = FALSE)
+if (!all(c("Chr", "Start", "End") %in% names(karyotype))) {
+  stop(karyotype_file, " must have a header with columns Chr, Start, End; found: ",
+       paste(names(karyotype), collapse = ", "))
+}
+karyotype <- karyotype %>%
+  transmute(Chr = norm_chr(Chr), Start = as.numeric(Start), End = as.numeric(End)) %>%
+  filter(!is.na(End))
 karyotype <- karyotype[match(str_sort(karyotype$Chr, numeric = TRUE), karyotype$Chr), ]
 
-if (nrow(karyotype) == 0) {
-  stop("No sequences matched chrom_regex '", chrom_regex, "'. Sequence names after renaming: ",
-       paste(head(norm_chr(seq_lengths$seqid), 10), collapse = ", "))
-}
-message(sprintf("Assembly: %d sequences; %d kept as chromosomes (%s)",
-                nrow(seq_lengths), nrow(karyotype), paste(karyotype$Chr, collapse = ", ")))
-
-# RIdeogram karyotype format: Chr, Start, End (centromere columns CE_start/CE_end are optional)
-write.table(karyotype, file.path(out_dir, "chromosome_lengths.tsv"),
-            sep = "\t", quote = FALSE, row.names = FALSE)
+if (nrow(karyotype) == 0) stop("No chromosomes read from ", karyotype_file)
+if (anyDuplicated(karyotype$Chr)) stop("Duplicate chromosome names after renaming: ",
+                                       paste(karyotype$Chr[duplicated(karyotype$Chr)], collapse = ", "))
+message(sprintf("Karyotype: %d chromosomes (%s)",
+                nrow(karyotype), paste(karyotype$Chr, collapse = ", ")))
 
 # ------------------------------------------------------------------------------
 # 2. LOAD FEATURES
