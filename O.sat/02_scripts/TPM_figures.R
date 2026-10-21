@@ -39,12 +39,14 @@ annotation_data <- read.delim("O.sat/03_outputs/11_int_class/O.sat_final_annotat
 
 # These columns need to come from colnames() of the annotation table
 tissue_cols <- c(
-  seedling       = "mean_TPM_seedling",
-  Inflorescences = "mean_TPM_Inflorescences",
-  leaf           = "mean_TPM_leaf",
-  silique        = "mean_TPM_silique",
-  rosette        = "mean_TPM_rosette",
-  root           = "mean_TPM_root"
+  leaf        = "mean_TPM_leaf",
+  ovule       = "mean_TPM_ovule",
+  flower_bud  = "mean_TPM_flower_bud",
+  flower      = "mean_TPM_flower",
+  root        = "mean_TPM_root",
+  grain       = "mean_TPM_grain",
+  seed        = "mean_TPM_seed",
+  pinacle     = "mean_TPM_young_panicle"
 )
 
 # Max TPM across tissues for every transcript, then apply BOTH thresholds
