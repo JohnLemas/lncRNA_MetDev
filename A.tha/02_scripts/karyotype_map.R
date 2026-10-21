@@ -18,47 +18,88 @@
 #   ideogram_*.svg / .pdf / .png    the figures
 #
 # Usage
-#   Interactive: edit the CONFIG block below and source the script.
-#   Command line: Rscript lncRNA_ideogram.R karyotype.txt lncRNA.tsv mRNA.gff3 TE.gff3 [out_dir]
+#   Command line (every flag is optional; defaults are in the CONFIG block below):
+#     Rscript lncRNA_ideogram.R \
+#       --karyotype A.tha/01_inputs/A.tha.karyotype.txt \
+#       --lncrna    A.tha/03_outputs/11_int_class/A.tha_final_annotation.tsv \
+#       --mrna      A.tha/01_inputs/A.tha_mRNA.gtf \
+#       --te        A.tha/annotation/A.tha_TE.gff3 \
+#       --outdir    A.tha/03_outputs/13_ideogram
+#     Rscript lncRNA_ideogram.R --help        # all flags and their defaults
+#   Interactive: edit the defaults in the CONFIG block and source the script.
 #
-# install.packages(c("tidyverse", "RIdeogram", "rsvg"))   # rsvg: SVG -> PDF/PNG
+# install.packages(c("tidyverse", "RIdeogram", "optparse", "rsvg"))   # rsvg: SVG -> PDF/PNG
 # ==============================================================================
 
 suppressPackageStartupMessages({
   library(tidyverse)
   library(RIdeogram)
+  library(optparse)
 })
 
 # ------------------------------------------------------------------------------
 # CONFIG
 # ------------------------------------------------------------------------------
-setwd("~/Library/CloudStorage/OneDrive-MichiganStateUniversity/Dissertation/chapter4/lncRNA_met_dev")
+# Defaults live here; any flag given on the command line overrides them.
+option_list <- list(
+  make_option(c("-k", "--karyotype"), type = "character",
+              default = "A.tha/01_inputs/A.tha.karyotype.txt",
+              help = "karyotype file from datasets_cleanup.sb (Chr, Start, End) [default: %default]"),
+  make_option(c("-l", "--lncrna"), type = "character",
+              default = "A.tha/03_outputs/11_int_class/A.tha_final_annotation.tsv",
+              help = "lncRNA annotation table [default: %default]"),
+  make_option(c("-m", "--mrna"), type = "character",
+              default = "A.tha/01_inputs/A.tha_mRNA.gtf",
+              help = "mRNA annotation, GFF3/GTF [default: %default]"),
+  make_option(c("-t", "--te"), type = "character",
+              default = "A.tha/annotation/A.tha_TE.gff3",
+              help = "TE annotation, GFF3/GTF [default: %default]"),
+  make_option(c("-o", "--outdir"), type = "character",
+              default = "A.tha/03_outputs/13_ideogram",
+              help = "output directory [default: %default]"),
+  make_option(c("-w", "--window"), type = "integer", default = 500000L,
+              help = "window size (bp) for the density heatmaps [default: %default]"),
+  make_option("--mrna-feature", dest = "mrna_feature", type = "character", default = "^(mRNA|transcript)$",
+              help = paste("regex for GFF/GTF column 3 in the mRNA file; AGAT's GTF writes",
+                           "mRNAs as 'transcript' [default: %default]")),
+  make_option("--te-feature", dest = "te_feature", type = "character", default = NULL,
+              help = "regex for GFF/GTF column 3 in the TE file [default: use every row]"),
+  make_option("--expressed-only", dest = "expressed_only", action = "store_true", default = FALSE,
+              help = "restrict lncRNAs to the expressed set (TPM filter below) [default: off]"),
+  make_option("--lower-tpm", dest = "lower_tpm", type = "double", default = 0.1,
+              help = "with --expressed-only: keep max mean TPM > this [default: %default]"),
+  make_option("--upper-tpm", dest = "upper_tpm", type = "double", default = 50,
+              help = "with --expressed-only: keep max mean TPM <= this [default: %default]"),
+  make_option("--workdir", type = "character", default = NULL,
+              help = "setwd() here first; relative paths above are resolved from it")
+)
+opt <- parse_args(
+  OptionParser(option_list = option_list,
+               description = "Map lncRNA, mRNA and TE locations onto a genome with RIdeogram."),
+  args = if (interactive()) character(0) else commandArgs(trailingOnly = TRUE)
+)
 
-karyotype_file <- "A.tha/01_inputs/A.tha.karyotype.txt"                         # <- from datasets_cleanup.sb
-lncRNA_file <- "A.tha/03_outputs/11_int_class/A.tha_final_annotation.tsv"
-mrna_file   <- "A.tha/01_inputs/A.tha_mRNA.gtf"                                 # <- from datasets_cleanup.sb
-te_file     <- "A.tha/annotation/A.tha_TE.gff3"                                 # <- edit
-out_dir     <- "A.tha/03_outputs/13_ideogram"
-
-# Command-line arguments override the paths above
-cli <- commandArgs(trailingOnly = TRUE)
-if (length(cli) >= 4) {
-  karyotype_file <- cli[1]
-  lncRNA_file <- cli[2]
-  mrna_file   <- cli[3]
-  te_file     <- cli[4]
-  if (length(cli) >= 5) out_dir <- cli[5]
+# Interactive sessions (source / RStudio) start from the dissertation folder
+if (is.null(opt$workdir) && interactive()) {
+  opt$workdir <- "~/Library/CloudStorage/OneDrive-MichiganStateUniversity/Dissertation/chapter4/lncRNA_met_dev"
 }
+if (!is.null(opt$workdir)) setwd(opt$workdir)
 
-window_bp     <- 500000          # window size for mRNA / TE / lncRNA density heatmaps
-mrna_feature  <- "^(mRNA|transcript)$"   # regex matched against GFF/GTF column 3 for the mRNA file
-                                         # (AGAT's GTF writes mRNAs as 'transcript'; the gene lines are excluded)
-te_feature    <- NULL            # regex for GFF column 3 in the TE file; NULL = use every row
+karyotype_file <- opt$karyotype
+lncRNA_file    <- opt$lncrna
+mrna_file      <- opt$mrna
+te_file        <- opt$te
+out_dir        <- opt$outdir
+window_bp      <- opt$window
+mrna_feature   <- opt$mrna_feature
+te_feature     <- opt$te_feature       # NULL = use every row
+expressed_only <- opt$expressed_only
+LOWER_TPM      <- opt$lower_tpm
+UPPER_TPM      <- opt$upper_tpm
 
-# Optional: restrict the lncRNAs to the expressed set used in the TPM figures
-expressed_only <- FALSE
-LOWER_TPM <- 0.1
-UPPER_TPM <- 50
+for (f in c(karyotype_file, lncRNA_file, mrna_file, te_file)) {
+  if (!file.exists(f)) stop("Input file not found: ", f, " (working directory: ", getwd(), ")")
+}
 
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
