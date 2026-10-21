@@ -19,46 +19,46 @@
 ---
 ## General overview
 1. Obtain 'truth' dataset from [PLncDB](https://www.tobaccodb.org/plncdb/) for a given speices
-2. Generate a `PMID` list associated with RNA-seq projects under the 'species' tab in PLncDB
-3. Use `EDirect` and `SRA-Toolkit` to get raw data from each of these projects
+2. Gather SRA accessions from RNA-seq experiments in the corresponding species from PLncDB
+3. Curate metadata for each SRA accession via [NCBI](#https://www.ncbi.nlm.nih.gov/sra)
 4. Download a reference genome, annotation file, and TE annotations
-5. Trim raw `fastq` files and filter out rRNA via `barrnap` & `SortMeRNA`
-6. Align trimmed clean reads to the reference genome
-7. Assemble a reference-guided *de novo* transcriptome using `StringTie`
-8. Obtain candidate lncRNAs using `grep` and `gffread`
-9. Run these candidates through `FEELnc`, `lncBoost`, `lncFinder`, `cpat`, and `DIAMOND`
-10. Intersect IDs that passed every tool to obtain high-confidence lncRNAs
-11. Use sequence alignment to compare high-confidence *ab initio* candidates to 'truth' dataset
+5. Clone the [IWGC_lncRNA_pipeline](#https://github.com/JohnLemas/IWGC_lncRNA_pipeline)
+6. Use sequence alignment to compare high-confidence *ab initio* candidates to 'truth' dataset
  ---
 ## Working Directory
-- species
-  - 01_inputs
-    - PMID metadata
+- Project root directory (`${BASE}`)
+- Databases (`${BASE}/databases/`)
+- Images (`${BASE}/images/`)
+- Species workdir (`${BASE}/species/`)
+  - `01_inputs`
+    - `species_metadata.txt` (SRA->uniqID->tissuetype)
     - list of sra IDs saved as `species_sra_IDs.txt`
     - reference genome (`species.chromosomes.fa`)
-    - reference gene model annotation (`species_mRNA.gtf`)
-    - TE annotations (via EDTA)
-  - 02_scripts
-    - scripts copied from IWGC lncRNA pipeline
-  - 03_outputs
-    - pipeline output directories
-- truth_data
-  - lncRNA datasets gathered from [PLncDB](https://www.tobaccodb.org/plncdb/)
-  - species directories
+    - reference gene models (`species_mRNA.gtf`)
+    - TE annotations (`species_TE.gff3`)
+  - `02_scripts`
+    - scripts 00 through 16 cloned and copied from [IWGC_lncRNA_pipeline](#https://github.com/JohnLemas/IWGC_lncRNA_pipeline)
+    - copied scripts from this repository (`${BASE}/scripts/`)
+  - `03_outputs`
+    - `01_fastp/` though `11_int_class/`
+  - Log files from SLURM (`${BASE}/species/logs`)
+- Truth datasets (`${BASE}/truth_data`)
+  - lncRNA data from [PLncDB](https://www.tobaccodb.org/plncdb/)
+  - Species directories (`${BASE}/truth_data/species/`)
     - individual database lncRNA `fasta` and `gff3` files
-    - full concatonated lncRNA files
-    - lncRNA `fasta` files condensed with `CD-HIT`
+    - concatonated lncRNA `fasta` file (`species_PLncDB_lncRNA.fa)
+    - lncRNA `fasta` files condensed with `CD-HIT` (`species_PLncDB_cd-hit.0.9.fa`)
  ---
  
 ## Gathering inputs
 - Navigate to [PLncDB](https://www.tobaccodb.org/plncdb/)
-- Gather PMID information from the RNA-Seq table for a given species
-  - Use EDirect to gather SRA accession numbers from PMIDs; save as list `species_sra_IDs.txt`
-- Gather truth sequences from the downloads>species page on PLncDB
-  - Download the lncRNA fasta files and gff3 files
+- Gather SRA IDs from NCBI metadata for each project accession in the RNA-seq table
+- Curate available metadata for each SRA accession includeing tissue type and treatment conditions
+- Gather truth sequences from the downloads->species page on PLncDB
+  - Download all lncRNA fasta files and gff3 files
 - Create working directory
   - Clone [IWGC_lncRNA_pipeline](https://github.com/JohnLemas/IWGC_lncRNA_pipeline)
-  - Pull images from SyLabs
+  - Pull images:
     - `singularity pull library://jlemas/lncrna_annotation/plant_lncboost`
     - `singularity pull library://jlemas/lncrna_annotation/sortmerna`
     - `singularity pull library://jlemas/lncrna_annotation/rbio_tools`
@@ -67,12 +67,13 @@
     - *OPTIONAL: pull EDTA image for TE annotations*
         - `singularity pull library://jlemas/lncrna_annotation/edta_1.9.6`
   - Create the working directory for the species
-    - `mkdir 01_inputs 02_scripts 03_outputs`
-  - Copy scripts into `species/02_scripts` and run the `sed`  command (see `scripts/README.md`)
+    - `mkdir 01_inputs 02_scripts 03_outputs logs`
+  - Copy scripts into `species/02_scripts` and run the `sed` command (see `scripts/README.md`)
+  - **Double check all file paths before running**
 ---
 ## Set up
 ### Prepare the reference genome assembly
-The NCBI tool `datasets-cli` is an easy way to download a reference genome via command line; however the assembly usually contains messy fasta headers and gff files. The following steps can be used to obtain the latest reference assembly for a species and clean it for use in this pipeline.
+The NCBI tool `datasets-cli` is an easy way to download a reference genome via command line; however the assembly usually contains messy fasta headers and gff files. The shell script `datasets_cleanup.sb` searches for the raw genome and annotation files, cleans fasta headers, and ensures proper parsing out of mRNA-specific features from the annotation file. This script also outputs lncRNA annotations and sequences from this reference for species that have them (see `scripts/README.md`). 
 
 ```bash
 # Create an environment with datasets-cli
@@ -86,17 +87,16 @@ datasets download genome taxon "[Scientific Name]" --reference --include genome,
 unzip ncbi_dataset.zip # This will result in a directory, an md5sum file, and a README.md file
 ```
 
-The script `ncbi_datasets_cleanup.py` pulls full chromosomes from the genome, filters the gff file, renames chromosome entries for both files so that they match, then outputs the two required downstream files: `species.chromosomes.fa` & `species_mRNA.gtf`.
+Run `datasets_cleanup.sb` to output a clean nuclear assembly, a clean gff3 file, the mRNA.gtf file, and lncRNA features if applicable. Dependencies for this script are AGAT and SeqKit
 
 ```bash
 # Clean up the raw download
-cd ncbi_dataset/ # move into the unzipped directory
-python3 /path/to/ncbi_datasets_cleanup.py [species] # run the cleanup script with the chosen species designation as the first argument
+sbatch 02_scripts/datasets_cleanup.sb
 ```
 
-Move the new `chromosomes.fa` and `_mRNA.gtf` files into the `species/01_inputs` directory for indexing, and remove the ncbi_dataset directory, README file, and md5sum file from the datasets download. Optional: keep the compressed datasets download for later reference.
+Intermediate files generated by AGAT will be placed in `01_inputs/AGAT/` and the assembly and annotation files will land in `01_inputs`.
 
-*NOTE: If you do not have TE annotations available for your species, generate them with the given EDTA image. This may take a long time, so begin this step as soon as possible. See `scripts/README.md` for more information.*
+*NOTE: If you do not have TE annotations available for your species, generate them with the EDTA (v1.9.6). This may take a long time depending on the size of your genome, so begin this step as soon as possible. See `scripts/README.md` for more information.*
 
 ### Create the UniProt database for DIAMOND:
 ```bash
@@ -109,15 +109,16 @@ gunzip uniprot_sprot.fasta.gz
 # Use DIAMOND to make the reference database
 ml purge
 ml load DIAMOND
-diamond makedb --in uniprot_sprot.fasta -d uniprot_out
+diamond makedb --in uniprot_sprot.fasta -d $BASE/databases/uniprot_db
 ```
 ---
 ## Preparing the truth datasets
-Truth datasets are individually packaged from each respective source (ie NCBI, PLncBD, EVlncRNA, RNAcentral, etcetera). The goal of this step is to concatonate all of these input datasets into one master set, and condense this set using `CD-HIT` to filter out any lncRNAs that are present in more than one dataset. 
+Truth datasets are individually packaged from each respective source (ie NCBI, PLncBD, EVlncRNA, RNAcentral, etcetera). The goal of this step is to concatonate all of these input datasets into one redundant set and condense this set using `CD-HIT` to obtain a master set of published lncRNAs for the species.
+*Note that this is a separate datasetset than the lncRNAs that come with the NCBI reference genome*
 
 ```bash
 # Combine all fasta and gff files into one master set
-cat IWGC_lncRNA_pipeline/truth_data/species/*.fa >> IWGC_lncRNA_pipeline/truth_data/species/species_PLncDB_lncRNA.fa
+cat $BASE/truth_data/species/*.fa >> $BASE/truth_data/species/species_PLncDB_lncRNA.fa
 
 # Run the script to condense the master set
 sbatch IWGC_lncRNA_pipeline/species/02_scripts/cd-hit.sb
@@ -133,45 +134,44 @@ This master database represents an exhaustive set of the known experimentally va
 Once all the inputs have been gathered and the species working directory is created, the order of operations is as follows:
 
 ### Steps 1 - 8: Preparing model inputs
-1. `star_genomegenerate.sb`
-2. `prefetch_array.sb`
-3. `fastp.sb`
-4. `barrnap.sb`
-5. `sortmerna.sb`
-6. `alignment_array.sb`
-7. `stringtie_assemble.sb`
+*Steps 1, 2, and 4 can run simultaneously*
+1. `prefetch_array.sb`
+2. `00_star_genomegenerate.sb`
+3. `01_fastp.sb`
+4. `02_barrnap.sb`
+5. `03_sortmerna.sb`
+6. `04_QC.sb`
+7. `05_alignment_array.sb`
+8. `06_stringtie_assemble.sb`
+9. `07_stringtie_merge.sb`
 
-### Step 8: Merging assemblies and gathering candidates
+Once the merge step is complete, the output `gtf` file contains all of the aligned sequence locations and any information about an overlapping mRNA in that region. This script parses out transcripts that did not overlap with mRNA locations in the master output gtf file and outputs `species_candidates.gtf` and `species_candidates.fasta`. These unfiltered candidate locations, sequences, and stringtie transcript IDs are used in all of the following *ab initio* prediction models.
 
-8. `stringtie_merge.sb`
+### Steps 9 - 11: Quantify expression and track tissue types
+*Steps 9 - 16 can run simultaneously*
 
-Once the merge step is complete, the output `gtf` file contains all of the aligned sequence locations and any information about an overlapping mRNA in that region. This script parses out transcripts that did not overlap with mRNA locations in the master output gtf file and outputs `candidates.gtf` and `candidates.fasta`. These unfiltered candidate locations, sequences, and stringtie transcript IDs are used in all of the following *ab initio* prediction models.
+9. `08_stringtie_quanitify.sb`
+10. `09_build_tpm_matrix.sb`
+11. `15_track_preds.sb`
 
-### Steps 9 - 11: Running the models
-*Note that each of the models can run simultaneously*
+### Steps 12 - 16: Gathering predictions
 
-9. `FEELnc_filter.sb`
-10. `cpat.sb`
-11. `lncFinder.sb`
-12. `lncBoost.sb`
-13. `DIAMOND.sb`
+12. `10_FEELnc_filter.sb`
+13. `11_cpat.sb`
+14. `12_lncBoost.sb`
+15. `13_lncFinder.sb`
+16. `14_DIAMOND.sb`
 
-### Step 14: Intersect predictions and classify high-confidence lncRNAs
+### Step 17: Intersect predictions and classify high-confidence lncRNAs
 
-14. `intersect_classify.sb`
+17. `16_intersect_classify.sb`
 
-This step merges output from all ML tools producing a `.txt` file with `StringTie` gene IDs for candidates that passed all filters and a table of concensus information. It then uses `FEELnc_classify.pl` to classify each predicted lncRNA. `intersect_classify.sb` eliminates the need for multiple R based images and handles all of the data parsing and file generation in one ~5 minute step using `rbio_tools.sif`.
+This scripts accepts outputs from all previous steps and writes a final annotation file that includes concensus lncRNA predictions from each of the ML tools, start and stop positions, classifications, TE associations, tissue specificity information, and TPM values. `intersect_classify.sb` eliminates the separate data parsing steps or scripts, resulting in complete prediction information in one ~5 minute step using `rbio_tools.sif`.
 
-### Step 15: Trace predictions back to specific SRA accession numbers
+### Step 18: Compare pipeline results to truth dataset
 
-15. `track_preds.sb`
+18. `minimap2.sb`
 
-The original plan with this step was to back-trace tissue types from input read metadata. Doing so would allow for annotation of tissue-type specific predicted lncRNAs. Here, we're interested in understanding how many predictions are present from each of the input files since we are pulling from a wide array of public input data. This provides an additional level to benchmark this prediction pipeline.
-
-### Step 16: Compare pipeline results to truth dataset
-
-16. `minimap2.sb`
-
-Alignment results from species-specific published datasets are used to benchmark predictions. This step uses the 'truth_data' database for the species to investigate pipeline predictions. Benchmarking difficulties may arise due to poor sequence complimentarity between like lncRNAs between and potentially within species. Regardless, we needed an external dataset to assess results.
-
+This step uses the 'truth_data' database for the species to benchmark pipeline predictions. It also queries the full `species_candidates.fasta` and the extracted lncRNA sequences from the reference genome assembly. These additional alignments shed light on the stringency of this prediction pipeline.
+*It is important to remember that very few lncRNAs have been experimentally validated, yet PlncDB hosts over 1 million lncRNA sequences. Judge results accordingly.*
 ---
