@@ -81,9 +81,10 @@ awk -F'\t' '{t+=$2} END{printf "sequences: %d\ntotal bp: %d\n", NR, t}' "$SIZES"
 
 # ---------- 4. Rename GFF to match, keep nuclear only, clean with AGAT ----------
 GFF_NUC=$TMP/$SPEC.nuclear.renamed.gff3
-awk -F'\t' -v OFS='\t' 'NR==FNR{ if($3=="nuclear") m[$1]=$2; next }
+awk -F'\t' -v OFS='\t' -v ks="$KEEP_SCAFFOLDS" 'NR==FNR{ if($3=="chromosome" || (ks=="yes" && $3=="scaffold")) m[$1]=$2; next }
      /^##gff-version/{print;next} /^#/{next}
      ($1 in m){ $1=m[$1]; print }' "$MAP" "$GFF_IN" > "$GFF_NUC"
+[ "$(grep -vc '^#' "$GFF_NUC")" -gt 0 ] || { echo "ERROR: no features left in $GFF_NUC after seqid filtering" >&2; exit 1; }
 
 CLEAN=$TMP/$SPEC.clean.gff3
 agat_convert_sp_gxf2gxf.pl -g "$GFF_NUC" -o "$CLEAN"
