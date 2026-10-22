@@ -14,6 +14,7 @@ BASE=/path/to/working/dir
 SPEC=species                 # e.g. A.tha
 CHR_PREFIX=chr               # nuclear chromosomes -> <prefix><N>; set empty for plain 1,2,3
 INCLUDE_ANTISENSE=yes        # yes/no: antisense_RNA transcripts count as lncRNAs
+KEEP_SCAFFOLDS=no            # yes/no: keep unplaced/unlocalized scaffolds in the assembly and GTF
 RAW_DIR=$BASE/$SPEC/01_inputs/ncbi_dataset/data
 # -----------------------------------------------
 
@@ -45,22 +46,26 @@ awk -F'\t' "$ATTR_FN"' !/^#/ && $3=="region" && !seen[$1]++ { print $1 "\t" attr
     "$GFF_IN" > "$TMP/$SPEC.regions.tsv"
 grep '^>' "$FASTA_IN" | sed 's/^>//' | awk '{id=$1; $1=""; sub(/^[ \t]+/,""); print id "\t" $0}' > "$TMP/$SPEC.fasta_headers.tsv"
 
-MAP=$TMP/$SPEC.seqid_map.tsv       # old_id <tab> new_id <tab> nuclear|organelle
+MAP=$TMP/$SPEC.seqid_map.tsv       # old_id <tab> new_id <tab> chromosome|scaffold|organelle
 awk -F'\t' -v pfx="$CHR_PREFIX" '
   NR==FNR { chrom[$1]=$2; genome[$1]=tolower($3); next }
   { id=$1; desc=tolower($2); g=genome[id];
     org = (g ~ /^(mitochondrion|chloroplast|plastid|apicoplast|chromoplast|kinetoplast|leucoplast|cyanelle|plasmid|hydrogenosome|nucleomorph|proplastid)$/) \
           || (desc ~ /mitochondri|chloroplast|plastid|apicoplast|kinetoplast|plasmid/);
-    n++; ids[n]=id; isorg[n]=org;
-    nm = (!org && chrom[id]!="") ? pfx chrom[id] : id; name[n]=nm; if(!org) cnt[nm]++ }
-  END { for (i=1;i<=n;i++) { nm = (cnt[name[i]]>1) ? ids[i] : name[i];     # ambiguous names fall back to accession
-          print ids[i] "\t" nm "\t" (isorg[i] ? "organelle" : "nuclear") } }' \
+    cls = org ? "organelle" : ((id ~ /^NC_/) ? "chromosome" : "scaffold");
+    n++; ids[n]=id; cl[n]=cls;
+    nm = (cls=="chromosome" && chrom[id]!="") ? pfx chrom[id] : id; name[n]=nm; if (cls=="chromosome") cnt[nm]++ }
+  END { for (i=1;i<=n;i++) { nm = (cl[i]=="chromosome" && cnt[name[i]]>1) ? ids[i] : name[i];
+          print ids[i] "\t" nm "\t" cl[i] } }' \
   "$TMP/$SPEC.regions.tsv" "$TMP/$SPEC.fasta_headers.tsv" > "$MAP"
-echo "--- sequence map ---"; cat "$MAP"
-[ "$(awk -F'\t' '$3=="nuclear"' "$MAP" | wc -l)" -gt 0 ] || { echo "ERROR: no nuclear sequences identified" >&2; exit 1; }
+echo "--- sequence classes ---"; cut -f3 "$MAP" | sort | uniq -c
+echo "--- chromosomes ---"; awk -F'\t' '$3=="chromosome"' "$MAP"
+KEPT=$(awk -F'\t' '$3=="chromosome" && $1==$2' "$MAP" | wc -l)
+[ "$KEPT" -eq 0 ] || echo "WARNING: $KEPT chromosome(s) kept accession names (no unique chromosome= label); check the map" >&2
+[ "$(awk -F'\t' '$3=="chromosome"' "$MAP" | wc -l)" -gt 0 ] || { echo "ERROR: no NC_ chromosomes identified (non-RefSeq input?)" >&2; exit 1; }
 
 # ---------- 2. Deliverable: nuclear assembly (headers = new IDs only) ----------
-awk 'NR==FNR{ if($3=="nuclear") m[$1]=$2; next }
+awk -v ks="$KEEP_SCAFFOLDS" 'NR==FNR{ if($3=="chromosome" || (ks=="yes" && $3=="scaffold")) m[$1]=$2; next }
      /^>/ { id=substr($1,2); keep=(id in m); if(keep) print ">" m[id]; next }
      keep { print }' "$MAP" "$FASTA_IN" > "$NUC_FA"
 
@@ -68,7 +73,9 @@ SIZES=$TMP/$SPEC.chrom.sizes
 seqkit fx2tab -n -l -i "$NUC_FA" > "$SIZES"           # name <tab> bp
 
 # ---------- 3. Deliverable: karyotype for RIdeogram (nuclear assembly only) ----------
-{ printf 'Chr\tStart\tEnd\n'; awk -F'\t' -v OFS='\t' '{print $1, 0, $2}' "$SIZES"; } > "$KARYO"
+{ printf 'Chr\tStart\tEnd\n'
+  awk -F'\t' -v OFS='\t' 'NR==FNR{ if($3=="chromosome") k[$2]; next } ($1 in k){print $1, 0, $2}' "$MAP" "$SIZES"
+} > "$KARYO"
 echo "--- nuclear assembly ---"
 awk -F'\t' '{t+=$2} END{printf "sequences: %d\ntotal bp: %d\n", NR, t}' "$SIZES"
 
