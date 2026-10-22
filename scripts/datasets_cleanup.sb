@@ -8,14 +8,15 @@
 
 set -euo pipefail
 export LC_ALL=C
+SCRIPT_VERSION="2026-10-21-r3"
 
 # ---------------- user settings ----------------
 BASE=/path/to/working/dir
-SPEC=species                 # e.g. A.tha
-CHR_PREFIX=chr               # nuclear chromosomes -> <prefix><N>; set empty for plain 1,2,3
+SPEC=species                 # e.g. g.max
+CHR_PREFIX=chr               # chromosomes -> <prefix><N>; set empty for plain 1,2,3
 INCLUDE_ANTISENSE=yes        # yes/no: antisense_RNA transcripts count as lncRNAs
 KEEP_SCAFFOLDS=no            # yes/no: keep unplaced/unlocalized scaffolds in the assembly and GTF
-RAW_DIR=$BASE/$SPEC/01_inputs/ncbi_dataset/data
+RAW_DIR=$BASE/$SPEC/ncbi_dataset/data      # datasets download location (contains GCF_*/genomic.gff)
 # -----------------------------------------------
 
 module load AGAT
@@ -29,7 +30,8 @@ cd "$TMP"                          # AGAT writes its logs into the cwd
 GFF_IN=$(ls "$RAW_DIR"/*/genomic.gff 2>/dev/null | head -n1 || true)
 FASTA_IN=$(ls "$RAW_DIR"/*/*_genomic.fna 2>/dev/null | head -n1 || true)
 [ -f "$GFF_IN" ] && [ -f "$FASTA_IN" ] || { echo "ERROR: genomic.gff / *_genomic.fna not found under $RAW_DIR" >&2; exit 1; }
-echo "[$(date)] species=$SPEC"; echo "GFF: $GFF_IN"; echo "FASTA: $FASTA_IN"
+echo "[$(date)] script version $SCRIPT_VERSION | species=$SPEC | KEEP_SCAFFOLDS=$KEEP_SCAFFOLDS"
+echo "GFF: $GFF_IN"; echo "FASTA: $FASTA_IN"
 
 # deliverables
 NUC_FA=$OUT/${SPEC}.chromosomes.fa
@@ -41,7 +43,8 @@ LNC_FA=$OUT/${SPEC}.lncRNA.fa
 # awk helper: attr(attribute_column, key) -> value ("" if absent)
 ATTR_FN='function attr(s,k,  t,i,j){ t=";" s; i=index(t,";" k "="); if(!i) return ""; t=substr(t,i+length(k)+2); j=index(t,";"); return j ? substr(t,1,j-1) : t }'
 
-# ---------- 1. Classify sequences (nuclear vs organelle) and build rename map ----------
+# ---------- 1. Classify sequences (chromosome / scaffold / organelle) and build rename map ----------
+# chromosome = RefSeq NC_ molecule that is not an organelle; everything else non-organelle = scaffold.
 awk -F'\t' "$ATTR_FN"' !/^#/ && $3=="region" && !seen[$1]++ { print $1 "\t" attr($9,"chromosome") "\t" attr($9,"genome") }' \
     "$GFF_IN" > "$TMP/$SPEC.regions.tsv"
 grep '^>' "$FASTA_IN" | sed 's/^>//' | awk '{id=$1; $1=""; sub(/^[ \t]+/,""); print id "\t" $0}' > "$TMP/$SPEC.fasta_headers.tsv"
@@ -64,7 +67,7 @@ KEPT=$(awk -F'\t' '$3=="chromosome" && $1==$2' "$MAP" | wc -l)
 [ "$KEPT" -eq 0 ] || echo "WARNING: $KEPT chromosome(s) kept accession names (no unique chromosome= label); check the map" >&2
 [ "$(awk -F'\t' '$3=="chromosome"' "$MAP" | wc -l)" -gt 0 ] || { echo "ERROR: no NC_ chromosomes identified (non-RefSeq input?)" >&2; exit 1; }
 
-# ---------- 2. Deliverable: nuclear assembly (headers = new IDs only) ----------
+# ---------- 2. Deliverable: assembly (chromosomes, plus scaffolds if KEEP_SCAFFOLDS=yes; headers = new IDs only) ----------
 awk -v ks="$KEEP_SCAFFOLDS" 'NR==FNR{ if($3=="chromosome" || (ks=="yes" && $3=="scaffold")) m[$1]=$2; next }
      /^>/ { id=substr($1,2); keep=(id in m); if(keep) print ">" m[id]; next }
      keep { print }' "$MAP" "$FASTA_IN" > "$NUC_FA"
@@ -72,19 +75,22 @@ awk -v ks="$KEEP_SCAFFOLDS" 'NR==FNR{ if($3=="chromosome" || (ks=="yes" && $3=="
 SIZES=$TMP/$SPEC.chrom.sizes
 seqkit fx2tab -n -l -i "$NUC_FA" > "$SIZES"           # name <tab> bp
 
-# ---------- 3. Deliverable: karyotype for RIdeogram (nuclear assembly only) ----------
+# ---------- 3. Deliverable: karyotype for RIdeogram (chromosomes only) ----------
 { printf 'Chr\tStart\tEnd\n'
   awk -F'\t' -v OFS='\t' 'NR==FNR{ if($3=="chromosome") k[$2]; next } ($1 in k){print $1, 0, $2}' "$MAP" "$SIZES"
 } > "$KARYO"
-echo "--- nuclear assembly ---"
+echo "--- assembly ---"
 awk -F'\t' '{t+=$2} END{printf "sequences: %d\ntotal bp: %d\n", NR, t}' "$SIZES"
+echo "karyotype rows: $(($(wc -l < "$KARYO") - 1))"
 
-# ---------- 4. Rename GFF to match, keep nuclear only, clean with AGAT ----------
-GFF_NUC=$TMP/$SPEC.nuclear.renamed.gff3
+# ---------- 4. Rename GFF to match, keep the same sequences as the assembly, clean with AGAT ----------
+GFF_NUC=$TMP/$SPEC.chromosomes.renamed.gff3
 awk -F'\t' -v OFS='\t' -v ks="$KEEP_SCAFFOLDS" 'NR==FNR{ if($3=="chromosome" || (ks=="yes" && $3=="scaffold")) m[$1]=$2; next }
      /^##gff-version/{print;next} /^#/{next}
      ($1 in m){ $1=m[$1]; print }' "$MAP" "$GFF_IN" > "$GFF_NUC"
-[ "$(grep -vc '^#' "$GFF_NUC")" -gt 0 ] || { echo "ERROR: no features left in $GFF_NUC after seqid filtering" >&2; exit 1; }
+N_FEAT=$(grep -vc '^#' "$GFF_NUC" || true)
+echo "features kept for AGAT: $N_FEAT"
+[ "$N_FEAT" -gt 0 ] || { echo "ERROR: no features left in $GFF_NUC after seqid filtering" >&2; exit 1; }
 
 CLEAN=$TMP/$SPEC.clean.gff3
 agat_convert_sp_gxf2gxf.pl -g "$GFF_NUC" -o "$CLEAN"
@@ -100,6 +106,7 @@ awk -F'\t' "$ATTR_FN"'
   $3=="gene" { if (attr($9,"ID") in g) print; next }
   $3=="mRNA" { print; next }
   { p=attr($9,"Parent"); if (p!="" && (p in tx)) print }' "$CLEAN" "$CLEAN" > "$MRNA_GFF"
+[ "$(grep -vc '^#' "$MRNA_GFF" || true)" -gt 0 ] || { echo "ERROR: no mRNA gene models found in $CLEAN" >&2; exit 1; }
 MRNA_GTF_AGAT=$TMP/$SPEC.mRNA.agat_raw.gtf          # untouched AGAT output, kept for reference
 agat_convert_sp_gff2gtf.pl --gff "$MRNA_GFF" -o "$MRNA_GTF_AGAT"
 
@@ -137,19 +144,19 @@ awk -F'\t' -v txf="$LNC_TX" -v gf="$LNC_G" "$ATTR_FN"'
   { id=attr($9,"ID"); par=attr($9,"Parent"); if ((id in tx) || (par in tx)) print }' \
   "$LNC_TX" "$LNC_G" "$CLEAN" > "$LNC_GFF"
 
-echo "lnc_RNA in raw GFF: $(awk -F'\t' '!/^#/ && $3=="lnc_RNA"' "$GFF_IN" | wc -l) | on nuclear contigs: $(awk -F'\t' '!/^#/ && $3=="lnc_RNA"' "$CLEAN" | wc -l)"
+echo "lnc_RNA in raw GFF: $(awk -F'\t' '!/^#/ && $3=="lnc_RNA"' "$GFF_IN" | wc -l) | in assembly: $(awk -F'\t' '!/^#/ && $3=="lnc_RNA"' "$CLEAN" | wc -l)"
 echo "--- feature types (lncRNA GFF) ---"; grep -v '^#' "$LNC_GFF" | cut -f3 | sort | uniq -c
 
 # spliced sequences. Symlink so AGAT's FASTA index lands in AGAT/, not 01_inputs/
 ln -sf "$NUC_FA" "$TMP/$SPEC.nuclear.fa"
 agat_sp_extract_sequences.pl -g "$LNC_GFF" -f "$TMP/$SPEC.nuclear.fa" -t exon --merge -o "$LNC_FA"
-find "$OUT" -maxdepth 1 -name "$SPEC.nuclear.fa.*" -exec mv {} "$TMP"/ \;
+find "$OUT" -maxdepth 1 -name "${SPEC}.chromosomes.fa.*" -exec mv {} "$TMP"/ \;
 
 # ---------- 7. Sanity checks ----------
 check_ids () {
     local f=$1 bad
     bad=$(grep -v '^#' "$f" | cut -f1 | sort -u | comm -23 - <(cut -f1 "$SIZES" | sort -u) | wc -l || true)
-    echo "$(basename "$f"): seqids not in nuclear.fa = $bad"
+    echo "$(basename "$f"): seqids not in $(basename "$NUC_FA") = $bad"
     [ "$bad" -eq 0 ] || echo "WARNING: $f has sequence names missing from $NUC_FA" >&2
 }
 check_ids "$MRNA_GTF"; check_ids "$LNC_GFF"
@@ -158,11 +165,12 @@ echo "--- mRNA GTF feature types ---"; grep -v '^#' "$MRNA_GTF" | cut -f3 | sort
 echo "exon lines missing gene_id/transcript_id: $(grep -v '^#' "$MRNA_GTF" | awk -F'\t' '$3=="exon" && ($9!~/gene_id/ || $9!~/transcript_id/)' | wc -l)"
 if grep -v '^#' "$LNC_GFF" | cut -f3 | grep -qwE 'mRNA|CDS'; then echo "WARNING: mRNA/CDS present in $LNC_GFF" >&2; fi
 
-N_TX=$(grep -c . "$LNC_TX" || true); N_FA=$(grep -c '>' "$LNC_FA" || true)
+N_TX=$(grep -c . "$LNC_TX" || true); N_FA=$(grep -c '>' "$LNC_FA" 2>/dev/null || true)
+N_TX=${N_TX:-0}; N_FA=${N_FA:-0}
 echo "lncRNA transcripts selected: $N_TX | sequences extracted: $N_FA"
 [ "$N_TX" -eq "$N_FA" ] || echo "WARNING: transcript/sequence counts differ" >&2
 seqkit stats "$NUC_FA" "$LNC_FA"
 
 echo "--- deliverables in $OUT ---"
 ls -lh "$MRNA_GTF" "$NUC_FA" "$KARYO" "$LNC_GFF" "$LNC_FA"
-echo "[$(date)] done"
+echo "[$(date)] done (script version $SCRIPT_VERSION)"
