@@ -32,27 +32,19 @@ UPPER_TPM <- 50
 
 setwd("~/Library/CloudStorage/OneDrive-MichiganStateUniversity/Dissertation/chapter4/lncRNA_met_dev")
 # Output directory for all figures/tables (created if it doesn't exist)
-out_dir <- "g.max/03_outputs/13_TPM_figures"
+out_dir <- "species/03_outputs/13_TPM_figures"
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
-annotation_data <- read.delim("g.max/03_outputs/11_int_class/g.max_final_annotation.tsv", sep = "\t", stringsAsFactors = FALSE)
+annotation_data <- read.delim("species/03_outputs/11_int_class/species_final_annotation.tsv", sep = "\t", stringsAsFactors = FALSE)
 
+# These columns need to come from colnames() of the annotation table
 tissue_cols <- c(
-  root             = "mean_TPM_root",
-  stem             = "mean_TPM_stem",
-  leaf_bud_SAM     = "mean_TPM_leaf.bud..SAM.",
-  young_shoot      = "mean_TPM_Young.shoot",
-  trifoliate_leaf  = "mean_TPM_trifoliate.leaf",
-  flower           = "mean_TPM_flower",
-  cotyledon        = "mean_TPM_cotyledon",
-  leaf             = "mean_TPM_leaf",
-  seed             = "mean_TPM_seed",
-  flower_bud       = "mean_TPM_flower.bud",
-  unexpanded_leaf  = "mean_TPM_unexpanded.young.leaf",
-  SAM              = "mean_TPM_SAM",
-  pod_seed         = "mean_TPM_pod.seed",
-  pod              = "mean_TPM_pod",
-  leaf_bud_M       = "mean_TPM_leaf.bud..M."
+  seedling       = "mean_TPM_seedling",
+  Inflorescences = "mean_TPM_Inflorescences",
+  leaf           = "mean_TPM_leaf",
+  silique        = "mean_TPM_silique",
+  rosette        = "mean_TPM_rosette",
+  root           = "mean_TPM_root"
 )
 
 # Max TPM across tissues for every transcript, then apply BOTH thresholds
