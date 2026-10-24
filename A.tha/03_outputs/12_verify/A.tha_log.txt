@@ -1,81 +1,24 @@
 
 	run command:
-minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/04_stringtie/A.tha_candidates.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/12_verify/A.tha_candidates_vs_truth.paf
-
-[M::main] Version: 2.26-r1175
-[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/12_verify/A.tha_candidates_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/04_stringtie/A.tha_candidates.fasta
-[M::main] Real time: 4.132 sec; CPU: 6.424 sec; Peak RSS: 0.139 GB
-
-	run command:
-minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/11_int_class/A.tha_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/12_verify/A.tha_final_vs_truth.paf
-
-[M::main] Version: 2.26-r1175
-[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/12_verify/A.tha_final_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/11_int_class/A.tha_lncRNA.fasta
-[M::main] Real time: 2.155 sec; CPU: 0.620 sec; Peak RSS: 0.077 GB
-
-	run command:
-minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/01_inputs/A.tha.ncRNA.fa -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/12_verify/A.tha_annotated_ncRNA_vs_truth.paf
-
-[M::main] Version: 2.26-r1175
-[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/12_verify/A.tha_annotated_ncRNA_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/01_inputs/A.tha.ncRNA.fa
-[M::main] Real time: 0.908 sec; CPU: 0.619 sec; Peak RSS: 0.077 GB
-
-===== A.tha: comparison against A.tha_PLncDB_cd-hit.0.9.fa (identity > 0.95) =====
-
-Stage            Queries  TP    FP     FP_%   Truth_total  Truth_hit  FN     FN_%   Precision_%  Recall_%
-candidates       41533    4108  37425  90.11  10510        2529       7981   75.94  9.89         24.06
-final            1004     378   626    62.35  10510        324        10186  96.92  37.65        3.08
-annotated_ncRNA  480      272   208    43.33  10510        248        10262  97.64  56.67        2.36
-
-TSV saved to: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/A.tha/03_outputs/12_verify/A.tha_summary_table.tsv
-FP_% = FP / queries   |   FN_% = FN / truth sequences
-
-
-	run command:
 minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/04_stringtie/A.tha_candidates.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_candidates_vs_truth.paf
 
 [M::main] Version: 2.26-r1175
 [M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_candidates_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/04_stringtie/A.tha_candidates.fasta
-[M::main] Real time: 1.430 sec; CPU: 7.083 sec; Peak RSS: 0.139 GB
+[M::main] Real time: 2.149 sec; CPU: 7.895 sec; Peak RSS: 0.139 GB
 
 	run command:
 minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/11_int_class/A.tha_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_final_vs_truth.paf
 
 [M::main] Version: 2.26-r1175
 [M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_final_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/11_int_class/A.tha_lncRNA.fasta
-[M::main] Real time: 0.318 sec; CPU: 0.610 sec; Peak RSS: 0.077 GB
-No ncRNA annotation found (/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_lncRNA.fa); skipping that alignment.
-
-===== A.tha: comparison against A.tha_PLncDB_cd-hit.0.9.fa (identity > 0.95) =====
-
-Stage       Queries  TP    FP     FP_%   Truth_total  Truth_hit  FN     FN_%   Precision_%  Recall_%
-candidates  40345    3827  36518  90.51  10510        2330       8180   77.83  9.49         22.17
-final       755      267   488    64.64  10510        249        10261  97.63  35.36        2.37
-
-TSV saved to: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_summary_table.tsv
-FP_% = FP / queries   |   FN_% = FN / truth sequences
-
-
-	run command:
-minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/04_stringtie/A.tha_candidates.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_candidates_vs_truth.paf
-
-[M::main] Version: 2.26-r1175
-[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_candidates_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/04_stringtie/A.tha_candidates.fasta
-[M::main] Real time: 1.459 sec; CPU: 6.751 sec; Peak RSS: 0.139 GB
-
-	run command:
-minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/11_int_class/A.tha_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_final_vs_truth.paf
-
-[M::main] Version: 2.26-r1175
-[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_final_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/11_int_class/A.tha_lncRNA.fasta
-[M::main] Real time: 0.303 sec; CPU: 0.598 sec; Peak RSS: 0.077 GB
+[M::main] Real time: 0.411 sec; CPU: 0.699 sec; Peak RSS: 0.069 GB
 
 	run command:
 minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/01_inputs/A.tha.lncRNA.fa -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_annotated_ncRNA_vs_truth.paf
 
 [M::main] Version: 2.26-r1175
 [M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/03_outputs/12_verify/A.tha_annotated_ncRNA_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/A.tha/A.tha_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/A.tha/01_inputs/A.tha.lncRNA.fa
-[M::main] Real time: 0.427 sec; CPU: 1.388 sec; Peak RSS: 0.080 GB
+[M::main] Real time: 0.551 sec; CPU: 1.659 sec; Peak RSS: 0.081 GB
 
 ===== A.tha: comparison against A.tha_PLncDB_cd-hit.0.9.fa (identity > 0.95) =====
 
