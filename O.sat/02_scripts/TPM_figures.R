@@ -32,7 +32,7 @@ UPPER_TPM <- 50
 
 setwd("~/Library/CloudStorage/OneDrive-MichiganStateUniversity/Dissertation/chapter4/lncRNA_met_dev")
 # Output directory for all figures/tables (created if it doesn't exist)
-out_dir <- "O.sat/03_outputs/13_TPM_figures"
+out_dir <- "O.sat/03_outputs/13_figures"
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 
 annotation_data <- read.delim("O.sat/03_outputs/11_int_class/O.sat_final_annotation.tsv", sep = "\t", stringsAsFactors = FALSE)

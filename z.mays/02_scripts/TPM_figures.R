@@ -39,20 +39,20 @@ annotation_data <- read.delim("z.mays/03_outputs/11_int_class/z.mays_final_annot
 
 tissue_cols <- c(
   ovule       = "mean_TPM_ovule",
-  embryo = "mean_TPM_embryo",
-  pollen           = "mean_TPM_pollen",
+  embryo      = "mean_TPM_embryo",
+  pollen      = "mean_TPM_pollen",
   root        = "mean_TPM_root",
-  SAM        = "mean_TPM_sam",
-  silk           = "mean_TPM_silk",
-  shoot    = "mean_TPM_shoot",
-  leaf       = "mean_TPM_leaf",
-  seed      = "mean_TPM_seed",
-  cob       = "mean_TPM_cob",
-  ear        = "mean_TPM_ear",
-  endosperm = "mean_TPM_endosperm",
-  tassel    = "mean_TPM_tassel",
-  anthers    = "mean_TPM_anthers",
-  seedling   = "mean_TPM_seedling"
+  SAM         = "mean_TPM_sam",
+  silk        = "mean_TPM_silk",
+  shoot       = "mean_TPM_shoot",
+  leaf        = "mean_TPM_leaf",
+  seed        = "mean_TPM_seed",
+  cob         = "mean_TPM_cob",
+  ear         = "mean_TPM_ear",
+  endosperm   = "mean_TPM_endosperm",
+  tassel      = "mean_TPM_tassel",
+  anthers     = "mean_TPM_anthers",
+  seedling    = "mean_TPM_seedling"
 )
 
 # Max TPM across tissues for every transcript, then apply BOTH thresholds
