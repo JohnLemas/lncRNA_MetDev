@@ -1,0 +1,3 @@
+Comparison	Queries	Queries_matched	Queries_matched_%	Queries_unmatched	Queries_unmatched_%	Ref_total	Ref_recovered	Ref_recovered_%	Ref_missed	Ref_missed_%
+candidates_vs_annotated	69559	9224	13.26	60335	86.74	6551	4597	70.17	1954	29.83
+final_vs_annotated	8481	3317	39.11	5164	60.89	6551	2689	41.05	3862	58.95

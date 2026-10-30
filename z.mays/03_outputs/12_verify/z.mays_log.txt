@@ -1,0 +1,80 @@
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/04_stringtie/z.mays_candidates.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_candidates_vs_truth.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_candidates_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/04_stringtie/z.mays_candidates.fasta
+[M::main] Real time: 7.302 sec; CPU: 37.234 sec; Peak RSS: 0.508 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/11_int_class/z.mays_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_final_vs_truth.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_final_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/11_int_class/z.mays_lncRNA.fasta
+[M::main] Real time: 1.353 sec; CPU: 4.925 sec; Peak RSS: 0.258 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/01_inputs/z.mays.lncRNA.fa -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_annotated_ncRNA_vs_truth.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_annotated_ncRNA_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/z.mays/z.mays_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/01_inputs/z.mays.lncRNA.fa
+[M::main] Real time: 1.143 sec; CPU: 3.284 sec; Peak RSS: 0.261 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/01_inputs/z.mays.lncRNA.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/04_stringtie/z.mays_candidates.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_candidates_vs_annotated_vs_annotated.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_candidates_vs_annotated_vs_annotated.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/01_inputs/z.mays.lncRNA.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/04_stringtie/z.mays_candidates.fasta
+[M::main] Real time: 6.335 sec; CPU: 34.837 sec; Peak RSS: 0.475 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/01_inputs/z.mays.lncRNA.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/11_int_class/z.mays_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_final_vs_annotated_vs_annotated.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_final_vs_annotated_vs_annotated.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/01_inputs/z.mays.lncRNA.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/11_int_class/z.mays_lncRNA.fasta
+[M::main] Real time: 1.461 sec; CPU: 7.246 sec; Peak RSS: 0.246 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/z.mays/Z.may.lncRNA-EVLncRNAs.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/04_stringtie/z.mays_candidates.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_candidates_vs_expval_vs_expval.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_candidates_vs_expval_vs_expval.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/z.mays/Z.may.lncRNA-EVLncRNAs.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/04_stringtie/z.mays_candidates.fasta
+[M::main] Real time: 2.519 sec; CPU: 9.224 sec; Peak RSS: 0.228 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/z.mays/Z.may.lncRNA-EVLncRNAs.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/11_int_class/z.mays_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_final_vs_expval_vs_expval.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_final_vs_expval_vs_expval.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/z.mays/Z.may.lncRNA-EVLncRNAs.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/11_int_class/z.mays_lncRNA.fasta
+[M::main] Real time: 0.109 sec; CPU: 0.531 sec; Peak RSS: 0.018 GB
+
+===== z.mays: comparison against z.mays_PLncDB_cd-hit.0.9.fa (identity > 0.95) =====
+
+Stage            Queries  TP     FP      FP_%   Truth_total  Truth_hit  FN     FN_%   Precision_%  Recall_%
+candidates       153313   23037  130276  84.97  23580        11275      12305  52.18  15.03        47.82
+final            13293    5556   7737    58.20  23580        4068       19512  82.75  41.80        17.25
+annotated_ncRNA  7805     2274   5531    70.86  23580        1593       21987  93.24  29.14        6.76
+
+TSV saved to: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_summary_table.tsv
+FP_% = FP / queries   |   FN_% = FN / truth sequences
+
+
+===== z.mays: annotated lncRNAs vs predictions (identity > 0.95) =====
+
+Comparison               Queries  Queries_matched  Queries_matched_%  Queries_unmatched  Queries_unmatched_%  Ref_total  Ref_recovered  Ref_recovered_%  Ref_missed  Ref_missed_%
+candidates_vs_annotated  153313   12224            7.97               141089             92.03                7805       5315           68.10            2490        31.90
+final_vs_annotated       13293    3333             25.07              9960               74.93                7805       2561           32.81            5244        67.19
+
+TSV saved to: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_annotated_vs_predicted_table.tsv
+Queries_unmatched = predictions not in the annotation (potentially novel)   |   Ref_missed = annotated lncRNAs not predicted
+
+
+===== z.mays: experimentally validated lncRNAs in predictions (identity > 0.95) =====
+
+Comparison            Queries  Queries_matched  Queries_matched_%  Queries_unmatched  Queries_unmatched_%  Ref_total  Ref_recovered  Ref_recovered_%  Ref_missed  Ref_missed_%
+candidates_vs_expval  153313   218              0.14               153095             99.86                26         20             76.92            6           23.08
+final_vs_expval       13293    29               0.22               13264              99.78                26         7              26.92            19          73.08
+
+TSV saved to: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/z.mays/03_outputs/12_verify/z.mays_expval_in_predictions_table.tsv
+Ref_recovered = validated lncRNAs found in the predictions   |   Ref_missed = validated lncRNAs not predicted
+

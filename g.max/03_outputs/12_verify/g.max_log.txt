@@ -1,0 +1,112 @@
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/04_stringtie/g.max_candidates.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_candidates_vs_truth.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_candidates_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/04_stringtie/g.max_candidates.fasta
+[M::main] Real time: 3.153 sec; CPU: 16.305 sec; Peak RSS: 0.292 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/11_int_class/g.max_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_final_vs_truth.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_final_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/11_int_class/g.max_lncRNA.fasta
+[M::main] Real time: 0.697 sec; CPU: 2.066 sec; Peak RSS: 0.146 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/01_inputs/g.max.lncRNA.fa -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_annotated_ncRNA_vs_truth.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_annotated_ncRNA_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/01_inputs/g.max.lncRNA.fa
+[M::main] Real time: 1.055 sec; CPU: 4.627 sec; Peak RSS: 0.150 GB
+
+===== g.max: comparison against g.max_PLncDB_cd-hit.0.9.fa (identity > 0.95) =====
+
+Stage            Queries  TP     FP     FP_%   Truth_total  Truth_hit  FN    FN_%   Precision_%  Recall_%
+candidates       96030    11004  85026  88.54  10033        6125       3908  38.95  11.46        61.05
+final            6136     2694   3442   56.10  10033        2266       7767  77.41  43.90        22.59
+annotated_ncRNA  5695     3075   2620   46.01  10033        2488       7545  75.20  53.99        24.80
+
+TSV saved to: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_summary_table.tsv
+FP_% = FP / queries   |   FN_% = FN / truth sequences
+
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/04_stringtie/g.max_candidates.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_candidates_vs_truth.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_candidates_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/04_stringtie/g.max_candidates.fasta
+[M::main] Real time: 3.406 sec; CPU: 17.968 sec; Peak RSS: 0.292 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/11_int_class/g.max_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_final_vs_truth.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_final_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/11_int_class/g.max_lncRNA.fasta
+[M::main] Real time: 0.775 sec; CPU: 2.232 sec; Peak RSS: 0.147 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/01_inputs/g.max.lncRNA.fa -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_annotated_ncRNA_vs_truth.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_annotated_ncRNA_vs_truth.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/g.max_PLncDB_cd-hit.0.9.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/01_inputs/g.max.lncRNA.fa
+[M::main] Real time: 1.132 sec; CPU: 4.988 sec; Peak RSS: 0.150 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/01_inputs/g.max.lncRNA.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/04_stringtie/g.max_candidates.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_candidates_vs_annotated_vs_annotated.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_candidates_vs_annotated_vs_annotated.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/01_inputs/g.max.lncRNA.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/04_stringtie/g.max_candidates.fasta
+[M::main] Real time: 3.996 sec; CPU: 23.630 sec; Peak RSS: 0.305 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/01_inputs/g.max.lncRNA.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/11_int_class/g.max_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_final_vs_annotated_vs_annotated.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_final_vs_annotated_vs_annotated.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/01_inputs/g.max.lncRNA.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/11_int_class/g.max_lncRNA.fasta
+[M::main] Real time: 0.838 sec; CPU: 3.049 sec; Peak RSS: 0.151 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/G.max.lncRNA-EVLncRNAs.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/04_stringtie/g.max_candidates.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_candidates_vs_expval_vs_expval.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_candidates_vs_expval_vs_expval.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/G.max.lncRNA-EVLncRNAs.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/04_stringtie/g.max_candidates.fasta
+[M::main] Real time: 1.519 sec; CPU: 7.240 sec; Peak RSS: 0.204 GB
+
+	run command:
+minimap2 -x cdna -t 8 /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/G.max.lncRNA-EVLncRNAs.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/11_int_class/g.max_lncRNA.fasta -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_final_vs_expval_vs_expval.paf
+
+[M::main] Version: 2.26-r1175
+[M::main] CMD: minimap2 -x cdna -t 8 -o /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_final_vs_expval_vs_expval.paf /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/truth_data/g.max/G.max.lncRNA-EVLncRNAs.fa /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/11_int_class/g.max_lncRNA.fasta
+[M::main] Real time: 0.049 sec; CPU: 0.234 sec; Peak RSS: 0.009 GB
+
+===== g.max: comparison against g.max_PLncDB_cd-hit.0.9.fa (identity > 0.95) =====
+
+Stage            Queries  TP     FP     FP_%   Truth_total  Truth_hit  FN    FN_%   Precision_%  Recall_%
+candidates       96030    11004  85026  88.54  10033        6125       3908  38.95  11.46        61.05
+final            6136     2694   3442   56.10  10033        2266       7767  77.41  43.90        22.59
+annotated_ncRNA  5695     3075   2620   46.01  10033        2488       7545  75.20  53.99        24.80
+
+TSV saved to: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_summary_table.tsv
+FP_% = FP / queries   |   FN_% = FN / truth sequences
+
+
+===== g.max: annotated lncRNAs vs predictions (identity > 0.95) =====
+
+Comparison               Queries  Queries_matched  Queries_matched_%  Queries_unmatched  Queries_unmatched_%  Ref_total  Ref_recovered  Ref_recovered_%  Ref_missed  Ref_missed_%
+candidates_vs_annotated  96030    6490             6.76               89540              93.24                5695       3839           67.41            1856        32.59
+final_vs_annotated       6136     1952             31.81              4184               68.19                5695       1815           31.87            3880        68.13
+
+TSV saved to: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_annotated_vs_predicted_table.tsv
+Queries_unmatched = predictions not in the annotation (potentially novel)   |   Ref_missed = annotated lncRNAs not predicted
+
+
+===== g.max: experimentally validated lncRNAs in predictions (identity > 0.95) =====
+
+Comparison            Queries  Queries_matched  Queries_matched_%  Queries_unmatched  Queries_unmatched_%  Ref_total  Ref_recovered  Ref_recovered_%  Ref_missed  Ref_missed_%
+candidates_vs_expval  96030    0                0.00               96030              100.00               1          0              0.00             1           100.00
+final_vs_expval       6136     0                0.00               6136               100.00               1          0              0.00             1           100.00
+
+TSV saved to: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/g.max/03_outputs/12_verify/g.max_expval_in_predictions_table.tsv
+Ref_recovered = validated lncRNAs found in the predictions   |   Ref_missed = validated lncRNAs not predicted
+
