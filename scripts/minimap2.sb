@@ -15,9 +15,12 @@ CAND="${BASE}/${SPEC}/03_outputs/04_stringtie/${SPEC}_candidates.fasta"   # init
 PRED="${BASE}/${SPEC}/03_outputs/11_int_class/${SPEC}_lncRNA.fasta"       # final candidates after the intersection
 TRUTH="${BASE}/truth_data/${SPEC}/${SPEC}_PLncDB_cd-hit.0.9.fa"           # Truth dataset: EV sequences clustered at 90% identity with cd-hit
 NCRNA="${BASE}/${SPEC}/01_inputs/${SPEC}.lncRNA.fa"                       # OPTIONAL: annotated ncRNAs (only exists if the species has annotations)
+EXPVAL="${BASE}/truth_data/${SPEC}/${SPEC}_experimentally_validated.fa"   # TODO: experimentally validated lncRNAs (update path; may equal $TRUTH)
 OUTDIR="${BASE}/${SPEC}/03_outputs/12_verify"
 LOG_FILE="${OUTDIR}/${SPEC}_log.txt"
 TABLE_TSV="${OUTDIR}/${SPEC}_summary_table.tsv"
+ANNOT_TSV="${OUTDIR}/${SPEC}_annotated_vs_predicted_table.tsv"            # NEW: annotated lncRNAs vs predictions
+EXPVAL_TSV="${OUTDIR}/${SPEC}_expval_in_predictions_table.tsv"            # NEW: experimentally validated lncRNAs in predictions
 
 # Create the output directory inside the running job
 mkdir -p "$OUTDIR"
@@ -54,7 +57,45 @@ run_stage() {
     }'
 }
 
-# Build the table
+# NEW: generic pairwise comparison of a query set against ANY reference set.
+# Same alignment/identity logic as run_stage, but with neutral column names, since the
+# reference is not always a "truth" set (e.g. annotated lncRNAs are not ground truth,
+# so "unmatched predictions" are potentially novel rather than false positives).
+# Also writes lists of reference IDs recovered / missed, for follow-up.
+# Usage: compare_sets <label> <query_fasta> <ref_fasta> <ref_tag>
+compare_sets() {
+    local label="$1" query="$2" ref="$3" tag="$4"
+    local paf="${OUTDIR}/${SPEC}_${label}_vs_${tag}.paf"
+    local hits="${OUTDIR}/${SPEC}_${label}_vs_${tag}_ref_recovered.txt"
+    local missed="${OUTDIR}/${SPEC}_${label}_vs_${tag}_ref_missed.txt"
+
+    echo -e "\n\trun command:\nminimap2 -x cdna -t 8 $ref $query -o $paf\n" >&2
+    minimap2 -x cdna -t 8 "$ref" "$query" -o "$paf" 2>&1 >/dev/null | tail -n 3 >&2
+
+    local total_q total_r q_match r_hit
+    total_q=$(grep -c ">" "$query")
+    total_r=$(grep -c ">" "$ref")
+    q_match=$(awk -v id=$IDENTITY '$10/$11 > id {print $1}' "$paf" | sort -u | wc -l)   # queries matching the reference
+    r_hit=$(awk -v id=$IDENTITY '$10/$11 > id {print $6}' "$paf" | sort -u | wc -l)     # reference seqs recovered
+
+    # IDs of reference sequences recovered / missed
+    awk -v id=$IDENTITY '$10/$11 > id {print $6}' "$paf" | sort -u > "$hits"
+    grep ">" "$ref" | sed 's/^>//; s/[[:space:]].*//' | sort -u | comm -23 - "$hits" > "$missed"
+
+    awk -v l="$label" -v tq="$total_q" -v qm="$q_match" -v tr="$total_r" -v rh="$r_hit" 'BEGIN{
+        qu  = tq - qm;                     # queries with no match in the reference
+        rm  = tr - rh;                     # reference seqs not recovered
+        qup = (tq > 0) ? 100*qu/tq : 0;    # % of queries unmatched
+        qmp = (tq > 0) ? 100*qm/tq : 0;    # % of queries matched
+        rhp = (tr > 0) ? 100*rh/tr : 0;    # % of reference recovered
+        rmp = (tr > 0) ? 100*rm/tr : 0;    # % of reference missed
+        printf "%s\t%d\t%d\t%.2f\t%d\t%.2f\t%d\t%d\t%.2f\t%d\t%.2f\n", l, tq, qm, qmp, qu, qup, tr, rh, rhp, rm, rmp
+    }'
+}
+
+HEADER_GENERIC="Comparison\tQueries\tQueries_matched\tQueries_matched_%\tQueries_unmatched\tQueries_unmatched_%\tRef_total\tRef_recovered\tRef_recovered_%\tRef_missed\tRef_missed_%"
+
+# Build the original table (unchanged)
 {
     echo -e "Stage\tQueries\tTP\tFP\tFP_%\tTruth_total\tTruth_hit\tFN\tFN_%\tPrecision_%\tRecall_%"
     run_stage "candidates" "$CAND"
@@ -68,7 +109,51 @@ run_stage() {
     fi
 } > "$TABLE_TSV"
 
+# NEW table 2: annotated lncRNAs vs predictions
+#   Queries_matched    = predictions that match an annotated lncRNA (already known)
+#   Queries_unmatched  = predictions with no annotated match (potentially novel)
+#   Ref_recovered      = annotated lncRNAs recovered by the predictions
+#   Ref_missed         = annotated lncRNAs the pipeline did not predict
+if [[ -s "$NCRNA" ]]; then
+    {
+        echo -e "$HEADER_GENERIC"
+        compare_sets "candidates_vs_annotated" "$CAND" "$NCRNA" "annotated"
+        compare_sets "final_vs_annotated"      "$PRED" "$NCRNA" "annotated"
+    } > "$ANNOT_TSV"
+else
+    echo "No ncRNA annotation found (${NCRNA}); skipping annotated-vs-predicted table." >&2
+fi
+
+# NEW table 3: experimentally validated lncRNAs present in the predictions
+#   Ref_recovered = experimentally validated lncRNAs found among the predictions
+#   Ref_missed    = experimentally validated lncRNAs absent from the predictions
+#   Queries_matched = predictions that correspond to an experimentally validated lncRNA
+if [[ -s "$EXPVAL" ]]; then
+    {
+        echo -e "$HEADER_GENERIC"
+        compare_sets "candidates_vs_expval" "$CAND" "$EXPVAL" "expval"
+        compare_sets "final_vs_expval"      "$PRED" "$EXPVAL" "expval"
+    } > "$EXPVAL_TSV"
+else
+    echo "No experimentally validated set found (${EXPVAL}); skipping that table." >&2
+fi
+
+# Reports
 echo -e "\n===== ${SPEC}: comparison against ${TRUTH##*/} (identity > ${IDENTITY}) =====\n"
 column -t -s $'\t' "$TABLE_TSV"
 echo -e "\nTSV saved to: ${TABLE_TSV}"
 echo -e "FP_% = FP / queries   |   FN_% = FN / truth sequences\n"
+
+if [[ -s "$ANNOT_TSV" ]]; then
+    echo -e "\n===== ${SPEC}: annotated lncRNAs vs predictions (identity > ${IDENTITY}) =====\n"
+    column -t -s $'\t' "$ANNOT_TSV"
+    echo -e "\nTSV saved to: ${ANNOT_TSV}"
+    echo -e "Queries_unmatched = predictions not in the annotation (potentially novel)   |   Ref_missed = annotated lncRNAs not predicted\n"
+fi
+
+if [[ -s "$EXPVAL_TSV" ]]; then
+    echo -e "\n===== ${SPEC}: experimentally validated lncRNAs in predictions (identity > ${IDENTITY}) =====\n"
+    column -t -s $'\t' "$EXPVAL_TSV"
+    echo -e "\nTSV saved to: ${EXPVAL_TSV}"
+    echo -e "Ref_recovered = validated lncRNAs found in the predictions   |   Ref_missed = validated lncRNAs not predicted\n"
+fi
