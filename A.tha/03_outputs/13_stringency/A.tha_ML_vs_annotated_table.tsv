@@ -1,0 +1,8 @@
+Comparison	Queries	Queries_matched	Queries_matched_%	Queries_unmatched	Queries_unmatched_%	Ref_total	Ref_recovered	Ref_recovered_%	Ref_missed	Ref_missed_%
+candidates_vs_annotated	40345	2390	5.92	37955	94.08	3970	1302	32.80	2668	67.20
+FEELnc_vs_annotated	1596	357	22.37	1239	77.63	3970	295	7.43	3675	92.57
+CPAT_vs_annotated	10902	888	8.15	10014	91.85	3970	676	17.03	3294	82.97
+lncFinder_vs_annotated	11921	943	7.91	10978	92.09	3970	727	18.31	3243	81.69
+lncBoost_vs_annotated	10967	897	8.18	10070	91.82	3970	684	17.23	3286	82.77
+Diamond_vs_annotated	8336	593	7.11	7743	92.89	3970	495	12.47	3475	87.53
+final_vs_annotated	755	180	23.84	575	76.16	3970	160	4.03	3810	95.97
