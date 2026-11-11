@@ -19,8 +19,11 @@ KEEP_SCAFFOLDS=no            # yes/no: keep unplaced/unlocalized scaffolds in th
 RAW_DIR=$BASE/$SPEC/ncbi_dataset/data      # datasets download location (contains GCF_*/genomic.gff)
 # -----------------------------------------------
 
-module load AGAT
-module load SeqKit
+# ---------------- Tool Containers --------------
+IMG_DIR="${BASE}/images"
+AGAT_IMG="${IMG_DIR}/agat_1.5.0.sif"
+SEQKIT_IMG="${IMG_DIR}/seqkit_2.3.0.sif"
+# -----------------------------------------------
 
 OUT=$BASE/$SPEC/01_inputs          # deliverables
 TMP=$OUT/AGAT                      # intermediates / extras
@@ -73,7 +76,7 @@ awk -v ks="$KEEP_SCAFFOLDS" 'NR==FNR{ if($3=="chromosome" || (ks=="yes" && $3=="
      keep { print }' "$MAP" "$FASTA_IN" > "$NUC_FA"
 
 SIZES=$TMP/$SPEC.chrom.sizes
-seqkit fx2tab -n -l -i "$NUC_FA" > "$SIZES"           # name <tab> bp
+singularity exec -B ${BASE} "$SEQKIT_IMG" seqkit fx2tab -n -l -i "$NUC_FA" > "$SIZES"           # name <tab> bp
 
 # ---------- 3. Deliverable: karyotype for RIdeogram (chromosomes only) ----------
 { printf 'Chr\tStart\tEnd\n'
@@ -93,7 +96,7 @@ echo "features kept for AGAT: $N_FEAT"
 [ "$N_FEAT" -gt 0 ] || { echo "ERROR: no features left in $GFF_NUC after seqid filtering" >&2; exit 1; }
 
 CLEAN=$TMP/$SPEC.clean.gff3
-agat_convert_sp_gxf2gxf.pl -g "$GFF_NUC" -o "$CLEAN"
+singularity exec -B ${BASE} "$AGAT_IMG" agat_convert_sp_gxf2gxf.pl -g "$GFF_NUC" -o "$CLEAN"
 echo "--- feature types (clean GFF) ---"; grep -v '^#' "$CLEAN" | cut -f3 | sort | uniq -c
 echo "--- sources (rows from 'AGAT' = features AGAT had to invent) ---"; grep -v '^#' "$CLEAN" | cut -f2 | sort | uniq -c
 
@@ -108,7 +111,7 @@ awk -F'\t' "$ATTR_FN"'
   { p=attr($9,"Parent"); if (p!="" && (p in tx)) print }' "$CLEAN" "$CLEAN" > "$MRNA_GFF"
 [ "$(grep -vc '^#' "$MRNA_GFF" || true)" -gt 0 ] || { echo "ERROR: no mRNA gene models found in $CLEAN" >&2; exit 1; }
 MRNA_GTF_AGAT=$TMP/$SPEC.mRNA.agat_raw.gtf          # untouched AGAT output, kept for reference
-agat_convert_sp_gff2gtf.pl --gff "$MRNA_GFF" -o "$MRNA_GTF_AGAT"
+singularity exec -B ${BASE} "$AGAT_IMG" agat_convert_sp_gff2gtf.pl --gff "$MRNA_GFF" -o "$MRNA_GTF_AGAT"
 
 # AGAT decodes URL-escaped characters, so an ID like gene-PHT4%3B1 comes out as gene_id "gene-PHT4;1".
 # GTF has no escaping, and StringTie splits attributes on ';' even inside quotes, so it dies with
