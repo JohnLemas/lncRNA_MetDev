@@ -1,17 +1,17 @@
 #!/bin/bash --login
-#SBATCH --job-name=prep_inputs
+#SBATCH --job-name=species_inputs
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=32G
 #SBATCH --time=04:00:00
-#SBATCH --output=/path/to/working/dir/species/%x_%j.out
-#SBATCH --error=/path/to/working/dir/species/%x_%j.err
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/species/logs/%x_%j.out
+#SBATCH --error=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/species/logs/%x_%j.err
 
 set -euo pipefail
 export LC_ALL=C
 SCRIPT_VERSION="2026-10-21-r3"
 
 # ---------------- user settings ----------------
-BASE=/path/to/working/dir
+BASE=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo
 SPEC=species                 # e.g. g.max
 CHR_PREFIX=chr               # chromosomes -> <prefix><N>; set empty for plain 1,2,3
 INCLUDE_ANTISENSE=yes        # yes/no: antisense_RNA transcripts count as lncRNAs
