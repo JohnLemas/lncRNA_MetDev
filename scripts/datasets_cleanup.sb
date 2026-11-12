@@ -152,7 +152,7 @@ echo "--- feature types (lncRNA GFF) ---"; grep -v '^#' "$LNC_GFF" | cut -f3 | s
 
 # spliced sequences. Symlink so AGAT's FASTA index lands in AGAT/, not 01_inputs/
 ln -sf "$NUC_FA" "$TMP/$SPEC.nuclear.fa"
-agat_sp_extract_sequences.pl -g "$LNC_GFF" -f "$TMP/$SPEC.nuclear.fa" -t exon --merge -o "$LNC_FA"
+singularity exec -B ${BASE} "$AGAT_IMG" agat_sp_extract_sequences.pl -g "$LNC_GFF" -f "$TMP/$SPEC.nuclear.fa" -t exon --merge -o "$LNC_FA"
 find "$OUT" -maxdepth 1 -name "${SPEC}.chromosomes.fa.*" -exec mv {} "$TMP"/ \;
 
 # ---------- 7. Sanity checks ----------
@@ -172,7 +172,7 @@ N_TX=$(grep -c . "$LNC_TX" || true); N_FA=$(grep -c '>' "$LNC_FA" 2>/dev/null ||
 N_TX=${N_TX:-0}; N_FA=${N_FA:-0}
 echo "lncRNA transcripts selected: $N_TX | sequences extracted: $N_FA"
 [ "$N_TX" -eq "$N_FA" ] || echo "WARNING: transcript/sequence counts differ" >&2
-seqkit stats "$NUC_FA" "$LNC_FA"
+singularity exec -B ${BASE} "$SEQKIT_IMG" seqkit stats "$NUC_FA" "$LNC_FA"
 
 echo "--- deliverables in $OUT ---"
 ls -lh "$MRNA_GTF" "$NUC_FA" "$KARYO" "$LNC_GFF" "$LNC_FA"
