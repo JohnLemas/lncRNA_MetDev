@@ -1,0 +1,43 @@
+ Command:
+    /opt/sortmerna/bin/sortmerna --ref /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/databases/smr_v4.3_default_db.fasta --ref /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/databases/Z.mays_barrnap/custom_db.fasta --idx-dir /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/databases/Z.mays_barrnap/idx --index 0 --reads /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/Z.mays/03_outputs/02_sortmerna/tmp_decompressed_emb_1_20961250_152/emb_1_trim.fastq --aligned /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/Z.mays/03_outputs/02_sortmerna/rRNA_reads/emb_1_se_rRNA --other /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/Z.mays/03_outputs/02_sortmerna/clean_reads/emb_1_se_non_rRNA --fastx --workdir /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/Z.mays/03_outputs/02_sortmerna/workdir_se_emb_1 --threads 16 
+
+ Process pid = 
+
+ Parameters summary: 
+    Reference file: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/databases/smr_v4.3_default_db.fasta
+        Seed length = 18
+        Pass 1 = 18, Pass 2 = 9, Pass 3 = 3
+        Gumbel lambda = 0.609384
+        Gumbel K = 0.337068
+        Minimal SW score based on E-value = 80
+    Reference file: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/databases/Z.mays_barrnap/custom_db.fasta
+        Seed length = 18
+        Pass 1 = 18, Pass 2 = 9, Pass 3 = 3
+        Gumbel lambda = 0.60244
+        Gumbel K = 0.33058
+        Minimal SW score based on E-value = 70
+    Number of seeds = 2
+    Edges = 4
+    SW match = 2
+    SW mismatch = -3
+    SW gap open penalty = 5
+    SW gap extend penalty = 2
+    SW ambiguous nucleotide = -3
+    SQ tags are not output
+    Number of alignment processing threads = 16
+    Reads file: /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/Z.mays/03_outputs/02_sortmerna/tmp_decompressed_emb_1_20961250_152/emb_1_trim.fastq
+    Total reads = 18714407
+
+ Results:
+    Total reads passing E-value threshold = 129518 (0.69)
+    Total reads failing E-value threshold = 18584889 (99.31)
+    Minimum read length = 15
+    Maximum read length = 38
+    Mean read length    = 37
+
+ Coverage by database:
+    /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/databases/smr_v4.3_default_db.fasta		0.00
+    /mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/databases/Z.mays_barrnap/custom_db.fasta		0.69
+
+ Thu Nov 12 19:42:20 2026
+
