@@ -1,8 +1,0 @@
-Comparison	Queries	Queries_matched	Queries_matched_%	Queries_unmatched	Queries_unmatched_%	Ref_total	Ref_recovered	Ref_recovered_%	Ref_missed	Ref_missed_%
-candidates_vs_expval	40345	134	0.33	40211	99.67	144	80	55.56	64	44.44
-FEELnc_vs_expval	1596	7	0.44	1589	99.56	144	7	4.86	137	95.14
-CPAT_vs_expval	10902	53	0.49	10849	99.51	144	47	32.64	97	67.36
-lncFinder_vs_expval	11921	64	0.54	11857	99.46	144	52	36.11	92	63.89
-lncBoost_vs_expval	10967	54	0.49	10913	99.51	144	48	33.33	96	66.67
-Diamond_vs_expval	8336	47	0.56	8289	99.44	144	42	29.17	102	70.83
-final_vs_expval	755	6	0.79	749	99.21	144	6	4.17	138	95.83

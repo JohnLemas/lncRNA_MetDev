@@ -1,12 +1,12 @@
-                                 Started job on |	Oct 23 15:01:11
-                             Started mapping on |	Oct 23 15:01:13
-                                    Finished on |	Oct 23 15:06:59
-       Mapping speed, Million of reads per hour |	154.48
+                                 Started job on |	Nov 12 21:06:03
+                             Started mapping on |	Nov 12 21:06:14
+                                    Finished on |	Nov 12 21:10:29
+       Mapping speed, Million of reads per hour |	209.64
 
-                          Number of input reads |	14847392
+                          Number of input reads |	14849262
                       Average input read length |	23
                                     UNIQUE READS:
-                   Uniquely mapped reads number |	2166767
+                   Uniquely mapped reads number |	2166333
                         Uniquely mapped reads % |	14.59%
                           Average mapped length |	21.14
                        Number of splices: Total |	37882
@@ -21,15 +21,15 @@
                         Insertion rate per base |	0.01%
                        Insertion average length |	1.00
                              MULTI-MAPPING READS:
-        Number of reads mapped to multiple loci |	8098489
-             % of reads mapped to multiple loci |	54.54%
+        Number of reads mapped to multiple loci |	8097811
+             % of reads mapped to multiple loci |	54.53%
         Number of reads mapped to too many loci |	318250
              % of reads mapped to too many loci |	2.14%
                                   UNMAPPED READS:
   Number of reads unmapped: too many mismatches |	0
        % of reads unmapped: too many mismatches |	0.00%
-            Number of reads unmapped: too short |	4155811
-                 % of reads unmapped: too short |	27.99%
+            Number of reads unmapped: too short |	4158793
+                 % of reads unmapped: too short |	28.01%
                 Number of reads unmapped: other |	108075
                      % of reads unmapped: other |	0.73%
                                   CHIMERIC READS:

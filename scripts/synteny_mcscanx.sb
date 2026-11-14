@@ -1,0 +1,93 @@
+#!/bin/bash --login
+#SBATCH --job-name=synteny_mcscanx
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=32G
+#SBATCH --time=06:00:00
+#SBATCH --output=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/synteny/logs/%x_%j.out
+#SBATCH --error=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo/synteny/logs/%x_%j.err
+
+# Syntenic blocks of collinear orthologous genes between two species (MCScanX).
+# Needs, for EACH species, the datasets_cleanup.sb deliverables in $BASE/<SPEC>/01_inputs:
+#   <SPEC>.chromosomes.fa   nuclear assembly
+#   <SPEC>_mRNA.gtf         mRNA-only annotation
+# Writes everything to $BASE/synteny/<SP1>_vs_<SP2>/ ; the key output is <CODE1>_<CODE2>.collinearity
+
+set -euo pipefail
+export LC_ALL=C
+
+# ---------------- user settings ----------------
+BASE=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo
+SP1=A.tha;     CODE1=at      # CODE = exactly 2 letters, different per species (MCScanX reads the species from the
+SP2=O.sat;  CODE2=os      #        first two letters of the chromosome name)
+MCSCANX_OPTS="-s 5 -b 2"     # -s = min genes per block; -b 2 = inter-species blocks only
+# -----------------------------------------------
+
+module load GffRead SeqKit DIAMOND Miniforge3  # adjust to your cluster; MCScanX: module, bioconda (mcscanx) or build from source
+conda activate mcscan
+
+for t in gffread seqkit diamond MCScanX; do
+    command -v "$t" >/dev/null || { echo "ERROR: $t not on PATH" >&2; exit 1; }
+done
+
+PAIR=${SP1}_vs_${SP2}; TAG=${CODE1}_${CODE2}
+OUT=$BASE/synteny/$PAIR
+mkdir -p "$OUT"; cd "$OUT"
+echo "[$(date)] $PAIR  (codes: $CODE1 / $CODE2)"
+
+# ---------- 1. Per species: longest-isoform proteins (named by GENE id) + MCScanX gene coordinates ----------
+prep_species () {
+    local SPEC=$1 CODE=$2
+    local IN=$BASE/$SPEC/01_inputs
+    local FA=$IN/$SPEC.chromosomes.fa GTF=$IN/${SPEC}_mRNA.gtf
+    [ -f "$FA" ] && [ -f "$GTF" ] || { echo "ERROR: missing $FA or $GTF" >&2; exit 1; }
+
+    # transcript -> gene map from the GTF
+    awk -F'\t' '$9 ~ /transcript_id/ && $9 ~ /gene_id/ {
+            match($9,/gene_id "[^"]+"/);       g=substr($9,RSTART+9,RLENGTH-10);
+            match($9,/transcript_id "[^"]+"/); t=substr($9,RSTART+15,RLENGTH-16);
+            print t "\t" g }' "$GTF" | sort -u > "$SPEC.tx2gene.tsv"
+
+    # one protein per transcript, then keep the longest per gene and rename it to the gene id
+    gffread "$GTF" -g "$FA" -y "$SPEC.prot_all.fa"
+    seqkit seq -w 0 "$SPEC.prot_all.fa" | awk -F'\t' '
+        NR==FNR { g[$1]=$2; next }
+        /^>/    { id=substr($0,2); sub(/[ \t].*/,"",id); gene=g[id]; next }
+                { s=$0; gsub(/[*.]/,"",s);
+                  if (gene!="" && length(s)>best[gene]) { best[gene]=length(s); seq[gene]=s } }
+        END     { for (k in seq) print ">" k "\n" seq[k] }' "$SPEC.tx2gene.tsv" - > "$SPEC.prot.fa"
+
+    # MCScanX gff: <code><chr>  gene  start  end   (chr label = old name without a leading chr/Chr)
+    awk -F'\t' -v OFS='\t' -v code="$CODE" '$3=="exon" {
+            match($9,/gene_id "[^"]+"/); g=substr($9,RSTART+9,RLENGTH-10);
+            if (!(g in s) || $4+0 < s[g]) s[g]=$4+0;
+            if (!(g in e) || $5+0 > e[g]) e[g]=$5+0;
+            c[g]=$1 }
+        END { for (g in c) { chr=c[g]; sub(/^[Cc][Hh][Rr]/,"",chr); print code chr, g, s[g], e[g] } }' "$GTF" \
+        | sort -k1,1 -k3,3n > "$SPEC.gff"
+
+    echo "$SPEC: $(grep -c '>' "$SPEC.prot.fa") proteins | $(wc -l < "$SPEC.gff") genes in gff"
+}
+prep_species "$SP1" "$CODE1"
+prep_species "$SP2" "$CODE2"
+
+cat "$SP1.gff" "$SP2.gff" > "$TAG.gff"
+cat "$SP1.prot.fa" "$SP2.prot.fa" > all.prot.fa
+
+# ---------- 2. All-vs-all protein search (within AND between species, top 5 hits) ----------
+diamond makedb --in all.prot.fa -d all.prot --threads "$SLURM_CPUS_PER_TASK"
+diamond blastp -d all.prot -q all.prot.fa -o "$TAG.blast" --outfmt 6 -k 5 -e 1e-10 \
+    --more-sensitive --threads "$SLURM_CPUS_PER_TASK"
+
+# every gene id in the BLAST file must exist in the gff
+MISS=$(cut -f1,2 "$TAG.blast" | tr '\t' '\n' | sort -u | comm -23 - <(cut -f2 "$TAG.gff" | sort -u) | wc -l || true)
+echo "BLAST gene ids missing from $TAG.gff: $MISS"
+[ "$MISS" -eq 0 ] || echo "WARNING: gene id mismatch between BLAST and gff" >&2
+
+# ---------- 3. MCScanX ----------
+MCScanX $MCSCANX_OPTS "$OUT/$TAG"
+
+echo "--- result ---"
+echo "blocks: $(grep -c '^## Alignment' "$TAG.collinearity" || true)"
+grep -E '^# Number of collinear genes' "$TAG.collinearity" || true
+echo "[$(date)] done -> $OUT/$TAG.collinearity"
+echo "next: Rscript 21_lncRNA_synteny.R --base $BASE --sp1 $SP1 --code1 $CODE1 --sp2 $SP2 --code2 $CODE2"

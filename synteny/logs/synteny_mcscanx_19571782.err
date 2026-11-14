@@ -1,0 +1,12 @@
+Lmod has detected the following error: The following module(s) could not be
+loaded: "GffRead"
+
+Please check the spelling or version number. Also try "module spider ..."
+
+It is also possible that the module is not available for this node type.
+See https://docs.icer.msu.edu/available_software/overview/ for details. 
+While processing the following module(s):
+    Module fullname       Module Filename
+    ---------------       ---------------
+    Miniforge3/25.11.0-1  /opt/software-current/2023.06/x86_64/generic/modules/all/Miniforge3/25.11.0-1.lua
+
