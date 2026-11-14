@@ -3,8 +3,11 @@
 *.Rhistory
 databases/
 images/
+benchmarking/
 *xlsx
 *pdf
+*ncbi_dataset/
+*ncbi_dataset.zip
 
 # --- Carry over from IWGC lncRNA Pipeline --- #
 scripts/Plant-LncRNA-pipeline-v2/
@@ -12,9 +15,7 @@ scripts/Plant.logit.v2.RData
 scripts/feelnc/
 
 # --- Add specific files with -f --- #
-g.max/
-z.mays/
+G.max/
+Z.mays/
 A.tha/
 O.sat/
-*ncbi_dataset/
-*ncbi_dataset.zip
