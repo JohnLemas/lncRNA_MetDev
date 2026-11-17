@@ -1,0 +1,57 @@
+outdir: results
+threads: 8
+
+# Order of the stage-wise (cumulative) intersection; 'diamond' = no uniprot_sprot hit
+tools: [feelnc, lncfinder, lncboost, cpat]
+stage_order: [feelnc, lncfinder, lncboost, cpat, diamond]
+diamond_evalue: 1.0e-5          # hit = evalue <= this; DIAMOND must be run with outfmt 6
+
+# Sequence-match thresholds applied to minimap2 pairs. Both are reported everywhere.
+# scov = coverage of the SHORTER sequence in the pair.
+thresholds:
+  strict:  {min_identity: 0.95, min_scov: 0.90}
+  relaxed: {min_identity: 0.90, min_scov: 0.80}
+
+# Only count sense-strand alignments. Set false if many candidates are unstranded.
+require_same_strand: true
+
+# minimap2 transcript-vs-transcript; -N/-p keep secondary hits so isoform families are seen
+minimap2_opts: "-x asm20 -c -N 100 -p 0.3"
+
+busco_transcriptome: true       # also run BUSCO -m transcriptome on the nucleotide FASTA
+busco_extra: "--offline --download_path /mnt/research/Weed_lab/software/databases/busco_downloads"                 # e.g. "--offline --download_path /path/to/busco_downloads"
+
+species:
+  A_thaliana:
+    genome: data/A_thaliana/genome.fa
+    lncrna_gtf: data/A_thaliana/ref_lncRNA.gtf      # reference-annotated lncRNAs
+    mrna_gtf: data/A_thaliana/ref_mRNA.gtf          # reference-annotated mRNAs
+    plncdb_fa: data/A_thaliana/plncdb_all_cdhit.fa  # all PLncDB sources, cd-hit condensed (T)
+    evlncdb_fa: data/A_thaliana/evlncdb.fa          # EVLncDB subset kept aside (E)
+    candidates_fa: data/A_thaliana/candidates.fa    # candidates entering the ML tools (C)
+    transcriptome_fa: data/A_thaliana/stringtie_all.fa   # full transcriptome for BUSCO
+    diamond_tsv: data/A_thaliana/candidates_vs_sprot.tsv
+    busco_lineage: eudicotyledons_odb12
+    tools:   # one file per tool: candidate IDs the tool called non-coding (lncRNA), one per line
+      feelnc: data/A_thaliana/feelnc_lnc_ids.txt
+      lncfinder: data/A_thaliana/lncfinder_lnc_ids.txt
+      lncboost: data/A_thaliana/lncboost_lnc_ids.txt
+      cpat: data/A_thaliana/cpat_noncoding_ids.txt
+  species2:
+    G_max:
+    genome: data/G_max/genome.fa
+    lncrna_gtf: data/G_max/ref_lncRNA.gtf      # reference-annotated lncRNAs
+    mrna_gtf: data/A_thaliana/ref_mRNA.gtf          # reference-annotated mRNAs
+    plncdb_fa: data/A_thaliana/plncdb_all_cdhit.fa  # all PLncDB sources, cd-hit condensed (T)
+    evlncdb_fa: data/A_thaliana/evlncdb.fa          # EVLncDB subset kept aside (E)
+    candidates_fa: data/A_thaliana/candidates.fa    # candidates entering the ML tools (C)
+    transcriptome_fa: data/A_thaliana/stringtie_all.fa   # full transcriptome for BUSCO
+    diamond_tsv: data/A_thaliana/candidates_vs_sprot.tsv
+    busco_lineage: eudicotyledons_odb12
+    tools:   # one file per tool: candidate IDs the tool called non-coding (lncRNA), one per line
+      feelnc: data/A_thaliana/feelnc_lnc_ids.txt
+      lncfinder: data/A_thaliana/lncfinder_lnc_ids.txt
+      lncboost: data/A_thaliana/lncboost_lnc_ids.txt
+      cpat: data/A_thaliana/cpat_noncoding_ids.txt
+  # species3: ...
+  # species4: ...

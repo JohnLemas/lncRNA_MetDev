@@ -1,0 +1,13 @@
+#!/bin/bash --login
+#SBATCH --job-name=lncrna_bench
+#SBATCH --partition=YOUR_PARTITION
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=4G
+#SBATCH --time=12:00:00
+#SBATCH --output=logs/snakemake_%j.out
+
+module purge
+ml load Miniforge3
+conda activate lncbench
+
+snakemake --profile profiles/slurm -n

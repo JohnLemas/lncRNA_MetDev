@@ -1,0 +1,155 @@
+configfile: "config.yaml"
+
+OUT = config.get("outdir", "results")
+SPECIES = list(config["species"])
+TOOLS = config["tools"]
+THR = config["thresholds"]
+BUSCO_MODES = ["proteins"] + (["transcriptome"] if config.get("busco_transcriptome", True) else [])
+
+wildcard_constraints:
+    sp="[^/]+",
+    ref="[TANE]",
+    kind="lncrna|mrna",
+    mode="proteins|transcriptome",
+    pair="C_vs_[TANE]|A_vs_T"
+
+
+def S(sp, key):
+    return config["species"][sp][key]
+
+
+def ref_fa(sp, ref):
+    return {"T": S(sp, "plncdb_fa"), "E": S(sp, "evlncdb_fa"),
+            "A": f"{OUT}/{sp}/ref/lncrna.fa", "N": f"{OUT}/{sp}/ref/mrna.fa"}[ref]
+
+
+rule all:
+    input:
+        f"{OUT}/summary/performance_all_species.tsv",
+        f"{OUT}/summary/plots.done",
+
+
+# ---------- reference sequences from the genome annotation ----------
+rule annot_fasta:
+    input:
+        gtf=lambda w: S(w.sp, f"{w.kind}_gtf"),
+        genome=lambda w: S(w.sp, "genome"),
+    output: f"{OUT}/{{sp}}/ref/{{kind}}.fa"
+    shell: "gffread {input.gtf} -g {input.genome} -w {output}"
+
+
+# ---------- sequence matching (minimap2) ----------
+rule map_candidates:
+    input:
+        q=lambda w: S(w.sp, "candidates_fa"),
+        r=lambda w: ref_fa(w.sp, w.ref),
+    output: f"{OUT}/{{sp}}/paf/C_vs_{{ref}}.paf"
+    threads: config.get("threads", 8)
+    params: opts=config.get("minimap2_opts", "-x asm20 -c -N 100 -p 0.3")
+    shell: "minimap2 {params.opts} -t {threads} {input.r} {input.q} > {output}"
+
+
+rule map_annot_vs_truth:
+    input:
+        q=lambda w: ref_fa(w.sp, "A"),
+        r=lambda w: ref_fa(w.sp, "T"),
+    output: f"{OUT}/{{sp}}/paf/A_vs_T.paf"
+    threads: config.get("threads", 8)
+    params: opts=config.get("minimap2_opts", "-x asm20 -c -N 100 -p 0.3")
+    shell: "minimap2 {params.opts} -t {threads} {input.r} {input.q} > {output}"
+
+
+rule parse_paf:
+    input: f"{OUT}/{{sp}}/paf/{{pair}}.paf"
+    output: f"{OUT}/{{sp}}/pairs/{{pair}}.tsv"
+    params: strand="--same-strand" if config.get("require_same_strand", True) else ""
+    shell: "python {workflow.basedir}/parse_paf.py {input} {output} {params.strand}"
+
+
+# ---------- all benchmarking layers except BUSCO ----------
+rule metrics:
+    input:
+        cand=lambda w: S(w.sp, "candidates_fa"),
+        diamond=lambda w: S(w.sp, "diamond_tsv"),
+        tools=lambda w: [S(w.sp, "tools")[t] for t in TOOLS],
+        fastas=lambda w: [ref_fa(w.sp, r) for r in "TANE"],
+        pairs=lambda w: [f"{OUT}/{w.sp}/pairs/C_vs_{r}.tsv" for r in "TANE"]
+                        + [f"{OUT}/{w.sp}/pairs/A_vs_T.tsv"],
+    output:
+        perf=f"{OUT}/{{sp}}/metrics/performance.tsv",
+        tc=f"{OUT}/{{sp}}/metrics/tc_benchmark.tsv",
+        avt=f"{OUT}/{{sp}}/metrics/annot_vs_truth.tsv",
+        sizes=f"{OUT}/{{sp}}/metrics/set_sizes.tsv",
+        flags=f"{OUT}/{{sp}}/metrics/candidate_flags.tsv",
+    params:
+        outdir=lambda w: f"{OUT}/{w.sp}/metrics",
+        ev=config.get("diamond_evalue", 1e-5),
+        stages=" ".join(config["stage_order"]),
+        tool_args=lambda w: " ".join(f"--tool {t}={S(w.sp, 'tools')[t]}" for t in TOOLS),
+        fasta_args=lambda w: " ".join(f"--fasta {r}={ref_fa(w.sp, r)}" for r in "TANE"),
+        pair_args=lambda w: " ".join(
+            [f"--pairs C_vs_{r}={OUT}/{w.sp}/pairs/C_vs_{r}.tsv" for r in "TANE"]
+            + [f"--pairs A_vs_T={OUT}/{w.sp}/pairs/A_vs_T.tsv"]),
+        thr_args=" ".join(f"--threshold {n}:{v['min_identity']}:{v['min_scov']}" for n, v in THR.items()),
+    shell:
+        "python {workflow.basedir}/compute_metrics.py --species {wildcards.sp} "
+        "--candidates {input.cand} --diamond {input.diamond} --diamond-evalue {params.ev} "
+        "{params.tool_args} {params.fasta_args} {params.pair_args} {params.thr_args} "
+        "--stage-order {params.stages} --outdir {params.outdir}"
+
+
+# ---------- BUSCO on the full transcriptome ----------
+rule transdecoder:
+    input: lambda w: S(w.sp, "transcriptome_fa")
+    output: pep=f"{OUT}/{{sp}}/busco/proteins.faa"
+    params: wd=f"{OUT}/{{sp}}/busco/transdecoder"
+    shell:
+        r"""
+        set -euo pipefail
+        IN=$(realpath {input}); OUTP=$(realpath -m {output.pep}); WD=$(realpath -m {params.wd})
+        mkdir -p $WD && cd $WD
+        TransDecoder.LongOrfs -t $IN
+        TransDecoder.Predict -t $IN --single_best_only
+        sed 's/\*//g' $(basename $IN).transdecoder.pep > $OUTP
+        """
+
+
+rule busco:
+    input: lambda w: f"{OUT}/{w.sp}/busco/proteins.faa" if w.mode == "proteins" else S(w.sp, "transcriptome_fa")
+    output: directory(f"{OUT}/{{sp}}/busco/{{mode}}")
+    threads: config.get("threads", 8)
+    params:
+        lineage=lambda w: S(w.sp, "busco_lineage"),
+        parent=lambda w: f"{OUT}/{w.sp}/busco",
+        extra=config.get("busco_extra", ""),
+    shell:
+        "busco -i {input} -o {wildcards.mode} --out_path {params.parent} -l {params.lineage} "
+        "-m {wildcards.mode} -c {threads} -f {params.extra}"
+
+
+rule busco_summary:
+    input: expand(f"{OUT}/{{{{sp}}}}/busco/{{mode}}", mode=BUSCO_MODES)
+    output: f"{OUT}/{{sp}}/busco/busco_summary.tsv"
+    shell: "python {workflow.basedir}/busco_summary.py --species {wildcards.sp} --out {output} {input}"
+
+
+# ---------- aggregate + plots ----------
+rule aggregate:
+    input:
+        expand(f"{OUT}/{{sp}}/metrics/performance.tsv", sp=SPECIES),
+        expand(f"{OUT}/{{sp}}/busco/busco_summary.tsv", sp=SPECIES),
+    output:
+        f"{OUT}/summary/performance_all_species.tsv",
+        f"{OUT}/summary/tc_benchmark_all_species.tsv",
+        f"{OUT}/summary/annot_vs_truth_all_species.tsv",
+        f"{OUT}/summary/set_sizes_all_species.tsv",
+        f"{OUT}/summary/busco_summary_all_species.tsv",
+    params: sp=" ".join(SPECIES)
+    shell: "python {workflow.basedir}/aggregate.py --results {OUT} --species {params.sp}"
+
+
+rule plots:
+    input: f"{OUT}/summary/performance_all_species.tsv"
+    output: touch(f"{OUT}/summary/plots.done")
+    params: sp=" ".join(SPECIES), tools=" ".join(TOOLS)
+    shell: "python {workflow.basedir}/plots.py --results {OUT} --species {params.sp} --tools {params.tools}"
