@@ -4,6 +4,7 @@
 databases/
 images/
 benchmarking/
+synteny/
 *xlsx
 *pdf
 *ncbi_dataset/
