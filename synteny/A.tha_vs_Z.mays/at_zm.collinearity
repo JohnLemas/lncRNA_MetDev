@@ -1,0 +1,989 @@
+############### Parameters ###############
+# MATCH_SCORE: 50
+# MATCH_SIZE: 5
+# GAP_PENALTY: -1
+# OVERLAP_WINDOW: 5
+# E_VALUE: 1e-05
+# MAX GAPS: 25
+############### Statistics ###############
+# Number of collinear genes: 1485, Percentage: 2.28
+# Number of all genes: 65027
+##########################################
+## Alignment 0: score=413.0 e_value=4.5e-14 N=11 at1&zm1 plus
+  0-  0:	gene-AT1G07320	gene-LOC100283234	 2e-105
+  0-  1:	gene-AT1G07430	gene-LOC100192073	 6e-118
+  0-  2:	gene-AT1G07530	gene-LOC100216906	 9e-181
+  0-  3:	gene-AT1G07540	gene-LOC542534	 5e-105
+  0-  4:	gene-AT1G07630	gene-LOC103634426	 2e-147
+  0-  5:	gene-AT1G07645	gene-LOC100280456	  2e-59
+  0-  6:	gene-AT1G07710	gene-LOC100383028	 1e-109
+  0-  7:	gene-AT1G07810	gene-LOC100192002	      0
+  0-  8:	gene-AT1G07890	gene-LOC100285887	 1e-155
+  0-  9:	gene-AT1G07900	gene-LOC100280810	  6e-52
+  0- 10:	gene-AT1G07960	gene-LOC606415	  6e-64
+## Alignment 1: score=276.0 e_value=8.7e-07 N=6 at1&zm1 plus
+  1-  0:	gene-AT1G13700	gene-LOC100282975	 3e-103
+  1-  1:	gene-AT1G13710	gene-LOC103636404	 5e-185
+  1-  2:	gene-AT1G13740	gene-LOC103636411	  2e-45
+  1-  3:	gene-AT1G13880	gene-LOC100281710	  2e-50
+  1-  4:	gene-AT1G13960	gene-LOC103636617	 9e-100
+  1-  5:	gene-AT1G13970	gene-LOC100502215	 8e-133
+## Alignment 2: score=266.0 e_value=4.5e-07 N=6 at1&zm1 plus
+  2-  0:	gene-AT1G69060	gene-LOC103644017	  9e-17
+  2-  1:	gene-AT1G69120	gene-LOC542041	  1e-78
+  2-  2:	gene-AT1G69220	gene-LOC103644020	 8e-254
+  2-  3:	gene-AT1G69310	gene-LOC100191170	  5e-48
+  2-  4:	gene-AT1G69360	gene-LOC100194005	  2e-33
+  2-  5:	gene-AT1G69400	gene-LOC100283863	  5e-81
+## Alignment 3: score=367.0 e_value=2.5e-09 N=8 at1&zm1 minus
+  3-  0:	gene-AT1G06960	gene-LOC100383254	  9e-94
+  3-  1:	gene-AT1G06980	gene-LOC103634518	  8e-51
+  3-  2:	gene-AT1G07025	gene-LOC100284957	  5e-26
+  3-  3:	gene-AT1G07080	gene-LOC100284511	  9e-83
+  3-  4:	gene-AT1G07110	gene-LOC103634503	      0
+  3-  5:	gene-AT1G07120	gene-LOC101202702	  9e-85
+  3-  6:	gene-AT1G07140	gene-LOC100193549	  8e-75
+  3-  7:	gene-AT1G07160	gene-LOC100383423	 1e-101
+## Alignment 4: score=302.0 e_value=2.2e-08 N=7 at1&zm1 minus
+  4-  0:	gene-AT1G20330	gene-LOC100192647	 2e-192
+  4-  1:	gene-AT1G20480	gene-LOC100274307	 1e-210
+  4-  2:	gene-AT1G20620	gene-LOC542230	 7e-286
+  4-  3:	gene-AT1G20640	gene-LOC100278991	 8e-189
+  4-  4:	gene-AT1G20650	gene-LOC103631613	 5e-143
+  4-  5:	gene-AT1G20670	gene-LOC103631596	  1e-76
+  4-  6:	gene-AT1G20760	gene-LOC100194194	 3e-164
+## Alignment 5: score=252.0 e_value=4e-06 N=6 at1&zm1 minus
+  5-  0:	gene-AT1G72360	gene-LOC100502296	  8e-31
+  5-  1:	gene-AT1G72520	gene-lox9	      0
+  5-  2:	gene-AT1G72540	gene-LOC103631789	 1e-142
+  5-  3:	gene-AT1G72620	gene-LOC100284273	  3e-51
+  5-  4:	gene-AT1G72820	gene-LOC100384216	 1e-123
+  5-  5:	gene-AT1G72830	gene-LOC100194365	  7e-40
+## Alignment 6: score=380.0 e_value=5.2e-13 N=9 at1&zm2 plus
+  6-  0:	gene-AT1G19970	gene-LOC100273790	 1e-162
+  6-  1:	gene-AT1G20080	gene-LOC100285684	 2e-276
+  6-  2:	gene-AT1G20220	gene-LOC109944067	  3e-63
+  6-  3:	gene-AT1G20225	gene-LOC100278440	  5e-64
+  6-  4:	gene-AT1G20300	gene-LOC100304366	  2e-42
+  6-  5:	gene-AT1G20530	gene-LOC100275115	  8e-50
+  6-  6:	gene-AT1G20640	gene-LOC100285205	 9e-185
+  6-  7:	gene-AT1G20670	gene-LOC100281438	  4e-83
+  6-  8:	gene-AT1G20693	gene-LOC109944069	  1e-36
+## Alignment 7: score=370.0 e_value=6.2e-10 N=8 at1&zm2 plus
+  7-  0:	gene-AT1G12480	gene-LOC103648441	 7e-225
+  7-  1:	gene-AT1G12520	gene-LOC100283786	 8e-117
+  7-  2:	gene-AT1G12570	gene-LOC100280292	 5e-220
+  7-  3:	gene-AT1G12610	gene-LOC100281239	  2e-46
+  7-  4:	gene-AT1G12630	gene-LOC100281151	  2e-36
+  7-  5:	gene-AT1G12740	gene-LOC103646055	 7e-192
+  7-  6:	gene-AT1G12750	gene-LOC100272312	 3e-127
+  7-  7:	gene-AT1G12760	gene-LOC100191292	 1e-147
+## Alignment 8: score=343.0 e_value=2.9e-11 N=8 at1&zm2 plus
+  8-  0:	gene-AT1G75760	gene-LOC100273790	 1e-167
+  8-  1:	gene-AT1G76010	gene-LOC109944067	  3e-67
+  8-  2:	gene-AT1G76020	gene-LOC100278440	  2e-59
+  8-  3:	gene-AT1G76070	gene-LOC100278020	  3e-12
+  8-  4:	gene-AT1G76150	gene-LOC100272552	 6e-140
+  8-  5:	gene-AT1G76190	gene-LOC100286042	  4e-15
+  8-  6:	gene-AT1G76350	gene-LOC100285205	 1e-184
+  8-  7:	gene-AT1G76380	gene-LOC100281438	  4e-74
+## Alignment 9: score=327.0 e_value=1.8e-08 N=7 at1&zm2 minus
+  9-  0:	gene-AT1G61105	gene-LOC103649259	  2e-45
+  9-  1:	gene-AT1G61110	gene-LOC103647756	  5e-11
+  9-  2:	gene-AT1G61215	gene-LOC100384761	  3e-39
+  9-  3:	gene-AT1G61250	gene-LOC100285854	 3e-128
+  9-  4:	gene-AT1G61260	gene-LOC103647752	  2e-31
+  9-  5:	gene-AT1G61340	gene-LOC100281265	  6e-14
+  9-  6:	gene-AT1G61350	gene-LOC100382716	  3e-29
+## Alignment 10: score=317.0 e_value=5.2e-09 N=8 at1&zm2 minus
+ 10-  0:	gene-AT1G61640	gene-LOC100279203	 5e-209
+ 10-  1:	gene-AT1G61667	gene-LOC100273003	  5e-46
+ 10-  2:	gene-AT1G61760	gene-LOC100285319	  3e-40
+ 10-  3:	gene-AT1G61800	gene-LOC100279907	 5e-186
+ 10-  4:	gene-AT1G61850	gene-LOC103647715	      0
+ 10-  5:	gene-AT1G61930	gene-LOC107457592	  3e-19
+ 10-  6:	gene-AT1G61950	gene-LOC542226	 3e-248
+ 10-  7:	gene-AT1G62180	gene-LOC103647705	 1e-220
+## Alignment 11: score=305.0 e_value=3.2e-07 N=7 at1&zm3 minus
+ 11-  0:	gene-AT1G67530	gene-LOC103650877	 3e-230
+ 11-  1:	gene-AT1G67600	gene-LOC100281758	  5e-71
+ 11-  2:	gene-AT1G67690	gene-LOC100280152	 2e-272
+ 11-  3:	gene-AT1G67710	gene-LOC100285939	 2e-105
+ 11-  4:	gene-AT1G67770	gene-LOC541683	  1e-80
+ 11-  5:	gene-AT1G67800	gene-LOC100279782	 1e-178
+ 11-  6:	gene-AT1G67850	gene-LOC100284062	 2e-214
+## Alignment 12: score=294.0 e_value=1.5e-06 N=7 at1&zm3 minus
+ 12-  0:	gene-AT1G11180	gene-LOC100282807	 8e-125
+ 12-  1:	gene-AT1G11360	gene-LOC100192770	  1e-83
+ 12-  2:	gene-AT1G11490	gene-LOC100285506	  3e-72
+ 12-  3:	gene-AT1G11540	gene-LOC100276828	 2e-115
+ 12-  4:	gene-AT1G11570	gene-LOC103651127	  7e-43
+ 12-  5:	gene-AT1G11630	gene-LOC100273462	  2e-14
+ 12-  6:	gene-AT1G11690	gene-LOC103652451	  2e-19
+## Alignment 13: score=275.0 e_value=3.6e-08 N=7 at1&zm3 minus
+ 13-  0:	gene-AT1G56230	gene-LOC100192913	 3e-192
+ 13-  1:	gene-AT1G56330	gene-LOC100279736	 1e-133
+ 13-  2:	gene-AT1G56560	gene-LOC103650144	 2e-300
+ 13-  3:	gene-AT1G56670	gene-LOC100285863	 2e-130
+ 13-  4:	gene-AT1G56710	gene-LOC100194076	 6e-157
+ 13-  5:	gene-AT1G56720	gene-LOC100191852	 1e-230
+ 13-  6:	gene-AT1G57590	gene-LOC100285650	 1e-155
+## Alignment 14: score=273.0 e_value=3.2e-06 N=6 at1&zm3 minus
+ 14-  0:	gene-AT1G52570	gene-LOC542702	      0
+ 14-  1:	gene-AT1G52590	gene-LOC103649691	  5e-59
+ 14-  2:	gene-AT1G52695	gene-LOC100283662	  3e-50
+ 14-  3:	gene-AT1G52720	gene-LOC100277712	  5e-17
+ 14-  4:	gene-AT1G52770	gene-LOC103649677	  2e-85
+ 14-  5:	gene-AT1G52780	gene-LOC103649676	 2e-279
+## Alignment 15: score=407.0 e_value=9.7e-13 N=9 at1&zm4 minus
+ 15-  0:	gene-AT1G22050	gene-LOC100193576	  6e-45
+ 15-  1:	gene-AT1G22170	gene-LOC100191671	 3e-159
+ 15-  2:	gene-AT1G22180	gene-LOC100383282	 9e-108
+ 15-  3:	gene-AT1G22190	gene-LOC100502435	  1e-51
+ 15-  4:	gene-AT1G22210	gene-LOC100381600	 1e-128
+ 15-  5:	gene-AT1G22230	gene-LOC103654249	  5e-39
+ 15-  6:	gene-AT1G22330	gene-LOC100381763	  8e-47
+ 15-  7:	gene-AT1G22360	gene-LOC103654242	 1e-196
+ 15-  8:	gene-AT1G22480	gene-LOC100382230	  2e-28
+## Alignment 16: score=361.0 e_value=4.7e-09 N=8 at1&zm4 minus
+ 16-  0:	gene-AT1G77870	gene-LOC100193576	  5e-28
+ 16-  1:	gene-AT1G78050	gene-LOC100191671	 5e-152
+ 16-  2:	gene-AT1G78080	gene-LOC100502435	  1e-58
+ 16-  3:	gene-AT1G78090	gene-LOC100381600	 9e-139
+ 16-  4:	gene-AT1G78110	gene-LOC103654249	  2e-34
+ 16-  5:	gene-AT1G78120	gene-LOC103654247	  3e-96
+ 16-  6:	gene-AT1G78240	gene-LOC103654244	 4e-265
+ 16-  7:	gene-AT1G78260	gene-LOC100381763	  9e-49
+## Alignment 17: score=300.0 e_value=3.6e-06 N=7 at1&zm5 plus
+ 17-  0:	gene-AT1G59610	gene-LOC103627697	      0
+ 17-  1:	gene-AT1G59760	gene-LOC103627701	  1e-65
+ 17-  2:	gene-AT1G59900	gene-LOC100283889	 3e-224
+ 17-  3:	gene-AT1G59970	gene-LOC100285384	  1e-90
+ 17-  4:	gene-AT1G59980	gene-LOC100382440	 7e-159
+ 17-  5:	gene-AT1G60030	gene-LOC100282103	 5e-298
+ 17-  6:	gene-AT1G60060	gene-LOC100384705	 2e-124
+## Alignment 18: score=329.0 e_value=1.7e-09 N=7 at1&zm5 minus
+ 18-  0:	gene-AT1G23980	gene-LOC103627714	  1e-69
+ 18-  1:	gene-AT1G24050	gene-LOC100216930	  1e-57
+ 18-  2:	gene-AT1G24110	gene-LOC100284887	 7e-115
+ 18-  3:	gene-AT1G24120	gene-LOC100382440	 2e-179
+ 18-  4:	gene-AT1G24130	gene-LOC103627706	  5e-79
+ 18-  5:	gene-AT1G24140	gene-LOC100285384	 8e-102
+ 18-  6:	gene-AT1G24170	gene-LOC100191570	 1e-146
+## Alignment 19: score=402.0 e_value=7.2e-12 N=9 at1&zm7 minus
+ 19-  0:	gene-AT1G30090	gene-LOC107275234	 1e-143
+ 19-  1:	gene-AT1G30130	gene-LOC100191340	 9e-103
+ 19-  2:	gene-AT1G30210	gene-LOC109940870	  3e-34
+ 19-  3:	gene-AT1G30220	gene-LOC100501657	 6e-292
+ 19-  4:	gene-AT1G30270	gene-LOC100192864	 2e-222
+ 19-  5:	gene-AT1G30380	gene-LOC100286020	  4e-57
+ 19-  6:	gene-AT1G30510	gene-LOC100194249	 1e-205
+ 19-  7:	gene-AT1G30540	gene-LOC100285773	 2e-150
+ 19-  8:	gene-AT1G30570	gene-LOC100383773	 2e-253
+## Alignment 20: score=383.0 e_value=4e-09 N=8 at1&zm7 minus
+ 20-  0:	gene-AT1G72330	gene-LOC100384793	 6e-288
+ 20-  1:	gene-AT1G72410	gene-LOC100273649	 3e-108
+ 20-  2:	gene-AT1G72450	gene-LOC100276383	  7e-16
+ 20-  3:	gene-AT1G72490	gene-LOC103634391	  8e-33
+ 20-  4:	gene-AT1G72500	gene-LOC103633419	 1e-202
+ 20-  5:	gene-AT1G72510	gene-LOC100276535	  6e-27
+ 20-  6:	gene-AT1G72540	gene-LOC103633417	 9e-133
+ 20-  7:	gene-AT1G72560	gene-LOC103633416	      0
+## Alignment 21: score=322.0 e_value=1e-08 N=7 at1&zm7 minus
+ 21-  0:	gene-AT1G61105	gene-LOC103634345	  2e-48
+ 21-  1:	gene-AT1G61110	gene-LOC100279608	  9e-92
+ 21-  2:	gene-AT1G61215	gene-LOC100272351	  2e-35
+ 21-  3:	gene-AT1G61240	gene-LOC100192100	 3e-136
+ 21-  4:	gene-AT1G61250	gene-LOC100303986	 5e-128
+ 21-  5:	gene-AT1G61260	gene-LOC100284699	  2e-35
+ 21-  6:	gene-AT1G61350	gene-LOC100274194	 8e-119
+## Alignment 22: score=294.0 e_value=9.7e-07 N=7 at1&zm7 minus
+ 22-  0:	gene-AT1G61760	gene-LOC103633250	  9e-40
+ 22-  1:	gene-AT1G61800	gene-LOC100281048	 1e-183
+ 22-  2:	gene-AT1G61850	gene-LOC100272617	      0
+ 22-  3:	gene-AT1G61930	gene-LOC100382369	  3e-18
+ 22-  4:	gene-AT1G61950	gene-LOC542526	 3e-249
+ 22-  5:	gene-AT1G62050	gene-LOC109940912	 1e-144
+ 22-  6:	gene-AT1G62180	gene-LOC606419	 2e-223
+## Alignment 23: score=265.0 e_value=5.6e-06 N=6 at1&zm7 minus
+ 23-  0:	gene-AT1G69120	gene-LOC542045	  9e-70
+ 23-  1:	gene-AT1G69240	gene-LOC103633404	 3e-124
+ 23-  2:	gene-AT1G69270	gene-LOC103633402	 2e-155
+ 23-  3:	gene-AT1G69295	gene-LOC100192793	  1e-25
+ 23-  4:	gene-AT1G69410	gene-LOC542601	  3e-93
+ 23-  5:	gene-AT1G69420	gene-LOC100194215	 1e-166
+## Alignment 24: score=311.0 e_value=2.7e-08 N=7 at2&zm1 plus
+ 24-  0:	gene-AT2G40116	gene-LOC100191466	 3e-182
+ 24-  1:	gene-AT2G40150	gene-LOC103634496	 2e-167
+ 24-  2:	gene-AT2G40180	gene-LOC100383423	  8e-95
+ 24-  3:	gene-AT2G40270	gene-LOC100191492	 3e-117
+ 24-  4:	gene-AT2G40290	gene-LOC100279728	 3e-180
+ 24-  5:	gene-AT2G40316	gene-LOC100502280	  1e-88
+ 24-  6:	gene-AT2G40370	gene-LOC100279407	 7e-254
+## Alignment 25: score=307.0 e_value=2e-08 N=7 at2&zm1 plus
+ 25-  0:	gene-AT2G29980	gene-LOC103644592	 5e-197
+ 25-  1:	gene-AT2G30020	gene-LOC100383423	 6e-101
+ 25-  2:	gene-AT2G30060	gene-LOC100193549	  2e-74
+ 25-  3:	gene-AT2G30160	gene-LOC100284957	 6e-128
+ 25-  4:	gene-AT2G30200	gene-LOC100283964	 2e-187
+ 25-  5:	gene-AT2G30230	gene-LOC103634518	  3e-49
+ 25-  6:	gene-AT2G30260	gene-LOC100383254	  4e-95
+## Alignment 26: score=550.0 e_value=1.9e-18 N=13 at2&zm1 minus
+ 26-  0:	gene-AT2G28760	gene-LOC100191862	 2e-220
+ 26-  1:	gene-AT2G28830	gene-LOC100502260	  2e-95
+ 26-  2:	gene-AT2G28840	gene-LOC107305680	 2e-128
+ 26-  3:	gene-AT2G28890	gene-LOC103634426	 1e-139
+ 26-  4:	gene-AT2G29060	gene-LOC100216906	 6e-169
+ 26-  5:	gene-AT2G29210	gene-LOC100304415	  9e-59
+ 26-  6:	gene-AT2G29260	gene-LOC100282692	 4e-118
+ 26-  7:	gene-AT2G29400	gene-LOC103634267	 7e-200
+ 26-  8:	gene-AT2G29510	gene-LOC100194401	  1e-47
+ 26-  9:	gene-AT2G29560	gene-LOC103634230	  3e-37
+ 26- 10:	gene-AT2G29640	gene-LOC100282423	  2e-76
+ 26- 11:	gene-AT2G29660	gene-LOC100194357	  1e-69
+ 26- 12:	gene-AT2G29690	gene-LOC606722	 2e-279
+## Alignment 27: score=520.0 e_value=1.5e-21 N=13 at2&zm1 minus
+ 27-  0:	gene-AT2G37090	gene-LOC100281273	  1e-76
+ 27-  1:	gene-AT2G37240	gene-LOC100278941	  7e-90
+ 27-  2:	gene-AT2G37310	gene-LOC103634480	 7e-128
+ 27-  3:	gene-AT2G37420	gene-LOC103634473	 6e-282
+ 27-  4:	gene-AT2G37500	gene-LOC100383335	 4e-212
+ 27-  5:	gene-AT2G37510	gene-LOC100283990	  5e-48
+ 27-  6:	gene-AT2G37520	gene-LOC100279211	  4e-63
+ 27-  7:	gene-AT2G37550	gene-LOC103634469	 9e-149
+ 27-  8:	gene-AT2G37570	gene-LOC100281384	 3e-192
+ 27-  9:	gene-AT2G37650	gene-LOC100216906	 9e-188
+ 27- 10:	gene-AT2G37730	gene-LOC103634306	 8e-145
+ 27- 11:	gene-AT2G37840	gene-LOC103634282	 1e-204
+ 27- 12:	gene-AT2G38025	gene-LOC100273272	  1e-73
+## Alignment 28: score=489.0 e_value=3.2e-15 N=11 at2&zm1 minus
+ 28-  0:	gene-AT2G44525	gene-LOC100276291	  3e-74
+ 28-  1:	gene-AT2G44590	gene-LOC103637681	      0
+ 28-  2:	gene-AT2G44650	gene-LOC100273606	  2e-45
+ 28-  3:	gene-AT2G44680	gene-LOC542628	 2e-144
+ 28-  4:	gene-AT2G44730	gene-LOC100273299	  4e-27
+ 28-  5:	gene-AT2G44740	gene-LOC100502430	  7e-61
+ 28-  6:	gene-AT2G44810	gene-LOC100279482	  3e-86
+ 28-  7:	gene-AT2G44830	gene-LOC103637670	 1e-188
+ 28-  8:	gene-AT2G44900	gene-LOC103637669	 1e-247
+ 28-  9:	gene-AT2G44910	gene-LOC103637666	  2e-57
+ 28- 10:	gene-AT2G45050	gene-LOC103637652	  5e-52
+## Alignment 29: score=436.0 e_value=3.5e-14 N=10 at2&zm1 minus
+ 29-  0:	gene-AT2G47180	gene-LOC606403	 3e-186
+ 29-  1:	gene-AT2G47190	gene-LOC100274036	  8e-75
+ 29-  2:	gene-AT2G47250	gene-LOC100191798	      0
+ 29-  3:	gene-AT2G47330	gene-LOC103634567	      0
+ 29-  4:	gene-AT2G47370	gene-LOC100276515	  2e-82
+ 29-  5:	gene-AT2G47390	gene-LOC118473606	      0
+ 29-  6:	gene-AT2G47400	gene-LOC103634557	  2e-35
+ 29-  7:	gene-AT2G47460	gene-LOC103644608	  6e-75
+ 29-  8:	gene-AT2G47480	gene-LOC100277630	  3e-16
+ 29-  9:	gene-AT2G47500	gene-LOC100381956	      0
+## Alignment 30: score=289.0 e_value=3.2e-06 N=6 at2&zm1 minus
+ 30-  0:	gene-AT2G01890	gene-LOC100284727	 7e-137
+ 30-  1:	gene-AT2G01900	gene-LOC100280721	 7e-163
+ 30-  2:	gene-AT2G01905	gene-LOC103633314	  1e-72
+ 30-  3:	gene-AT2G01910	gene-LOC100280300	 3e-201
+ 30-  4:	gene-AT2G01970	gene-LOC100282600	      0
+ 30-  5:	gene-AT2G02020	gene-LOC100216898	 7e-233
+## Alignment 31: score=282.0 e_value=3e-06 N=6 at2&zm1 minus
+ 31-  0:	gene-AT2G42150	gene-LOC100501552	  3e-42
+ 31-  1:	gene-AT2G42200	gene-ub2	  4e-37
+ 31-  2:	gene-AT2G42280	gene-LOC100279237	  4e-50
+ 31-  3:	gene-AT2G42290	gene-LOC100501323	 3e-113
+ 31-  4:	gene-AT2G42310	gene-LOC100275660	  5e-48
+ 31-  5:	gene-AT2G42320	gene-LOC100382159	 7e-197
+## Alignment 32: score=343.0 e_value=2.9e-09 N=8 at2&zm10 minus
+ 32-  0:	gene-AT2G27240	gene-LOC100193924	 2e-103
+ 32-  1:	gene-AT2G27290	gene-LOC103642743	  9e-26
+ 32-  2:	gene-AT2G27350	gene-LOC103164604	 1e-157
+ 32-  3:	gene-AT2G27460	gene-LOC103641619	 2e-314
+ 32-  4:	gene-AT2G27510	gene-LOC100283643	  1e-46
+ 32-  5:	gene-AT2G27550	gene-LOC100127516	  5e-89
+ 32-  6:	gene-AT2G27740	gene-LOC100277048	  2e-48
+ 32-  7:	gene-AT2G27820	gene-LOC100279620	 8e-192
+## Alignment 33: score=253.0 e_value=2e-06 N=6 at2&zm10 minus
+ 33-  0:	gene-AT2G36020	gene-LOC100284353	  7e-42
+ 33-  1:	gene-AT2G36090	gene-LOC103641623	  2e-44
+ 33-  2:	gene-AT2G36190	gene-LOC541678	 2e-225
+ 33-  3:	gene-AT2G36350	gene-LOC100383516	 4e-198
+ 33-  4:	gene-AT2G36355	gene-LOC100277048	  5e-37
+ 33-  5:	gene-AT2G36470	gene-LOC100274870	  1e-32
+## Alignment 34: score=334.0 e_value=3.1e-09 N=8 at2&zm2 plus
+ 34-  0:	gene-AT2G27240	gene-LOC100037822	  2e-97
+ 34-  1:	gene-AT2G27290	gene-LOC100276592	  4e-61
+ 34-  2:	gene-AT2G27330	gene-LOC100283722	  4e-22
+ 34-  3:	gene-AT2G27350	gene-LOC100285430	 3e-157
+ 34-  4:	gene-AT2G27500	gene-LOC100384311	 5e-148
+ 34-  5:	gene-AT2G27610	gene-LOC103646503	 9e-163
+ 34-  6:	gene-AT2G27820	gene-LOC100193934	 1e-193
+ 34-  7:	gene-AT2G27830	gene-LOC100275426	  1e-30
+## Alignment 35: score=250.0 e_value=9.9e-08 N=6 at2&zm2 plus
+ 35-  0:	gene-AT2G44710	gene-LOC541976	 5e-178
+ 35-  1:	gene-AT2G44740	gene-LOC103646129	  2e-51
+ 35-  2:	gene-AT2G44745	gene-LOC100285549	  2e-54
+ 35-  3:	gene-AT2G44770	gene-LOC100280027	 4e-127
+ 35-  4:	gene-AT2G45030	gene-LOC103646146	 2e-192
+ 35-  5:	gene-AT2G45190	gene-LOC100193442	  9e-57
+## Alignment 36: score=250.0 e_value=6.8e-06 N=6 at2&zm2 minus
+ 36-  0:	gene-AT2G44710	gene-LOC541976	 5e-178
+ 36-  1:	gene-AT2G44840	gene-LOC100285687	  1e-37
+ 36-  2:	gene-AT2G44910	gene-LOC100285975	  1e-66
+ 36-  3:	gene-AT2G44990	gene-LOC100502521	 5e-221
+ 36-  4:	gene-AT2G45080	gene-LOC103646104	  4e-51
+ 36-  5:	gene-AT2G45160	gene-LOC100382187	  1e-72
+## Alignment 37: score=383.0 e_value=4.3e-09 N=8 at2&zm3 plus
+ 37-  0:	gene-AT2G30210	gene-LOC100282094	 2e-264
+ 37-  1:	gene-AT2G30230	gene-LOC100274739	  3e-37
+ 37-  2:	gene-AT2G30250	gene-LOC100279301	  2e-72
+ 37-  3:	gene-AT2G30300	gene-LOC100280904	 5e-125
+ 37-  4:	gene-AT2G30340	gene-LOC100285303	  4e-62
+ 37-  5:	gene-AT2G30370	gene-LOC100278334	  4e-28
+ 37-  6:	gene-AT2G30380	gene-LOC103651060	  5e-56
+ 37-  7:	gene-AT2G30400	gene-LOC103651061	  6e-23
+## Alignment 38: score=378.0 e_value=2.9e-10 N=9 at2&zm3 plus
+ 38-  0:	gene-AT2G40120	gene-LOC100281776	 2e-183
+ 38-  1:	gene-AT2G40280	gene-LOC103651052	 7e-242
+ 38-  2:	gene-AT2G40330	gene-LOC100383409	  8e-67
+ 38-  3:	gene-AT2G40380	gene-LOC100282720	  5e-64
+ 38-  4:	gene-AT2G40400	gene-LOC100191628	 7e-294
+ 38-  5:	gene-AT2G40470	gene-LOC100285303	  2e-69
+ 38-  6:	gene-AT2G40610	gene-LOC541904	 5e-130
+ 38-  7:	gene-AT2G40730	gene-LOC103651067	      0
+ 38-  8:	gene-AT2G40815	gene-LOC100381609	  2e-41
+## Alignment 39: score=624.0 e_value=2.9e-24 N=15 at2&zm3 minus
+ 39-  0:	gene-AT2G37080	gene-LOC103651046	  2e-48
+ 39-  1:	gene-AT2G37290	gene-LOC103651042	 7e-225
+ 39-  2:	gene-AT2G37380	gene-LOC103651037	  1e-22
+ 39-  3:	gene-AT2G37430	gene-LOC100284942	  1e-13
+ 39-  4:	gene-AT2G37570	gene-LOC100281390	 1e-203
+ 39-  5:	gene-AT2G37650	gene-LOC100279528	 4e-169
+ 39-  6:	gene-AT2G37760	gene-LOC100037812	 2e-135
+ 39-  7:	gene-AT2G37770	gene-LOC100381673	 4e-133
+ 39-  8:	gene-AT2G37870	gene-LOC100283788	  4e-37
+ 39-  9:	gene-AT2G37940	gene-LOC100382910	 8e-150
+ 39- 10:	gene-AT2G38050	gene-LOC100283443	  3e-75
+ 39- 11:	gene-AT2G38060	gene-LOC100281567	 8e-149
+ 39- 12:	gene-AT2G38070	gene-LOC103651003	  3e-51
+ 39- 13:	gene-AT2G38110	gene-LOC100282930	 8e-263
+ 39- 14:	gene-AT2G38120	gene-LOC100285200	 2e-303
+## Alignment 40: score=297.0 e_value=4.1e-07 N=7 at2&zm5 plus
+ 40-  0:	gene-AT2G44745	gene-LOC100857064	  8e-59
+ 40-  1:	gene-AT2G44770	gene-LOC100274345	 3e-136
+ 40-  2:	gene-AT2G44810	gene-LOC100281723	  1e-92
+ 40-  3:	gene-AT2G44840	gene-LOC103627498	  6e-40
+ 40-  4:	gene-AT2G44940	gene-LOC103627503	  5e-43
+ 40-  5:	gene-AT2G45110	gene-LOC100216633	  2e-95
+ 40-  6:	gene-AT2G45180	gene-LOC103627516	  1e-39
+## Alignment 41: score=293.0 e_value=1.3e-08 N=7 at2&zm5 plus
+ 41-  0:	gene-AT2G24820	gene-LOC100382079	 8e-246
+ 41-  1:	gene-AT2G24830	gene-LOC100191995	 3e-154
+ 41-  2:	gene-AT2G24940	gene-LOC100280580	  5e-43
+ 41-  3:	gene-AT2G25050	gene-LOC110991262	 2e-252
+ 41-  4:	gene-AT2G25180	gene-LOC100274010	 9e-110
+ 41-  5:	gene-AT2G25270	gene-LOC100280170	 4e-165
+ 41-  6:	gene-AT2G25340	gene-LOC100272623	  1e-94
+## Alignment 42: score=285.0 e_value=1.1e-09 N=7 at2&zm6 minus
+ 42-  0:	gene-AT2G37290	gene-LOC103630445	 2e-216
+ 42-  1:	gene-AT2G37380	gene-LOC103630440	  1e-16
+ 42-  2:	gene-AT2G37600	gene-LOC103504721	  1e-48
+ 42-  3:	gene-AT2G37770	gene-LOC100279403	 3e-149
+ 42-  4:	gene-AT2G37790	gene-LOC103630432	 9e-142
+ 42-  5:	gene-AT2G37940	gene-LOC100501660	 2e-150
+ 42-  6:	gene-AT2G37950	gene-LOC100282950	  7e-32
+## Alignment 43: score=427.0 e_value=4.9e-14 N=10 at2&zm8 plus
+ 43-  0:	gene-AT2G28500	gene-LOC103635941	  3e-55
+ 43-  1:	gene-AT2G28560	gene-LOC100193464	 2e-137
+ 43-  2:	gene-AT2G28610	gene-LOC103635953	  7e-35
+ 43-  3:	gene-AT2G28680	gene-LOC541929	 3e-175
+ 43-  4:	gene-AT2G28690	gene-LOC100277278	  7e-14
+ 43-  5:	gene-AT2G28840	gene-LOC100191406	 2e-147
+ 43-  6:	gene-AT2G28890	gene-LOC103635969	 2e-121
+ 43-  7:	gene-AT2G28900	gene-LOC103635971	  5e-55
+ 43-  8:	gene-AT2G28930	gene-LOC100285589	 3e-181
+ 43-  9:	gene-AT2G29140	gene-LOC100279770	 3e-102
+## Alignment 44: score=337.0 e_value=9.3e-09 N=8 at2&zm8 minus
+ 44-  0:	gene-AT2G39705	gene-LOC103636511	  9e-12
+ 44-  1:	gene-AT2G39750	gene-LOC100281537	 4e-312
+ 44-  2:	gene-AT2G39770	gene-LOC100274471	 7e-237
+ 44-  3:	gene-AT2G39800	gene-LOC100280719	      0
+ 44-  4:	gene-AT2G39880	gene-LOC100273738	  1e-65
+ 44-  5:	gene-AT2G39940	gene-LOC100382859	 8e-236
+ 44-  6:	gene-AT2G39980	gene-LOC103636474	 5e-159
+ 44-  7:	gene-AT2G40000	gene-LOC100382754	 1e-124
+## Alignment 45: score=361.0 e_value=2.3e-11 N=9 at2&zm9 plus
+ 45-  0:	gene-AT2G37090	gene-LOC113687178	  1e-73
+ 45-  1:	gene-AT2G37300	gene-LOC100274758	  6e-15
+ 45-  2:	gene-AT2G37370	gene-LOC103639291	 4e-152
+ 45-  3:	gene-AT2G37550	gene-LOC100284393	 7e-151
+ 45-  4:	gene-AT2G37570	gene-LOC100280228	 1e-192
+ 45-  5:	gene-AT2G37650	gene-LOC100381402	 2e-189
+ 45-  6:	gene-AT2G37840	gene-LOC100382597	 2e-208
+ 45-  7:	gene-AT2G37890	gene-LOC100193567	 4e-136
+ 45-  8:	gene-AT2G37930	gene-LOC103639319	  2e-23
+## Alignment 46: score=278.0 e_value=3.6e-07 N=7 at2&zm9 plus
+ 46-  0:	gene-AT2G47180	gene-LOC606405	 6e-184
+ 46-  1:	gene-AT2G47250	gene-LOC100282531	      0
+ 46-  2:	gene-AT2G47330	gene-LOC100281205	      0
+ 46-  3:	gene-AT2G47370	gene-LOC100277134	  7e-84
+ 46-  4:	gene-AT2G47480	gene-LOC103639235	  5e-14
+ 46-  5:	gene-AT2G47500	gene-LOC103639240	      0
+ 46-  6:	gene-AT2G47580	gene-LOC100283511	  1e-70
+## Alignment 47: score=263.0 e_value=7.4e-06 N=6 at2&zm9 plus
+ 47-  0:	gene-AT2G25050	gene-LOC103637981	 1e-128
+ 47-  1:	gene-AT2G25170	gene-LOC103637982	      0
+ 47-  2:	gene-AT2G25180	gene-LOC100191412	 1e-104
+ 47-  3:	gene-AT2G25190	gene-LOC100501775	  9e-60
+ 47-  4:	gene-AT2G25260	gene-LOC100276855	 4e-177
+ 47-  5:	gene-AT2G25300	gene-LOC100283552	 4e-159
+## Alignment 48: score=340.0 e_value=1e-11 N=8 at3&zm1 plus
+ 48-  0:	gene-AT3G22600	gene-LOC100286065	  1e-30
+ 48-  1:	gene-AT3G22620	gene-LOC103644166	  5e-24
+ 48-  2:	gene-AT3G22800	gene-LOC100285871	  3e-55
+ 48-  3:	gene-AT3G22830	gene-LOC100281501	  5e-92
+ 48-  4:	gene-AT3G22850	gene-LOC126688387	 3e-113
+ 48-  5:	gene-AT3G22960	gene-LOC103644177	 6e-310
+ 48-  6:	gene-AT3G22970	gene-LOC103644178	  4e-68
+ 48-  7:	gene-AT3G23090	gene-LOC100282810	  4e-38
+## Alignment 49: score=318.0 e_value=5.3e-09 N=7 at3&zm1 plus
+ 49-  0:	gene-AT3G57670	gene-LOC103641945	 1e-117
+ 49-  1:	gene-AT3G57780	gene-LOC100382159	 2e-186
+ 49-  2:	gene-AT3G57785	gene-LOC100275660	  6e-49
+ 49-  3:	gene-AT3G57810	gene-LOC100284472	  3e-83
+ 49-  4:	gene-AT3G57830	gene-LOC100501323	 8e-112
+ 49-  5:	gene-AT3G57910	gene-LOC100191767	  1e-46
+ 49-  6:	gene-AT3G57980	gene-LOC100501552	  3e-42
+## Alignment 50: score=571.0 e_value=2.2e-23 N=14 at3&zm1 minus
+ 50-  0:	gene-AT3G55020	gene-LOC103634483	 6e-259
+ 50-  1:	gene-AT3G55030	gene-LOC100281305	  8e-96
+ 50-  2:	gene-AT3G55040	gene-LOC100281225	  2e-84
+ 50-  3:	gene-AT3G55090	gene-LOC100285138	      0
+ 50-  4:	gene-AT3G55240	gene-LOC100284567	  3e-26
+ 50-  5:	gene-AT3G55320	gene-LOC103644583	      0
+ 50-  6:	gene-AT3G55330	gene-LOC103634474	  6e-39
+ 50-  7:	gene-AT3G55370	gene-LOC100501071	  1e-41
+ 50-  8:	gene-AT3G55530	gene-LOC100193208	 3e-120
+ 50-  9:	gene-AT3G55560	gene-LOC100286293	  3e-65
+ 50- 10:	gene-AT3G55590	gene-LOC100274383	 6e-214
+ 50- 11:	gene-AT3G55720	gene-LOC100279315	 4e-125
+ 50- 12:	gene-AT3G55770	gene-LOC100281283	  5e-95
+ 50- 13:	gene-AT3G55870	gene-LOC606722	 4e-274
+## Alignment 51: score=416.0 e_value=6e-12 N=10 at3&zm1 minus
+ 51-  0:	gene-AT3G60150	gene-LOC100276291	  9e-74
+ 51-  1:	gene-AT3G60190	gene-LOC103637681	      0
+ 51-  2:	gene-AT3G60210	gene-LOC100273606	  2e-49
+ 51-  3:	gene-AT3G60250	gene-LOC542628	 1e-136
+ 51-  4:	gene-AT3G60320	gene-LOC100381684	 2e-218
+ 51-  5:	gene-AT3G60350	gene-LOC103637669	 4e-242
+ 51-  6:	gene-AT3G60380	gene-LOC100284853	  5e-11
+ 51-  7:	gene-AT3G60390	gene-LOC103637666	  7e-57
+ 51-  8:	gene-AT3G60530	gene-LOC103637652	  9e-55
+ 51-  9:	gene-AT3G60630	gene-LOC100274201	  5e-72
+## Alignment 52: score=415.0 e_value=8.8e-14 N=10 at3&zm1 minus
+ 52-  0:	gene-AT3G62310	gene-LOC100191798	      0
+ 52-  1:	gene-AT3G62370	gene-LOC100273099	 1e-160
+ 52-  2:	gene-AT3G62410	gene-LOC103634557	  2e-33
+ 52-  3:	gene-AT3G62420	gene-LOC103644612	  7e-11
+ 52-  4:	gene-AT3G62570	gene-LOC103634547	 4e-144
+ 52-  5:	gene-AT3G62610	gene-LOC103644608	  8e-71
+ 52-  6:	gene-AT3G62630	gene-LOC103634532	  9e-40
+ 52-  7:	gene-AT3G62640	gene-LOC100277630	  3e-12
+ 52-  8:	gene-AT3G62660	gene-LOC100191914	 1e-206
+ 52-  9:	gene-AT3G62720	gene-LOC100285084	 2e-252
+## Alignment 53: score=344.0 e_value=5.8e-10 N=8 at3&zm1 minus
+ 53-  0:	gene-AT3G22490	gene-LOC100286284	  1e-77
+ 53-  1:	gene-AT3G22520	gene-LOC100502172	  2e-17
+ 53-  2:	gene-AT3G22670	gene-LOC100502439	  2e-39
+ 53-  3:	gene-AT3G22750	gene-LOC103643998	 4e-146
+ 53-  4:	gene-AT3G22845	gene-LOCLOC100216616	 2e-113
+ 53-  5:	gene-AT3G22850	gene-LOC103643996	 4e-105
+ 53-  6:	gene-AT3G22890	gene-LOC103643994	 6e-244
+ 53-  7:	gene-AT3G23050	gene-LOC100284262	  4e-67
+## Alignment 54: score=312.0 e_value=7.6e-11 N=8 at3&zm1 minus
+ 54-  0:	gene-AT3G17750	gene-LOC100381461	      0
+ 54-  1:	gene-AT3G17770	gene-LOC100282191	 2e-317
+ 54-  2:	gene-AT3G17800	gene-LOC100276591	 1e-150
+ 54-  3:	gene-AT3G17820	gene-LOC542400	 8e-237
+ 54-  4:	gene-AT3G17840	gene-LOC542104	 2e-158
+ 54-  5:	gene-AT3G17850	gene-LOC103643892	      0
+ 54-  6:	gene-AT3G17970	gene-LOC100285985	 2e-211
+ 54-  7:	gene-AT3G18080	gene-LOC103643865	 2e-235
+## Alignment 55: score=280.0 e_value=8.1e-08 N=7 at3&zm1 minus
+ 55-  0:	gene-AT3G53790	gene-LOC542534	  1e-63
+ 55-  1:	gene-AT3G53800	gene-LOC100275241	 2e-120
+ 55-  2:	gene-AT3G53920	gene-LOC541717	  2e-50
+ 55-  3:	gene-AT3G53930	gene-LOC103634282	 1e-190
+ 55-  4:	gene-AT3G54050	gene-LOC100216767	 2e-214
+ 55-  5:	gene-AT3G54130	gene-LOC100282423	  2e-12
+ 55-  6:	gene-AT3G54220	gene-LOC103634103	  2e-53
+## Alignment 56: score=263.0 e_value=7.7e-07 N=6 at3&zm1 minus
+ 56-  0:	gene-AT3G53470	gene-LOC100278698	  4e-41
+ 56-  1:	gene-AT3G53490	gene-LOC100277518	  2e-76
+ 56-  2:	gene-AT3G53510	gene-LOC100285138	      0
+ 56-  3:	gene-AT3G53630	gene-LOC100278585	  1e-43
+ 56-  4:	gene-AT3G53680	gene-LOC100279211	  6e-59
+ 56-  5:	gene-AT3G53710	gene-LOC103634469	 2e-155
+## Alignment 57: score=310.0 e_value=1.2e-07 N=7 at3&zm10 minus
+ 57-  0:	gene-AT3G52490	gene-LOC100384662	 1e-170
+ 57-  1:	gene-AT3G52600	gene-LOC100285169	 1e-216
+ 57-  2:	gene-AT3G52740	gene-LOC100275550	  2e-23
+ 57-  3:	gene-AT3G52770	gene-LOC100276735	  6e-16
+ 57-  4:	gene-AT3G52810	gene-LOC100216959	 2e-176
+ 57-  5:	gene-AT3G52890	gene-LOC100383516	 7e-197
+ 57-  6:	gene-AT3G52900	gene-LOC100277048	  5e-40
+## Alignment 58: score=298.0 e_value=4e-07 N=7 at3&zm2 plus
+ 58-  0:	gene-AT3G52450	gene-LOC100274458	  7e-97
+ 58-  1:	gene-AT3G52490	gene-LOC103646487	 1e-163
+ 58-  2:	gene-AT3G52600	gene-LOC542590	 1e-217
+ 58-  3:	gene-AT3G52720	gene-LOC100274185	  1e-70
+ 58-  4:	gene-AT3G52740	gene-LOC103648675	  8e-21
+ 58-  5:	gene-AT3G52770	gene-LOC100275911	  9e-16
+ 58-  6:	gene-AT3G52890	gene-LOC103646509	 7e-198
+## Alignment 59: score=288.0 e_value=2.7e-09 N=7 at3&zm2 plus
+ 59-  0:	gene-AT3G27220	gene-LOC100286045	 5e-188
+ 59-  1:	gene-AT3G27290	gene-LOC100193239	  4e-46
+ 59-  2:	gene-AT3G27300	gene-LOC100284317	 2e-281
+ 59-  3:	gene-AT3G27310	gene-LOC100276041	  1e-61
+ 59-  4:	gene-AT3G27390	gene-LOC103646299	 4e-205
+ 59-  5:	gene-AT3G27540	gene-LOC100282445	 9e-217
+ 59-  6:	gene-AT3G27750	gene-LOC103646322	  1e-17
+## Alignment 60: score=257.0 e_value=2.8e-06 N=6 at3&zm2 minus
+ 60-  0:	gene-AT3G59350	gene-LOC100273422	 3e-118
+ 60-  1:	gene-AT3G59410	gene-LOC103646282	      0
+ 60-  2:	gene-AT3G59580	gene-LOC103646273	 2e-196
+ 60-  3:	gene-AT3G59710	gene-LOC100383092	 3e-105
+ 60-  4:	gene-AT3G59800	gene-LOC100282046	  2e-48
+ 60-  5:	gene-AT3G59820	gene-LOC103646271	 1e-269
+## Alignment 61: score=308.0 e_value=9.6e-07 N=7 at3&zm3 plus
+ 61-  0:	gene-AT3G55960	gene-LOC100216776	 2e-107
+ 61-  1:	gene-AT3G55970	gene-LOC100502161	 4e-139
+ 61-  2:	gene-AT3G55990	gene-LOC100382706	 5e-169
+ 61-  3:	gene-AT3G56080	gene-LOC103651052	 7e-227
+ 61-  4:	gene-AT3G56140	gene-LOC100191628	 4e-299
+ 61-  5:	gene-AT3G56290	gene-LOC100275213	  1e-70
+ 61-  6:	gene-AT3G56370	gene-LOC100274594	 1e-176
+## Alignment 62: score=256.0 e_value=2.2e-07 N=6 at3&zm3 plus
+ 62-  0:	gene-AT3G09320	gene-LOC100273154	 2e-128
+ 62-  1:	gene-AT3G09370	gene-LOC100285081	 9e-102
+ 62-  2:	gene-AT3G09540	gene-LOC103652411	 3e-144
+ 62-  3:	gene-AT3G09550	gene-LOC100281471	 1e-139
+ 62-  4:	gene-AT3G09570	gene-LOC100272830	 3e-181
+ 62-  5:	gene-AT3G09680	gene-LOC100192600	  3e-91
+## Alignment 63: score=546.0 e_value=4.3e-21 N=13 at3&zm3 minus
+ 63-  0:	gene-AT3G55020	gene-LOC103651042	 1e-301
+ 63-  1:	gene-AT3G55090	gene-LOC100278788	 6e-309
+ 63-  2:	gene-AT3G55140	gene-LOC103652411	 8e-163
+ 63-  3:	gene-AT3G55180	gene-LOC103651036	 2e-126
+ 63-  4:	gene-AT3G55240	gene-LOC100275821	  3e-24
+ 63-  5:	gene-AT3G55380	gene-LOC100283106	  3e-91
+ 63-  6:	gene-AT3G55470	gene-LOC100282142	  3e-48
+ 63-  7:	gene-AT3G55515	gene-LOC100303840	  2e-12
+ 63-  8:	gene-AT3G55580	gene-LOC100274159	 1e-221
+ 63-  9:	gene-AT3G55590	gene-LOC103651012	 2e-219
+ 63- 10:	gene-AT3G55660	gene-LOC100279236	 2e-158
+ 63- 11:	gene-AT3G55800	gene-shbp1	 6e-206
+ 63- 12:	gene-AT3G55840	gene-LOC100284742	 2e-124
+## Alignment 64: score=371.0 e_value=7.2e-11 N=8 at3&zm3 minus
+ 64-  0:	gene-AT3G53830	gene-LOC100274159	 1e-199
+ 64-  1:	gene-AT3G53850	gene-LOC100216709	  4e-50
+ 64-  2:	gene-AT3G53880	gene-LOC100037812	 3e-151
+ 64-  3:	gene-AT3G53980	gene-LOC100283788	  2e-41
+ 64-  4:	gene-AT3G54020	gene-LOC100382910	 2e-155
+ 64-  5:	gene-AT3G54090	gene-LOC100281184	 3e-186
+ 64-  6:	gene-AT3G54120	gene-LOC103651007	  2e-42
+ 64-  7:	gene-AT3G54130	gene-LOC100273270	 8e-112
+## Alignment 65: score=262.0 e_value=1.2e-07 N=6 at3&zm3 minus
+ 65-  0:	gene-AT3G22740	gene-HMT-3	 2e-147
+ 65-  1:	gene-AT3G22780	gene-LOC100216775	  4e-86
+ 65-  2:	gene-AT3G22790	gene-LOC100272971	  7e-70
+ 65-  3:	gene-AT3G23000	gene-LOC103650471	 1e-132
+ 65-  4:	gene-AT3G23050	gene-LOC100284259	  3e-77
+ 65-  5:	gene-AT3G23060	gene-LOC100382051	  1e-27
+## Alignment 66: score=268.0 e_value=4.1e-06 N=6 at3&zm5 plus
+ 66-  0:	gene-AT3G13960	gene-LOC103627811	  1e-44
+ 66-  1:	gene-AT3G14067	gene-LOC100279360	 3e-241
+ 66-  2:	gene-AT3G14075	gene-LOC103627819	 8e-247
+ 66-  3:	gene-AT3G14200	gene-LOC100381479	  1e-41
+ 66-  4:	gene-AT3G14205	gene-LOC100278338	 7e-241
+ 66-  5:	gene-AT3G14230	gene-LOC100283876	  1e-48
+## Alignment 67: score=290.0 e_value=1.2e-07 N=7 at3&zm6 minus
+ 67-  0:	gene-AT3G55020	gene-LOC103630445	 2e-282
+ 67-  1:	gene-AT3G55240	gene-LOC103630439	  1e-31
+ 67-  2:	gene-AT3G55350	gene-LOC100194168	 4e-128
+ 67-  3:	gene-AT3G55380	gene-LOC542600	  1e-92
+ 67-  4:	gene-AT3G55420	gene-LOC100276376	  8e-77
+ 67-  5:	gene-AT3G55520	gene-LOC100280699	  6e-83
+ 67-  6:	gene-AT3G55610	gene-LOC103630430	      0
+## Alignment 68: score=261.0 e_value=9e-06 N=6 at3&zm6 minus
+ 68-  0:	gene-AT3G53610	gene-LOC100192989	 3e-134
+ 68-  1:	gene-AT3G53740	gene-LOC103504721	  2e-49
+ 68-  2:	gene-AT3G53900	gene-LOC100284489	 2e-115
+ 68-  3:	gene-AT3G53990	gene-LOC100274324	  8e-69
+ 68-  4:	gene-AT3G54020	gene-LOC100501660	 8e-158
+ 68-  5:	gene-AT3G54040	gene-LOC109940644	  3e-33
+## Alignment 69: score=323.0 e_value=1.8e-11 N=7 at3&zm7 plus
+ 69-  0:	gene-AT3G57670	gene-LOC100277627	 2e-116
+ 69-  1:	gene-AT3G57780	gene-LOC100384417	 3e-183
+ 69-  2:	gene-AT3G57785	gene-LOC100276139	  2e-50
+ 69-  3:	gene-AT3G57790	gene-LOC100282589	 3e-201
+ 69-  4:	gene-AT3G57920	gene-LOC542666	  2e-37
+ 69-  5:	gene-AT3G57980	gene-LOC100277965	  3e-29
+ 69-  6:	gene-AT3G57990	gene-LOC100277694	  1e-48
+## Alignment 70: score=281.0 e_value=6.5e-07 N=7 at3&zm7 plus
+ 70-  0:	gene-AT3G22530	gene-LOC100275864	  2e-33
+ 70-  1:	gene-AT3G22600	gene-LOC100285403	  3e-20
+ 70-  2:	gene-AT3G22620	gene-LOC100281299	  1e-22
+ 70-  3:	gene-AT3G22760	gene-LOC103632001	  5e-85
+ 70-  4:	gene-AT3G22840	gene-LOC541918	  5e-41
+ 70-  5:	gene-AT3G22960	gene-LOC100193244	 1e-314
+ 70-  6:	gene-AT3G23090	gene-LOC100284611	  1e-33
+## Alignment 71: score=373.0 e_value=6.2e-09 N=8 at3&zm8 minus
+ 71-  0:	gene-AT3G62020	gene-LOC110566978	  1e-87
+ 71-  1:	gene-AT3G62030	gene-LOC103634647	  1e-99
+ 71-  2:	gene-AT3G62090	gene-LOC100279991	  2e-14
+ 71-  3:	gene-AT3G62100	gene-LOC103634643	  4e-20
+ 71-  4:	gene-AT3G62130	gene-LOC100193096	 5e-181
+ 71-  5:	gene-AT3G62150	gene-LOC100194270	      0
+ 71-  6:	gene-AT3G62220	gene-LOC100273920	 1e-188
+ 71-  7:	gene-AT3G62260	gene-LOC100273199	 3e-135
+## Alignment 72: score=280.0 e_value=7.5e-08 N=7 at3&zm8 minus
+ 72-  0:	gene-AT3G55090	gene-LOC103636522	 3e-307
+ 72-  1:	gene-AT3G55240	gene-LOC103636516	  1e-18
+ 72-  2:	gene-AT3G55440	gene-LOC100280823	 2e-147
+ 72-  3:	gene-AT3G55580	gene-LOC103636503	 9e-223
+ 72-  4:	gene-AT3G55590	gene-LOC100274471	 2e-218
+ 72-  5:	gene-AT3G55610	gene-LOC100280719	      0
+ 72-  6:	gene-AT3G55730	gene-LOC100273738	  1e-77
+## Alignment 73: score=460.0 e_value=3.9e-18 N=11 at3&zm9 plus
+ 73-  0:	gene-AT3G55020	gene-LOC103639286	 2e-250
+ 73-  1:	gene-AT3G55030	gene-LOC100284703	  2e-95
+ 73-  2:	gene-AT3G55040	gene-LOC100282090	  3e-98
+ 73-  3:	gene-AT3G55230	gene-LOC103639296	  1e-74
+ 73-  4:	gene-AT3G55240	gene-LOC100282477	  8e-27
+ 73-  5:	gene-AT3G55320	gene-LOC100382746	      0
+ 73-  6:	gene-AT3G55370	gene-LOC100273654	  2e-38
+ 73-  7:	gene-AT3G55515	gene-LOC100278842	  2e-11
+ 73-  8:	gene-AT3G55530	gene-LOC100280655	 2e-117
+ 73-  9:	gene-AT3G55640	gene-LOC100193567	 2e-143
+ 73- 10:	gene-AT3G55720	gene-LOC100275600	 2e-121
+## Alignment 74: score=299.0 e_value=8.5e-09 N=7 at3&zm9 plus
+ 74-  0:	gene-AT3G53490	gene-LOC103639288	  1e-69
+ 74-  1:	gene-AT3G53520	gene-LOC100273781	 8e-203
+ 74-  2:	gene-AT3G53540	gene-LOC100274687	  2e-51
+ 74-  3:	gene-AT3G53710	gene-LOC100284393	 3e-152
+ 74-  4:	gene-AT3G53790	gene-LOC542426	  3e-65
+ 74-  5:	gene-AT3G53930	gene-LOC100382597	 2e-198
+ 74-  6:	gene-AT3G53940	gene-LOC100193567	 1e-146
+## Alignment 75: score=287.0 e_value=7.3e-09 N=7 at3&zm9 plus
+ 75-  0:	gene-AT3G62310	gene-LOC100282531	      0
+ 75-  1:	gene-AT3G62390	gene-LOC103639219	 1e-173
+ 75-  2:	gene-AT3G62420	gene-LOC103639220	  1e-11
+ 75-  3:	gene-AT3G62630	gene-LOC103639231	  1e-42
+ 75-  4:	gene-AT3G62640	gene-LOC103639235	  2e-11
+ 75-  5:	gene-AT3G62660	gene-LOC100191794	 2e-204
+ 75-  6:	gene-AT3G62720	gene-LOC100283706	 1e-251
+## Alignment 76: score=287.0 e_value=1.2e-07 N=7 at4&zm1 plus
+ 76-  0:	gene-AT4G17490	gene-LOC109943658	  2e-35
+ 76-  1:	gene-AT4G17615	gene-LOC100191578	 1e-107
+ 76-  2:	gene-AT4G17680	gene-LOC100279269	  2e-24
+ 76-  3:	gene-AT4G17880	gene-LOC541694	 3e-117
+ 76-  4:	gene-AT4G17890	gene-LOC103637695	 5e-143
+ 76-  5:	gene-AT4G17900	gene-LOC100216682	  9e-72
+ 76-  6:	gene-AT4G17950	gene-LOC100282073	  3e-54
+## Alignment 77: score=272.0 e_value=1.3e-06 N=6 at4&zm1 plus
+ 77-  0:	gene-AT4G38630	gene-LOC100272940	 9e-145
+ 77-  1:	gene-AT4G38650	gene-LOC100272986	 4e-217
+ 77-  2:	gene-AT4G38660	gene-LOC100283065	 1e-107
+ 77-  3:	gene-AT4G38670	gene-LOC100193461	 3e-113
+ 77-  4:	gene-AT4G38770	gene-LOC100283196	  7e-12
+ 77-  5:	gene-AT4G38810	gene-LOC100277079	 2e-116
+## Alignment 78: score=281.0 e_value=5.6e-06 N=6 at4&zm1 minus
+ 78-  0:	gene-AT4G14710	gene-LOC100216585	 2e-122
+ 78-  1:	gene-AT4G14723	gene-LOC118473399	  3e-33
+ 78-  2:	gene-AT4G14746	gene-LOC100281152	  4e-40
+ 78-  3:	gene-AT4G14819	gene-LOC100279067	  2e-29
+ 78-  4:	gene-AT4G14830	gene-LOC100274542	  1e-26
+ 78-  5:	gene-AT4G14860	gene-LOC103631741	  7e-14
+## Alignment 79: score=259.0 e_value=1.4e-07 N=6 at4&zm4 minus
+ 79-  0:	gene-AT4G26230	gene-LOC100285759	  5e-61
+ 79-  1:	gene-AT4G26466	gene-LOC100282585	  3e-42
+ 79-  2:	gene-AT4G26480	gene-LOC100194222	 1e-135
+ 79-  3:	gene-AT4G26600	gene-LOC100191678	 2e-201
+ 79-  4:	gene-AT4G26610	gene-LOC100281711	 2e-243
+ 79-  5:	gene-AT4G26620	gene-LOC100193791	 2e-136
+## Alignment 80: score=472.0 e_value=5.7e-13 N=11 at4&zm5 plus
+ 80-  0:	gene-AT4G30320	gene-LOC100286221	  1e-62
+ 80-  1:	gene-AT4G30340	gene-LOC100284664	 5e-223
+ 80-  2:	gene-AT4G30350	gene-LOC103627842	 5e-102
+ 80-  3:	gene-AT4G30360	gene-LOC100384835	 7e-151
+ 80-  4:	gene-AT4G30400	gene-LOC100282936	  3e-75
+ 80-  5:	gene-AT4G30440	gene-LOC100274751	 1e-262
+ 80-  6:	gene-AT4G30510	gene-LOC100279118	 6e-145
+ 80-  7:	gene-AT4G30710	gene-LOC100193635	  2e-48
+ 80-  8:	gene-AT4G30790	gene-LOC103628897	  4e-46
+ 80-  9:	gene-AT4G30910	gene-LOC100381923	 4e-238
+ 80- 10:	gene-AT4G31020	gene-LOC103627859	 5e-158
+## Alignment 81: score=327.0 e_value=4.1e-08 N=7 at4&zm5 minus
+ 81-  0:	gene-AT4G17340	gene-LOC541895	 2e-132
+ 81-  1:	gene-AT4G17486	gene-LOC100282449	  7e-79
+ 81-  2:	gene-AT4G17500	gene-LOC103627498	  3e-51
+ 81-  3:	gene-AT4G17510	gene-LOC100381623	  3e-92
+ 81-  4:	gene-AT4G17530	gene-LOC100502159	 2e-126
+ 81-  5:	gene-AT4G17550	gene-LOC100191817	 2e-169
+ 81-  6:	gene-AT4G17560	gene-LOC100274270	  1e-52
+## Alignment 82: score=298.0 e_value=2.9e-06 N=7 at4&zm5 minus
+ 82-  0:	gene-AT4G35600	gene-LOC103626473	 2e-146
+ 82-  1:	gene-AT4G35770	gene-LOC107303345	  1e-48
+ 82-  2:	gene-AT4G35785	gene-LOC100283023	  3e-40
+ 82-  3:	gene-AT4G35880	gene-LOC100281436	 1e-126
+ 82-  4:	gene-AT4G35985	gene-LOC541647	 1e-109
+ 82-  5:	gene-AT4G36040	gene-LOC100281085	  3e-22
+ 82-  6:	gene-AT4G36105	gene-LOC100192653	  1e-39
+## Alignment 83: score=278.0 e_value=2.4e-08 N=7 at4&zm5 minus
+ 83-  0:	gene-AT4G38260	gene-LOC100280184	  1e-92
+ 83-  1:	gene-AT4G38270	gene-LOC103626474	 9e-265
+ 83-  2:	gene-AT4G38360	gene-LOC103626470	 3e-233
+ 83-  3:	gene-AT4G38500	gene-LOC100273416	 2e-224
+ 83-  4:	gene-AT4G38520	gene-LOC100281412	 8e-196
+ 83-  5:	gene-AT4G38730	gene-LOC103626455	 5e-144
+ 83-  6:	gene-AT4G38890	gene-LOC100274382	  2e-15
+## Alignment 84: score=275.0 e_value=8.5e-06 N=6 at4&zm7 minus
+ 84-  0:	gene-AT4G34940	gene-LOC100382347	 3e-286
+ 84-  1:	gene-AT4G34950	gene-LOC100501794	 4e-149
+ 84-  2:	gene-AT4G34960	gene-LOC100216820	 8e-106
+ 84-  3:	gene-AT4G34990	gene-LOC541744	  2e-93
+ 84-  4:	gene-AT4G35010	gene-LOC103633625	 9e-291
+ 84-  5:	gene-AT4G35100	gene-LOC109941001	 3e-143
+## Alignment 85: score=275.0 e_value=2e-07 N=7 at4&zm9 plus
+ 85-  0:	gene-AT4G31580	gene-LOC100282961	  2e-38
+ 85-  1:	gene-AT4G31670	gene-LOC103637980	  2e-60
+ 85-  2:	gene-AT4G31805	gene-LOC103639738	  8e-12
+ 85-  3:	gene-AT4G31900	gene-LOC103637982	      0
+ 85-  4:	gene-AT4G31920	gene-LOC100191412	  1e-94
+ 85-  5:	gene-AT4G31985	gene-LOC118473275	  2e-30
+ 85-  6:	gene-AT4G32120	gene-LOC100283552	 1e-163
+## Alignment 86: score=276.0 e_value=3.7e-07 N=7 at4&zm9 minus
+ 86-  0:	gene-AT4G17330	gene-LOC100382533	 3e-111
+ 86-  1:	gene-AT4G17350	gene-LOC103638937	  6e-71
+ 86-  2:	gene-AT4G17480	gene-LOC100216902	 1e-127
+ 86-  3:	gene-AT4G17615	gene-LOC100284952	 6e-107
+ 86-  4:	gene-AT4G17680	gene-LOC103638910	  8e-33
+ 86-  5:	gene-AT4G17870	gene-LOC100382238	  4e-69
+ 86-  6:	gene-AT4G17900	gene-LOC100278906	  1e-68
+## Alignment 87: score=384.0 e_value=4.9e-12 N=9 at5&zm1 plus
+ 87-  0:	gene-AT5G02530	gene-LOC100279524	  2e-52
+ 87-  1:	gene-AT5G02580	gene-LOC100284567	  1e-24
+ 87-  2:	gene-AT5G02620	gene-LOC100383028	 3e-112
+ 87-  3:	gene-AT5G02720	gene-LOC100277518	  1e-57
+ 87-  4:	gene-AT5G02780	gene-LOC100282747	  2e-90
+ 87-  5:	gene-AT5G02800	gene-LOC103634484	 6e-126
+ 87-  6:	gene-AT5G02820	gene-LOC100273699	 3e-202
+ 87-  7:	gene-AT5G02970	gene-LOC100191424	 7e-186
+ 87-  8:	gene-AT5G03080	gene-LOC100280333	 2e-105
+## Alignment 88: score=314.0 e_value=2.5e-09 N=7 at5&zm1 plus
+ 88-  0:	gene-AT5G67385	gene-LOC100285938	 4e-194
+ 88-  1:	gene-AT5G67470	gene-LOC103632209	 1e-174
+ 88-  2:	gene-AT5G67500	gene-LOC100281095	 2e-109
+ 88-  3:	gene-AT5G67530	gene-LOC103632256	 2e-315
+ 88-  4:	gene-AT5G67540	gene-LOC100285562	 1e-220
+ 88-  5:	gene-AT5G67560	gene-LOC100282662	 3e-107
+ 88-  6:	gene-AT5G67620	gene-LOC100277970	  3e-36
+## Alignment 89: score=312.0 e_value=6.1e-09 N=7 at5&zm1 plus
+ 89-  0:	gene-AT5G55930	gene-LOC103641440	      0
+ 89-  1:	gene-AT5G56050	gene-LOC100282287	  2e-57
+ 89-  2:	gene-AT5G56090	gene-LOC100192499	 6e-211
+ 89-  3:	gene-AT5G56120	gene-LOC100277912	  4e-51
+ 89-  4:	gene-AT5G56160	gene-LOC100279739	 2e-133
+ 89-  5:	gene-AT5G56280	gene-LOC100284689	 7e-168
+ 89-  6:	gene-AT5G56290	gene-LOC100191477	 2e-166
+## Alignment 90: score=257.0 e_value=5.2e-08 N=6 at5&zm1 plus
+ 90-  0:	gene-AT5G59020	gene-LOC100194401	  2e-39
+ 90-  1:	gene-AT5G59160	gene-LOC103634267	 3e-204
+ 90-  2:	gene-AT5G59210	gene-LOC100283137	 7e-101
+ 90-  3:	gene-AT5G59220	gene-LOC100192073	 9e-113
+ 90-  4:	gene-AT5G59420	gene-LOC100285774	 4e-269
+ 90-  5:	gene-AT5G59430	gene-LOC542534	  6e-82
+## Alignment 91: score=286.0 e_value=2.2e-08 N=7 at5&zm1 minus
+ 91-  0:	gene-AT5G59290	gene-LOC100191862	 2e-220
+ 91-  1:	gene-AT5G59430	gene-LOC542534	  6e-82
+ 91-  2:	gene-AT5G59450	gene-LOC100216906	 1e-142
+ 91-  3:	gene-AT5G59480	gene-LOC100273259	 5e-115
+ 91-  4:	gene-AT5G59550	gene-LOC100216907	  1e-77
+ 91-  5:	gene-AT5G59600	gene-LOC100280408	  3e-91
+ 91-  6:	gene-AT5G59720	gene-LOC100274593	  5e-71
+## Alignment 92: score=279.0 e_value=1.7e-07 N=6 at5&zm1 minus
+ 92-  0:	gene-AT5G15400	gene-LOC103636597	      0
+ 92-  1:	gene-AT5G15440	gene-LOC100285216	 1e-128
+ 92-  2:	gene-AT5G15450	gene-LOC103636567	      0
+ 92-  3:	gene-AT5G15460	gene-LOC103636545	  2e-44
+ 92-  4:	gene-AT5G15520	gene-LOC100192949	  3e-78
+ 92-  5:	gene-AT5G15600	gene-LOC100283729	  6e-26
+## Alignment 93: score=320.0 e_value=1.6e-08 N=8 at5&zm2 minus
+ 93-  0:	gene-AT5G54280	gene-LOC103647272	      0
+ 93-  1:	gene-AT5G54530	gene-LOC100273003	  8e-42
+ 93-  2:	gene-AT5G54640	gene-LOC100194327	  2e-75
+ 93-  3:	gene-AT5G54780	gene-LOC100281478	 1e-203
+ 93-  4:	gene-AT5G54800	gene-LOC100279907	 4e-179
+ 93-  5:	gene-AT5G54840	gene-LOC100284743	  1e-88
+ 93-  6:	gene-AT5G54910	gene-LOC100501177	 1e-221
+ 93-  7:	gene-AT5G55040	gene-LOC103649249	  6e-48
+## Alignment 94: score=315.0 e_value=2.5e-07 N=7 at5&zm2 minus
+ 94-  0:	gene-AT5G20540	gene-LOC100275355	 4e-106
+ 94-  1:	gene-AT5G20635	gene-LOC103647464	  2e-22
+ 94-  2:	gene-AT5G20650	gene-LOC103643033	  4e-41
+ 94-  3:	gene-AT5G20720	gene-LOC100216904	 3e-104
+ 94-  4:	gene-AT5G20810	gene-LOC103647454	  6e-27
+ 94-  5:	gene-AT5G20820	gene-LOC100192664	  2e-25
+ 94-  6:	gene-AT5G20910	gene-LOC100280915	 8e-101
+## Alignment 95: score=253.0 e_value=2.3e-06 N=6 at5&zm2 minus
+ 95-  0:	gene-AT5G47080	gene-LOC541823	 8e-139
+ 95-  1:	gene-AT5G47220	gene-LOC100285687	  2e-41
+ 95-  2:	gene-AT5G47240	gene-LOC100194205	 2e-120
+ 95-  3:	gene-AT5G47310	gene-LOC100191813	  9e-89
+ 95-  4:	gene-AT5G47450	gene-LOC103646110	 3e-134
+ 95-  5:	gene-AT5G47500	gene-LOC100216962	 2e-170
+## Alignment 96: score=368.0 e_value=1.6e-09 N=8 at5&zm3 plus
+ 96-  0:	gene-AT5G02010	gene-LOC100279236	 1e-204
+ 96-  1:	gene-AT5G02030	gene-LOC100502401	  5e-73
+ 96-  2:	gene-AT5G02040	gene-LOC103651010	  1e-66
+ 96-  3:	gene-AT5G02060	gene-LOC100216709	  4e-52
+ 96-  4:	gene-AT5G02190	gene-LOC103651015	 6e-138
+ 96-  5:	gene-AT5G02220	gene-LOC100277116	  4e-11
+ 96-  6:	gene-AT5G02250	gene-LOC103651024	 3e-312
+ 96-  7:	gene-AT5G02320	gene-LOC100285081	 2e-111
+## Alignment 97: score=302.0 e_value=2.8e-08 N=7 at5&zm3 plus
+ 97-  0:	gene-AT5G05710	gene-LOC100285978	  7e-77
+ 97-  1:	gene-AT5G05770	gene-LOC103650992	  4e-33
+ 97-  2:	gene-AT5G05830	gene-LOC100193545	  3e-47
+ 97-  3:	gene-AT5G05940	gene-LOC100279236	 2e-191
+ 97-  4:	gene-AT5G05960	gene-LOC100283788	  1e-41
+ 97-  5:	gene-AT5G05987	gene-LOC103651010	  3e-62
+ 97-  6:	gene-AT5G06050	gene-LOC100382186	 2e-278
+## Alignment 98: score=272.0 e_value=4.2e-07 N=6 at5&zm3 plus
+ 98-  0:	gene-AT5G01760	gene-LOC103651056	  2e-85
+ 98-  1:	gene-AT5G01830	gene-LOC103651059	 4e-134
+ 98-  2:	gene-AT5G01870	gene-LOC100280743	  1e-28
+ 98-  3:	gene-AT5G01880	gene-LOC111347718	  5e-33
+ 98-  4:	gene-AT5G01890	gene-LOC100274594	 8e-142
+ 98-  5:	gene-AT5G01990	gene-LOC103651075	 1e-187
+## Alignment 99: score=255.0 e_value=4.2e-08 N=6 at5&zm3 minus
+ 99-  0:	gene-AT5G02050	gene-LOC100286211	  8e-46
+ 99-  1:	gene-AT5G02310	gene-LOC100192707	      0
+ 99-  2:	gene-AT5G02380	gene-LOC100283295	  1e-20
+ 99-  3:	gene-AT5G02390	gene-LOC100275570	  2e-12
+ 99-  4:	gene-AT5G02480	gene-LOC100279810	 2e-183
+ 99-  5:	gene-AT5G02540	gene-LOC100500950	 6e-153
+## Alignment 100: score=250.0 e_value=1.7e-06 N=6 at5&zm3 minus
+100-  0:	gene-AT5G54490	gene-LOC100282390	  1e-29
+100-  1:	gene-AT5G54500	gene-LOC100283201	  2e-87
+100-  2:	gene-AT5G54510	gene-LOC103651132	 1e-301
+100-  3:	gene-AT5G54630	gene-LOC100285506	 5e-163
+100-  4:	gene-AT5G54730	gene-LOC103651130	 3e-135
+100-  5:	gene-AT5G54760	gene-LOC100284617	  7e-67
+## Alignment 101: score=275.0 e_value=1.9e-07 N=6 at5&zm4 plus
+101-  0:	gene-AT5G55900	gene-LOC100193791	 6e-130
+101-  1:	gene-AT5G55910	gene-LOC100281711	 6e-239
+101-  2:	gene-AT5G55920	gene-LOC100191678	 5e-193
+101-  3:	gene-AT5G56140	gene-LOC100194222	 2e-137
+101-  4:	gene-AT5G56170	gene-LOC100282585	  6e-55
+101-  5:	gene-AT5G56190	gene-LOC100280227	 3e-225
+## Alignment 102: score=404.0 e_value=3.5e-12 N=9 at5&zm4 minus
+102-  0:	gene-AT5G65090	gene-LOC103654251	 4e-186
+102-  1:	gene-AT5G65120	gene-LOC100276322	  2e-22
+102-  2:	gene-AT5G65158	gene-LOC100282651	  5e-37
+102-  3:	gene-AT5G65160	gene-LOC103654247	 4e-152
+102-  4:	gene-AT5G65220	gene-LOC541790	  2e-41
+102-  5:	gene-AT5G65260	gene-LOC100282115	  1e-92
+102-  6:	gene-AT5G65290	gene-LOC100285043	 1e-316
+102-  7:	gene-AT5G65420	gene-LOC541915	  6e-73
+102-  8:	gene-AT5G65440	gene-LOC103654235	  7e-88
+## Alignment 103: score=274.0 e_value=5.1e-06 N=6 at5&zm4 minus
+103-  0:	gene-AT5G53120	gene-LOC100279222	 4e-184
+103-  1:	gene-AT5G53130	gene-LOC100285094	 2e-300
+103-  2:	gene-AT5G53140	gene-LOC100283542	 1e-147
+103-  3:	gene-AT5G53160	gene-LOC100272864	  9e-94
+103-  4:	gene-AT5G53210	gene-LOC100194372	  5e-67
+103-  5:	gene-AT5G53280	gene-LOC100383799	  3e-45
+## Alignment 104: score=481.0 e_value=3.2e-16 N=11 at5&zm5 plus
+104-  0:	gene-AT5G57500	gene-LOC100217000	  5e-79
+104-  1:	gene-AT5G57610	gene-LOC103627832	 2e-269
+104-  2:	gene-AT5G57620	gene-LOC103627833	  1e-80
+104-  3:	gene-AT5G57625	gene-LOC103627834	  7e-46
+104-  4:	gene-AT5G57690	gene-LOC100284664	 2e-204
+104-  5:	gene-AT5G57710	gene-LOC103627842	 3e-126
+104-  6:	gene-AT5G57750	gene-LOC100282936	  8e-42
+104-  7:	gene-AT5G57840	gene-LOC100382972	  1e-78
+104-  8:	gene-AT5G58003	gene-LOC100279388	  2e-54
+104-  9:	gene-AT5G58010	gene-LOC100284814	  3e-59
+104- 10:	gene-AT5G58080	gene-LOC100274010	  3e-82
+## Alignment 105: score=396.0 e_value=1.7e-09 N=9 at5&zm5 plus
+105-  0:	gene-AT5G64950	gene-LOC103627747	  1e-31
+105-  1:	gene-AT5G65090	gene-LOC100274100	 1e-182
+105-  2:	gene-AT5G65160	gene-LOC103627755	 2e-131
+105-  3:	gene-AT5G65220	gene-LOC100284301	  2e-40
+105-  4:	gene-AT5G65260	gene-LOC100194063	  7e-96
+105-  5:	gene-AT5G65290	gene-LOC103627764	      0
+105-  6:	gene-AT5G65320	gene-LOC100217195	  2e-45
+105-  7:	gene-AT5G65420	gene-LOC732735	  1e-72
+105-  8:	gene-AT5G65440	gene-LOC100273763	      0
+## Alignment 106: score=268.0 e_value=2e-07 N=6 at5&zm5 plus
+106-  0:	gene-AT5G47180	gene-LOC100217229	  3e-75
+106-  1:	gene-AT5G47190	gene-LOC100274270	  6e-52
+106-  2:	gene-AT5G47200	gene-LOC100502159	 6e-127
+106-  3:	gene-AT5G47220	gene-LOC103627498	  8e-39
+106-  4:	gene-AT5G47310	gene-LOC100282449	  4e-81
+106-  5:	gene-AT5G47450	gene-LOC541895	 2e-134
+## Alignment 107: score=264.0 e_value=9.2e-06 N=6 at5&zm5 plus
+107-  0:	gene-AT5G10080	gene-LOC100193625	 2e-154
+107-  1:	gene-AT5G10090	gene-LOC103627755	 1e-125
+107-  2:	gene-AT5G10220	gene-LOC542446	 3e-129
+107-  3:	gene-AT5G10280	gene-LOC100384404	  2e-74
+107-  4:	gene-AT5G10310	gene-LOC100276078	  3e-25
+107-  5:	gene-AT5G10350	gene-LOC100194063	  9e-96
+## Alignment 108: score=302.0 e_value=7.4e-10 N=7 at5&zm5 minus
+108-  0:	gene-AT5G55710	gene-LOC100193921	  5e-62
+108-  1:	gene-AT5G55900	gene-LOC100192732	 2e-118
+108-  2:	gene-AT5G55920	gene-LOC103627666	 3e-195
+108-  3:	gene-AT5G55950	gene-LOC100191213	 3e-185
+108-  4:	gene-AT5G56140	gene-LOC100273249	 3e-135
+108-  5:	gene-AT5G56160	gene-LOC100381849	 2e-148
+108-  6:	gene-AT5G56170	gene-LOC100217283	  8e-55
+## Alignment 109: score=350.0 e_value=4.1e-08 N=8 at5&zm6 plus
+109-  0:	gene-AT5G01670	gene-LOC100857058	 4e-158
+109-  1:	gene-AT5G01760	gene-LOC100285221	  8e-87
+109-  2:	gene-AT5G01830	gene-LOC103630485	 2e-155
+109-  3:	gene-AT5G01840	gene-LOC100216587	  7e-21
+109-  4:	gene-AT5G01890	gene-LOC103630489	 6e-121
+109-  5:	gene-AT5G01920	gene-LOC100501584	 1e-217
+109-  6:	gene-AT5G01950	gene-LOC118472262	 1e-233
+109-  7:	gene-AT5G01970	gene-LOC103630511	  6e-48
+## Alignment 110: score=280.0 e_value=4.1e-07 N=6 at5&zm7 plus
+110-  0:	gene-AT5G54230	gene-LOC541728	  2e-74
+110-  1:	gene-AT5G54240	gene-LOC100194072	  2e-96
+110-  2:	gene-AT5G54270	gene-LOC100284154	 1e-169
+110-  3:	gene-AT5G54280	gene-LOC103634337	      0
+110-  4:	gene-AT5G54300	gene-LOC100284699	  7e-25
+110-  5:	gene-AT5G54310	gene-LOC100279757	 2e-135
+## Alignment 111: score=271.0 e_value=4.4e-06 N=6 at5&zm9 plus
+111-  0:	gene-AT5G67330	gene-LOC100283910	 1e-218
+111-  1:	gene-AT5G67470	gene-LOC103639456	 7e-181
+111-  2:	gene-AT5G67500	gene-LOC103639463	 2e-110
+111-  3:	gene-AT5G67540	gene-LOC103639465	 2e-219
+111-  4:	gene-AT5G67560	gene-LOC100191622	 2e-110
+111-  5:	gene-AT5G67620	gene-LOC100274154	  6e-19
+## Alignment 112: score=352.0 e_value=8.2e-12 N=8 at5&zm9 minus
+112-  0:	gene-AT5G02530	gene-LOC100272743	  6e-59
+112-  1:	gene-AT5G02560	gene-LOC103639303	  5e-66
+112-  2:	gene-AT5G02720	gene-LOC103639288	  5e-59
+112-  3:	gene-AT5G02740	gene-LOC103639287	  2e-36
+112-  4:	gene-AT5G02780	gene-LOC100282090	  3e-93
+112-  5:	gene-AT5G02810	gene-LOC100280240	 2e-111
+112-  6:	gene-AT5G02830	gene-LOC103639281	 2e-139
+112-  7:	gene-AT5G02970	gene-LOC100274584	 6e-190
+## Alignment 113: score=280.0 e_value=4.2e-06 N=6 at5&zm9 minus
+113-  0:	gene-AT5G46570	gene-LOC100282511	 3e-281
+113-  1:	gene-AT5G46590	gene-LOC100857067	  2e-74
+113-  2:	gene-AT5G46640	gene-LOC100192715	  1e-56
+113-  3:	gene-AT5G46740	gene-LOC103638897	  2e-60
+113-  4:	gene-AT5G46750	gene-LOC100283451	 9e-134
+113-  5:	gene-AT5G46760	gene-LOC103638892	 4e-130
