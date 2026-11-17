@@ -1,5 +1,5 @@
 #!/bin/bash --login
-#SBATCH --job-name=synteny_mcscanx
+#SBATCH --job-name=AT-GM_mcscanx
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=32G
 #SBATCH --time=06:00:00
@@ -18,11 +18,12 @@ export LC_ALL=C
 # ---------------- user settings ----------------
 BASE=/mnt/scratch/lemasjoh/BASF/lncRNA_met_dev/repo
 SP1=A.tha;     CODE1=at      # CODE = exactly 2 letters, different per species (MCScanX reads the species from the
-SP2=O.sat;  CODE2=os      #        first two letters of the chromosome name)
+SP2=G.max;  CODE2=gm      #        first two letters of the chromosome name)
 MCSCANX_OPTS="-s 5 -b 2"     # -s = min genes per block; -b 2 = inter-species blocks only
 # -----------------------------------------------
 
-module load GffRead SeqKit DIAMOND Miniforge3  # adjust to your cluster; MCScanX: module, bioconda (mcscanx) or build from source
+ml purge
+module load Miniforge3  # adjust to your cluster; MCScanX: module, bioconda (mcscanx) or build from source
 conda activate mcscan
 
 for t in gffread seqkit diamond MCScanX; do
