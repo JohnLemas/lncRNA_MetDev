@@ -37,21 +37,48 @@ species:
       lncfinder: data/A_thaliana/lncfinder_lnc_ids.txt
       lncboost: data/A_thaliana/lncboost_lnc_ids.txt
       cpat: data/A_thaliana/cpat_noncoding_ids.txt
-  species2:
-    G_max:
+  G_max:
     genome: data/G_max/genome.fa
     lncrna_gtf: data/G_max/ref_lncRNA.gtf      # reference-annotated lncRNAs
-    mrna_gtf: data/A_thaliana/ref_mRNA.gtf          # reference-annotated mRNAs
-    plncdb_fa: data/A_thaliana/plncdb_all_cdhit.fa  # all PLncDB sources, cd-hit condensed (T)
-    evlncdb_fa: data/A_thaliana/evlncdb.fa          # EVLncDB subset kept aside (E)
-    candidates_fa: data/A_thaliana/candidates.fa    # candidates entering the ML tools (C)
-    transcriptome_fa: data/A_thaliana/stringtie_all.fa   # full transcriptome for BUSCO
-    diamond_tsv: data/A_thaliana/candidates_vs_sprot.tsv
+    mrna_gtf: data/G_max/ref_mRNA.gtf          # reference-annotated mRNAs
+    plncdb_fa: data/G_max/plncdb_all_cdhit.fa  # all PLncDB sources, cd-hit condensed (T)
+    evlncdb_fa: data/G_max/evlncdb.fa          # EVLncDB subset kept aside (E)
+    candidates_fa: data/G_max/candidates.fa    # candidates entering the ML tools (C)
+    transcriptome_fa: data/G_max/stringtie_all.fa   # full transcriptome for BUSCO
+    diamond_tsv: data/G_max/candidates_vs_sprot.tsv
     busco_lineage: eudicotyledons_odb12
     tools:   # one file per tool: candidate IDs the tool called non-coding (lncRNA), one per line
-      feelnc: data/A_thaliana/feelnc_lnc_ids.txt
-      lncfinder: data/A_thaliana/lncfinder_lnc_ids.txt
-      lncboost: data/A_thaliana/lncboost_lnc_ids.txt
-      cpat: data/A_thaliana/cpat_noncoding_ids.txt
-  # species3: ...
-  # species4: ...
+      feelnc: data/G_max/feelnc_lnc_ids.txt
+      lncfinder: data/G_max/lncfinder_lnc_ids.txt
+      lncboost: data/G_max/lncboost_lnc_ids.txt
+      cpat: data/G_max/cpat_noncoding_ids.txt
+  Z_mays:
+    genome: data/Z_mays/genome.fa
+    lncrna_gtf: data/Z_mays/ref_lncRNA.gtf      # reference-annotated lncRNAs
+    mrna_gtf: data/Z_mays/ref_mRNA.gtf          # reference-annotated mRNAs
+    plncdb_fa: data/Z_mays/plncdb_all_cdhit.fa  # all PLncDB sources, cd-hit condensed (T)
+    evlncdb_fa: data/Z_mays/evlncdb.fa          # EVLncDB subset kept aside (E)
+    candidates_fa: data/Z_mays/candidates.fa    # candidates entering the ML tools (C)
+    transcriptome_fa: data/Z_mays/stringtie_all.fa   # full transcriptome for BUSCO
+    diamond_tsv: data/Z_mays/candidates_vs_sprot.tsv
+    busco_lineage: poales_odb12
+    tools:   # one file per tool: candidate IDs the tool called non-coding (lncRNA), one per line
+      feelnc: data/Z_mays/feelnc_lnc_ids.txt
+      lncfinder: data/Z_mays/lncfinder_lnc_ids.txt
+      lncboost: data/Z_mays/lncboost_lnc_ids.txt
+      cpat: data/Z_mays/cpat_noncoding_ids.txt
+  O_sativa:
+    genome: data/O_sativa/genome.fa
+    lncrna_gtf: data/O_sativa/ref_lncRNA.gtf      # reference-annotated lncRNAs
+    mrna_gtf: data/O_sativa/ref_mRNA.gtf          # reference-annotated mRNAs
+    plncdb_fa: data/O_sativa/plncdb_all_cdhit.fa  # all PLncDB sources, cd-hit condensed (T)
+    evlncdb_fa: data/O_sativa/evlncdb.fa          # EVLncDB subset kept aside (E)
+    candidates_fa: data/O_sativa/candidates.fa    # candidates entering the ML tools (C)
+    transcriptome_fa: data/O_sativa/stringtie_all.fa   # full transcriptome for BUSCO
+    diamond_tsv: data/O_sativa/candidates_vs_sprot.tsv
+    busco_lineage: poales_odb12
+    tools:   # one file per tool: candidate IDs the tool called non-coding (lncRNA), one per line
+      feelnc: data/O_sativa/feelnc_lnc_ids.txt
+      lncfinder: data/O_sativa/lncfinder_lnc_ids.txt
+      lncboost: data/O_sativa/lncboost_lnc_ids.txt
+      cpat: data/O_sativa/cpat_noncoding_ids.txt
