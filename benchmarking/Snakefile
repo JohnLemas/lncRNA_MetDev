@@ -106,11 +106,11 @@ rule transdecoder:
     shell:
         r"""
         set -euo pipefail
-        IN=$(realpath {input}); OUTP=$(realpath -m {output.pep}); WD=$(realpath -m {params.wd})
-        mkdir -p $WD && cd $WD
-        TransDecoder.LongOrfs -t $IN
-        TransDecoder.Predict -t $IN --single_best_only
-        sed 's/\*//g' $(basename $IN).transdecoder.pep > $OUTP
+        mkdir -p {params.wd}
+        TransDecoder -t {input} -O {params.wd}
+        PEP={params.wd}/$(basename {input}).transdecoder.pep
+        [ -s "$PEP" ] || {{ echo "Missing or empty $PEP" >&2; exit 1; }}
+        sed 's/\*//g' "$PEP" > {output.pep}
         """
 
 

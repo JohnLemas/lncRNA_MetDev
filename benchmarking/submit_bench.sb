@@ -1,13 +1,16 @@
 #!/bin/bash --login
 #SBATCH --job-name=lncrna_bench
-#SBATCH --partition=YOUR_PARTITION
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=4G
-#SBATCH --time=12:00:00
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=128G
+#SBATCH --time=1-00:00:00
 #SBATCH --output=logs/snakemake_%j.out
 
 module purge
 ml load Miniforge3
 conda activate lncbench
 
-snakemake --profile profiles/slurm -n
+for t in minimap2 gffread TransDecoder busco; do
+  command -v $t >/dev/null || { echo "MISSING TOOL: $t"; exit 1; }
+done
+
+snakemake --cores 32 --resources mem_mb=120000 --rerun-incomplete --keep-going
