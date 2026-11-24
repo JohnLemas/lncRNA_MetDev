@@ -157,9 +157,9 @@ SRR395208	rt_B73_4	root	NA	unstranded
 SRR445244	ear_B73_1	ear	B73	unstranded
 SRR445382	sh_B73_1	shoot	B74	unstranded
 SRR445383	tssl_B73_1	tassel	B75	unstranded
-SRR5983964	end_20dap_1	endosperm	20 DAP endosperm	stranded
-SRR5983965	end_15dap_1	endosperm	15 DAP endosperm	stranded
-SRR5983966	end_9dap_1	endosperm	9 DAP endosperm	stranded
-SRR5983967	emb_20dap_1	embryo	20 DAP embryo	stranded
-SRR5983968	emb_15dap_1	embryo	15 DAP embryo	stranded
-SRR5983969	emb_9dap_1	embryo	9 DAP embryo	stranded
+SRR5983964	end_20dap_1	endosperm	20 DAP endosperm	R-stranded
+SRR5983965	end_15dap_1	endosperm	15 DAP endosperm	R-stranded
+SRR5983966	end_9dap_1	endosperm	9 DAP endosperm	R-stranded
+SRR5983967	emb_20dap_1	embryo	20 DAP embryo	R-stranded
+SRR5983968	emb_15dap_1	embryo	15 DAP embryo	R-stranded
+SRR5983969	emb_9dap_1	embryo	9 DAP embryo	R-stranded
