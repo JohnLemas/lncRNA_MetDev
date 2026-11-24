@@ -1,0 +1,17 @@
+species	mode	file	complete	single	duplicated	fragmented	missing	n_buscos
+A_thaliana	proteins	short_summary.specific.eudicotyledons_odb12.proteins.txt	97.9	36.6	61.3	0.6	1.5	2805
+A_thaliana	proteins	short_summary.txt	97.9	36.6	61.3	0.6	1.5	2805
+A_thaliana	transcriptome	short_summary.specific.eudicotyledons_odb12.transcriptome.txt	98.7	18.2	80.5	0.4	0.9	2805
+A_thaliana	transcriptome	short_summary.txt	98.7	18.2	80.5	0.4	0.9	2805
+G_max	proteins	short_summary.specific.eudicotyledons_odb12.proteins.txt	98.4	16.0	82.4	0.4	1.2	2805
+G_max	proteins	short_summary.txt	98.4	16.0	82.4	0.4	1.2	2805
+G_max	transcriptome	short_summary.specific.eudicotyledons_odb12.transcriptome.txt	99.4	8.6	90.8	0.4	0.2	2805
+G_max	transcriptome	short_summary.txt	99.4	8.6	90.8	0.4	0.2	2805
+Z_mays	proteins	short_summary.specific.poales_odb12.proteins.txt	97.9	35.6	62.3	0.4	1.7	6282
+Z_mays	proteins	short_summary.txt	97.9	35.6	62.3	0.4	1.7	6282
+Z_mays	transcriptome	short_summary.specific.poales_odb12.transcriptome.txt	98.6	22.5	76.1	0.3	1.1	6282
+Z_mays	transcriptome	short_summary.txt	98.6	22.5	76.1	0.3	1.1	6282
+O_sativa	proteins	short_summary.specific.poales_odb12.proteins.txt	99.3	46.8	52.4	0.1	0.6	6282
+O_sativa	proteins	short_summary.txt	99.3	46.8	52.4	0.1	0.6	6282
+O_sativa	transcriptome	short_summary.specific.poales_odb12.transcriptome.txt	100.0	24.4	75.5	0.0	0.0	6282
+O_sativa	transcriptome	short_summary.txt	100.0	24.4	75.5	0.0	0.0	6282
